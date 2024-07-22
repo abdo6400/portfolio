@@ -43,17 +43,6 @@ The portfolio website is built using Flutter, a powerful open-source UI software
 - [url_launcher](https://pub.dev/packages/url_launcher): Enables easy integration with external links, allowing visitors to quickly navigate to external resources.
 - [font_awesome_flutter](https://pub.dev/packages/font_awesome_flutter): Introduces a wide variety of customizable icons from the FontAwesome library, enhancing the visual representation of the website's features.
 
-## Getting Started
-
-To explore and interact with the portfolio website on your local machine, follow these steps:
-
-1. **Clone the Repository:**
-   git clone https://github.com/Hamad-Anwar/Flutter-Responsive-Portfolio-WebApp.git
-2. **Install Dependencies:**
-   flutter pub get
-3. **Run Application**
-   flutter run
-
 ## Usage Guide
 
 Once the website is up and running, you'll find a range of sections to explore:
@@ -72,13 +61,6 @@ I welcome contributions and suggestions from the community! If you come across a
 
 Your feedback and thoughts are highly valued. Feel free to connect with me through:
 
-- **Email:** rh676838@gmail.com
-- **LinkedIn:** [Hamad Anwar](https://www.linkedin.com/in/hamad-anwar)
+- **Email:** abdulrahmanamr348@gmail.com
+- **LinkedIn:** [Abdulrahman Amr](httwww.linkedin.com/in/abdelrahman-amr-729400204)
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-### Designed and developed with ❤️ by [Hamad Anwar](https://www.linkedin.com/in/hamad-anwar/).
