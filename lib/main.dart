@@ -10,8 +10,20 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        scaffoldBackgroundColor: bgColor,
+        useMaterial3: true,
+        textTheme: GoogleFonts.openSansTextTheme(Theme.of(context).textTheme)
+            .apply(bodyColor: Colors.white,)
+            .copyWith(
+          bodyLarge: const TextStyle(color: bodyTextColor),
+          bodyMedium: const TextStyle(color: bodyTextColor),
+        ),
+      ),
+
       home: SplashView()
     );
   }
