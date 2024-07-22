@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: bgColor,
         useMaterial3: true,
         textTheme: GoogleFonts.openSansTextTheme(Theme.of(context).textTheme)
-            .apply(bodyColor: Colors.white,)
+            .apply(bodyColor: Colors.white ,)
             .copyWith(
           bodyLarge: const TextStyle(color: bodyTextColor),
           bodyMedium: const TextStyle(color: bodyTextColor),
