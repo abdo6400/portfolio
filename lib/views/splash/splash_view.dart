@@ -1,8 +1,10 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:portfolio/res/constants.dart';
+import 'package:portfolio/controllers/information_controller.dart';
+
 import 'package:portfolio/views/intro/components/animated_texts_componenets.dart';
 import 'package:portfolio/views/splash/componenets/animated_loading_text.dart';
+import 'package:provider/provider.dart';
 
 import '../home/home_view.dart';
 
@@ -16,7 +18,8 @@ class _SplashViewState extends State<SplashView> {
   @override
   void initState() {
     super.initState();
-    Timer(const Duration(seconds: 3), () {
+    Timer(const Duration(seconds: 4), () async{
+      await context.read<InformationController>().loadInformation();
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(
@@ -38,7 +41,7 @@ class _SplashViewState extends State<SplashView> {
               height: 100,
             ),
             SizedBox(
-              height: defaultPadding,
+              height: 20.0,
             ),
             AnimatedLoadingText(),
           ],

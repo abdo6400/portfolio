@@ -29,7 +29,7 @@ class Introduction extends StatelessWidget {
                 context.read<ViewsController>().changeView(0);
               }
             },
-            child: IntroBody(),
+            child: const IntroBody(),
           ),
         ),
       ],

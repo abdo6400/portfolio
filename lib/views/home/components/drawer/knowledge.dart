@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import '../../../../res/constants.dart';
+
 
 class KnowledgeText extends StatelessWidget {
   const KnowledgeText({super.key, required this.knowledge});
@@ -8,11 +8,11 @@ class KnowledgeText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: defaultPadding/2),
+      padding: const EdgeInsets.only(bottom: 20.0/2),
       child: Row(
         children: [
           SvgPicture.asset('assets/icons/check.svg'),
-          SizedBox(width: defaultPadding/2,),
+          SizedBox(width: 20.0/2,),
           Text(knowledge),
         ],
       ),

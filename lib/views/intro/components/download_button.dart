@@ -1,9 +1,10 @@
-import 'package:animate_on_hover/animate_on_hover.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:portfolio/res/responsive.dart';
+
+import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../../res/constants.dart';
+import '../../../controllers/information_controller.dart';
 
 class DownloadButton extends StatelessWidget {
   const DownloadButton({super.key});
@@ -12,12 +13,18 @@ class DownloadButton extends StatelessWidget {
     return InkWell(
       onTap: () {
         launchUrl(Uri.parse(
-            'https://drive.google.com/file/d/1xjOMo7GZk5Apno_bKs58Ov3C9Ahj6XsV/view?usp=sharing'));
+          context
+              .read<InformationController>()
+              .cv!
+              .additionalInformation
+              .socialLinks
+              .cv,
+        ));
       },
       child: Container(
         alignment: Alignment.center,
         padding: const EdgeInsets.symmetric(
-            vertical: defaultPadding / 1.5, horizontal: defaultPadding * 2),
+            vertical: 20.0 / 1.5, horizontal: 20.0 * 2),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
           boxShadow: const [
@@ -42,10 +49,10 @@ class DownloadButton extends StatelessWidget {
                   fontWeight: FontWeight.bold),
             ),
             const SizedBox(
-              width: defaultPadding / 3,
+              width: 20.0 / 3,
             ),
             const Icon(
-              FontAwesomeIcons.download,
+              Icons.download,
               color: Colors.white70,
               size: 15,
             )

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../res/constants.dart';
+
 import '../../../res/responsive.dart';
 
 class AnimatedImageContainer extends StatefulWidget {
@@ -38,7 +38,7 @@ class AnimatedImageContainerState extends State<AnimatedImageContainer>
           child: Container(
             height: widget.height!,
             width: widget.width!,
-            padding: const EdgeInsets.all(defaultPadding / 4),
+            padding: const EdgeInsets.all(20.0 / 4),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(30),
               gradient: const LinearGradient(colors: [

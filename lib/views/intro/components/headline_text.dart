@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../../controllers/information_controller.dart';
 
 class MyPortfolioText extends StatelessWidget {
   const MyPortfolioText({super.key, required this.start, required this.end});
@@ -11,12 +14,9 @@ class MyPortfolioText extends StatelessWidget {
         tween: Tween(begin: start, end: end),
         duration: const Duration(milliseconds: 200),
         builder: (context, value, child) {
-          return Text('Abdulrahman Amr',
+          return Text(context.read<InformationController>().cv!.name,
               style: Theme.of(context).textTheme.headlineLarge!.copyWith(
-                  color: Colors.grey,
-                  fontWeight: FontWeight.w900,
-                  height: 0,
-                  fontSize: value));
+                  fontWeight: FontWeight.bold, height: 0, fontSize: value));
         },
       );
     });

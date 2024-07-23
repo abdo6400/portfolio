@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../res/constants.dart';
+
 
 class MenuButton extends StatelessWidget {
   final VoidCallback? onTap;
@@ -17,11 +17,11 @@ class MenuButton extends StatelessWidget {
               onTap: onTap,
               borderRadius: BorderRadius.circular(20),
               child: Container(
-                height: defaultPadding * 2.0 * value,
-                width: defaultPadding * 2.0 * value,
+                height: 20.0 * 2.0 * value,
+                width: 20.0 * 2.0 * value,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: Colors.black,
+                    color: Theme.of(context).scaffoldBackgroundColor,
                     boxShadow: [
                       BoxShadow(
                           color: Colors.pinkAccent.withOpacity(.5),
@@ -40,7 +40,7 @@ class MenuButton extends StatelessWidget {
                     child: Icon(
                       Icons.menu,
                       color: Colors.white,
-                      size: defaultPadding * 1.2 * value,
+                      size: 20.0 * 1.2 * value,
                     ),
                   )
                 ),

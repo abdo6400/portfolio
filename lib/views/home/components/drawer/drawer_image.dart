@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../res/constants.dart';
+
 
 class DrawerImage extends StatelessWidget {
   const DrawerImage({super.key});
@@ -10,7 +10,7 @@ class DrawerImage extends StatelessWidget {
     return Container(
       height: 100,
       width: 100,
-      padding: const EdgeInsets.all(defaultPadding/6),
+      padding: const EdgeInsets.all(20.0/6),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(50),
           gradient: LinearGradient(
@@ -28,7 +28,7 @@ class DrawerImage extends StatelessWidget {
           borderRadius: BorderRadius.circular(50),
           child: Transform.rotate(
               angle: 0.1,
-              child: Image.asset('assets/images/task.png',fit: BoxFit.cover,))),
+              child: Image.asset('assets/images/me.jpeg',fit: BoxFit.cover,))),
     );
   }
 }

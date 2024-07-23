@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
-import '../../../res/constants.dart';
+
 import '../../../res/responsive.dart';
 import 'animated_texts_componenets.dart';
 import 'combine_subtitle.dart';
@@ -44,12 +44,11 @@ class IntroBody extends StatelessWidget {
                 tablet: MyPortfolioText(start: 50, end: 40)),
             if (kIsWeb && Responsive.isLargeMobile(context))
               Container(
-                height: defaultPadding,
+                height: 20.0,
                 color: Colors.transparent,
               ),
-            const SizedBox(height: defaultPadding / 2),
             const CombineSubtitleText(),
-            const SizedBox(height: defaultPadding / 2),
+            const SizedBox(height: 20.0 / 2),
             const Responsive(
               desktop: AnimatedDescriptionText(start: 14, end: 15),
               largeMobile: AnimatedDescriptionText(start: 14, end: 12),
@@ -57,7 +56,7 @@ class IntroBody extends StatelessWidget {
               tablet: AnimatedDescriptionText(start: 17, end: 14),
             ),
             const SizedBox(
-              height: defaultPadding * 2,
+              height: 20.0 * 2,
             ),
             const DownloadButton(),
           ],

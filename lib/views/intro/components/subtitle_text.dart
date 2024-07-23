@@ -21,8 +21,7 @@ class AnimatedSubtitleText extends StatelessWidget {
         return Text(
           text,
           style: Theme.of(context).textTheme.headlineLarge!.copyWith(
-              fontWeight: FontWeight.w900,
-              color: Colors.grey,
+              fontWeight: FontWeight.bold,
               shadows: gradient
                   ? [
                       const Shadow(

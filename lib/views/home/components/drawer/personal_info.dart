@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
-import '../../../../res/constants.dart';
+import 'package:portfolio/controllers/information_controller.dart';
+import 'package:provider/provider.dart';
 import 'header_info.dart';
 
 class PersonalInfo extends StatelessWidget {
@@ -8,25 +8,34 @@ class PersonalInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    final cv = context.read<InformationController>().cv!;
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(
-          height: defaultPadding / 2,
+        const SizedBox(
+          height: 20.0 / 2,
         ),
-        AreaInfoText(title: 'Contact', text: '01069645711'),
-        AreaInfoText(title: 'Email', text: 'abdulrahman@gmail.com'),
-        AreaInfoText(title: 'LinkedIn', text: '@abdulrhamn-amr'),
-        AreaInfoText(title: 'Github', text: '@abdulrhamn-amr'),
-        SizedBox(
-          height: defaultPadding,
+        AreaInfoText(title: 'Contact', text: cv.contactInformation.phone),
+        AreaInfoText(title: 'Email', text: cv.contactInformation.email),
+        AreaInfoText(
+            title: 'LinkedIn',
+            text:
+                cv.additionalInformation.socialLinks.linkedin.split('/').last),
+        AreaInfoText(
+            title: 'GitHub',
+            text: cv.additionalInformation.socialLinks.github.split("/").last),
+        const SizedBox(
+          height: 20.0,
         ),
         Text(
           'Skills',
-          style: TextStyle(color: Colors.white),
+          style: Theme.of(context)
+              .textTheme
+              .titleSmall!
+              .copyWith(color: Colors.white),
         ),
-        SizedBox(
-          height: defaultPadding,
+        const SizedBox(
+          height: 20.0,
         ),
       ],
     );

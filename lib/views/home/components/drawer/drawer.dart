@@ -1,35 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/views/home/components/drawer/contact_icons.dart';
 import 'package:portfolio/views/home/components/drawer/personal_info.dart';
-import '../../../../res/constants.dart';
 import 'knowledges.dart';
 import 'about.dart';
-import 'my_skill.dart';
+
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
   @override
   Widget build(BuildContext context) {
-    return Drawer(
-      backgroundColor: primaryColor,
+    return const Drawer(
+      backgroundColor: Colors.white24,
       child: SingleChildScrollView(
         child: Column(
           children: [
-            const About(),
-            Container(
-              color: bgColor,
-              child: const Padding(
-              padding: EdgeInsets.all(defaultPadding/2),
+            About(),
+            Padding(
+              padding: EdgeInsets.all(20.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   PersonalInfo(),
-                  MySKills(),
+                  //MySKills(),
                   Knowledges(),
                   Divider(),
-                  SizedBox(height: defaultPadding,),
+                  SizedBox(
+                    height: 20.0,
+                  ),
                   ContactIcon(),
                 ],
-              ),
               ),
             )
           ],
@@ -38,7 +36,3 @@ class CustomDrawer extends StatelessWidget {
     );
   }
 }
-
-
-
-

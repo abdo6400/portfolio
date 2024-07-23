@@ -1,16 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:portfolio/controllers/theme_controller.dart';
-import 'package:portfolio/res/constants.dart';
 import 'package:provider/provider.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
-
 import '../../controllers/views_controller.dart';
 import '../../res/responsive.dart';
-import '../certifications/certifications.dart';
 import '../intro/components/side_menu_button.dart';
 import '../intro/introduction.dart';
-import '../projects/project_view.dart';
+import '../information/information_view.dart';
 import 'components/connect_button.dart';
 import 'components/drawer/drawer.dart';
 import 'components/navigation_button_list.dart';
@@ -19,8 +14,16 @@ class HomeView extends StatelessWidget {
   const HomeView({super.key});
   static const List<Widget> pages = [
     Introduction(),
-    ProjectsView(),
-    Certifications(),
+    InformationSectionView(
+      title: 'Projects',
+      index: 1,
+      color: Colors.blue,
+    ),
+    InformationSectionView(
+      title: 'Certifications',
+      index: 2,
+      color: Colors.transparent,
+    ),
   ];
   static final GlobalKey<ScaffoldState> scaffoldKey =
       GlobalKey<ScaffoldState>();
@@ -34,8 +37,8 @@ class HomeView extends StatelessWidget {
         body: Consumer<ViewsController>(builder: (context, state, child) {
           return Container(
             color: Theme.of(context).scaffoldBackgroundColor,
-            padding: const EdgeInsets.symmetric(
-                horizontal: defaultPadding, vertical: defaultPadding),
+            padding:
+                const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
             child: Scaffold(
               appBar: PreferredSize(
                 preferredSize: Size(
@@ -53,7 +56,7 @@ class HomeView extends StatelessWidget {
                     title: (!Responsive.isMobile(context))
                         ? const NavigationButtonList()
                         : const SizedBox(),
-                    actions: [
+                    actions: const [
                       // ConstrainedBox(
                       //   constraints: BoxConstraints(
                       //       maxHeight:
@@ -88,16 +91,11 @@ class HomeView extends StatelessWidget {
                 builder: (context, box) {
                   return ScrollablePositionedList.builder(
                     itemScrollController: state.itemScrollController,
-                    scrollOffsetController: state.scrollOffsetController,
-                    itemPositionsListener: state.itemPositionsListener,
-                    // initialScrollIndex: state.currentView,
-                    scrollOffsetListener: state.scrollOffsetListener,
                     itemBuilder: (context, index) => SizedBox(
                       width: box.maxWidth,
                       height: box.maxHeight,
                       child: pages[index],
                     ),
-
                     itemCount: pages.length,
                   );
                 },

@@ -1,8 +1,8 @@
-import 'package:animate_on_hover/animate_on_hover.dart';
 import 'package:flutter/material.dart';
+import 'package:portfolio/res/responsive.dart';
 import 'package:provider/provider.dart';
 import '../../../controllers/views_controller.dart';
-import '../../../res/constants.dart';
+
 
 class NavigationTextButton extends StatelessWidget {
   final int index;
@@ -40,7 +40,7 @@ class NavigationTextButton extends StatelessWidget {
                 )),
             if (state.currentView == index)
               const SizedBox(
-                height: defaultPadding / 2,
+                height: 20.0 / 2,
               ),
             if (state.currentView == index)
               AnimatedContainer(

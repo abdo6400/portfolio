@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/res/constants.dart';
+
 
 class AnimatedLoadingText extends StatelessWidget {
   const AnimatedLoadingText({super.key});
@@ -7,9 +7,9 @@ class AnimatedLoadingText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: defaultPadding * 5,
+      width: 20.0 * 5,
       child: TweenAnimationBuilder(
-        duration: const Duration(seconds: 2),
+        duration: const Duration(seconds: 3),
         builder: (context, value, child) => Column(
           children: [
             LinearProgressIndicator(
@@ -18,7 +18,7 @@ class AnimatedLoadingText extends StatelessWidget {
               value: value,
             ),
             const SizedBox(
-              height: defaultPadding / 2,
+              height: 20.0 / 2,
             ),
             Text(
               '${(value * 100).toInt()}%',
