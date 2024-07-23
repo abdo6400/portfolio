@@ -17,7 +17,7 @@ class HomeView extends StatelessWidget {
     InformationSectionView(
       title: 'Projects',
       index: 1,
-      color: Colors.blue,
+      color: Colors.transparent,
     ),
     InformationSectionView(
       title: 'Certifications',
@@ -57,26 +57,6 @@ class HomeView extends StatelessWidget {
                         ? const NavigationButtonList()
                         : const SizedBox(),
                     actions: const [
-                      // ConstrainedBox(
-                      //   constraints: BoxConstraints(
-                      //       maxHeight:
-                      //           MediaQuery.of(context).size.height * 0.05,
-                      //       maxWidth: MediaQuery.of(context).size.width * 0.1),
-                      //   child: Switch(
-                      //     activeColor: Colors.amber,
-                      //     thumbIcon: WidgetStateProperty.resolveWith<Icon?>(
-                      //         (Set<WidgetState> states) {
-                      //       if (states.contains(WidgetState.selected)) {
-                      //         return const Icon(Icons.dark_mode);
-                      //       }
-                      //       return null;
-                      //     }),
-                      //     value: context.watch<ThemeController>().themeMode ==
-                      //         ThemeMode.dark,
-                      //     onChanged: (value) =>
-                      //         context.read<ThemeController>().toggleTheme(),
-                      //   ),
-                      // )
                       ConnectButton(),
                     ],
                     bottom: PreferredSize(

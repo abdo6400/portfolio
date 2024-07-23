@@ -44,7 +44,7 @@ class ConnectButton extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               const Icon(
-                Icons.chat_sharp,
+                Icons.call,
                 color: Colors.greenAccent,
                 size: 15,
               ),

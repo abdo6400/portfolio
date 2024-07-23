@@ -12,7 +12,10 @@ class InformationSectionView extends StatelessWidget {
   final int index;
   final Color color;
   const InformationSectionView(
-      {super.key, required this.title, required this.index, required this.color});
+      {super.key,
+      required this.title,
+      required this.index,
+      required this.color});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -23,7 +26,7 @@ class InformationSectionView extends StatelessWidget {
           const Divider(),
           if (Responsive.isLargeMobile(context))
             const SizedBox(
-              height: 20.0,
+              height: 10,
             ),
           VisibilityDetector(
             key: Key(index.toString()),
@@ -37,23 +40,9 @@ class InformationSectionView extends StatelessWidget {
           ),
           const Divider(),
           const SizedBox(
-            height: 20.0,
+            height: 10,
           ),
-          const Expanded(
-              child: Responsive(
-                  desktop: InformationGrid(
-                    crossAxisCount: 3,
-                    ratio: 1.5,
-                  ),
-                  extraLargeScreen: InformationGrid(
-                    crossAxisCount: 4,
-                  ),
-                  largeMobile: InformationGrid(crossAxisCount: 1, ratio: 1.8),
-                  mobile: InformationGrid(crossAxisCount: 1, ratio: 1.5),
-                  tablet: InformationGrid(
-                    ratio: 1.4,
-                    crossAxisCount: 2,
-                  )))
+          const Expanded(child: InformationGrid())
         ],
       ),
     );
