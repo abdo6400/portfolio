@@ -1,16 +1,23 @@
 import 'package:flutter/material.dart';
 
+import '../../../view model/controller.dart';
+
 class NavigationTextButton extends StatelessWidget {
-  final VoidCallback onTap;
+  final int index;
   final String text;
 
   const NavigationTextButton(
-      {super.key, required this.onTap, required this.text});
+      {super.key, required this.index, required this.text});
 
   @override
   Widget build(BuildContext context) {
     return TextButton(
-        onPressed: onTap,
+        onPressed: () {
+          itemScrollController.scrollTo(
+              index: index,
+              duration: const Duration(seconds: 2),
+              curve: Curves.easeInOutCubic);
+        },
         child: Text(
           text,
           style: Theme.of(context)
