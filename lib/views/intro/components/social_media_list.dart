@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/views/intro/components/social_media_coloumn.dart';
 
-
 class SocialMediaIconList extends StatelessWidget {
   const SocialMediaIconList({super.key});
 
@@ -29,10 +28,9 @@ class SocialMediaIconList extends StatelessWidget {
               Container(
                 height: size.height * 0.06,
                 width: 3,
-                margin:
-                    const EdgeInsets.symmetric(vertical: 20.0 * 0.5),
+                margin: const EdgeInsets.symmetric(vertical: 20.0 * 0.5),
                 decoration: BoxDecoration(
-                  color: Theme.of(context).textTheme.bodyLarge!.color,
+                    color: Theme.of(context).textTheme.bodyLarge!.color,
                     borderRadius: BorderRadius.circular(20.0)),
               ),
               const SocialMediaIconColumn(),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/controllers/views_controller.dart';
 
-import 'package:portfolio/res/responsive.dart';
 import 'package:portfolio/views/information/components/title_text.dart';
 import 'package:provider/provider.dart';
 import 'package:visibility_detector/visibility_detector.dart';
@@ -10,24 +9,20 @@ import 'components/information_grid.dart';
 class InformationSectionView extends StatelessWidget {
   final String title;
   final int index;
-  final Color color;
+  final Color? color;
   const InformationSectionView(
-      {super.key,
-      required this.title,
-      required this.index,
-      required this.color});
+      {super.key, required this.title, required this.index, this.color});
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: color,
+      color: color ?? Theme.of(context).scaffoldBackgroundColor,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Divider(),
-          if (Responsive.isLargeMobile(context))
-            const SizedBox(
-              height: 10,
-            ),
+          const SizedBox(
+            height: 10,
+          ),
           VisibilityDetector(
             key: Key(index.toString()),
             onVisibilityChanged: (visibilityInfo) {
@@ -42,7 +37,7 @@ class InformationSectionView extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
-          const Expanded(child: InformationGrid())
+          const InformationGrid()
         ],
       ),
     );

@@ -11,28 +11,34 @@ class Introduction extends StatelessWidget {
   const Introduction({super.key});
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        SizedBox(
-          width: MediaQuery.sizeOf(context).width * 0.02,
-        ),
-        if (!Responsive.isLargeMobile(context)) const SocialMediaIconList(),
-        SizedBox(
-          width: MediaQuery.sizeOf(context).width * 0.07,
-        ),
-        Expanded(
-          child: VisibilityDetector(
-            key: Key(0.toString()),
-            onVisibilityChanged: (visibilityInfo) {
-              var visiblePercentage = visibilityInfo.visibleFraction * 100;
-              if (visiblePercentage == 100) {
-                context.read<ViewsController>().changeView(0);
-              }
-            },
-            child: const IntroBody(),
+    return SizedBox(
+      width: MediaQuery.sizeOf(context).width,
+      height: (Responsive.isDesktop(context))
+          ? MediaQuery.sizeOf(context).height * 0.8
+          : MediaQuery.sizeOf(context).height * 0.8,
+      child: Row(
+        children: [
+          SizedBox(
+            width: MediaQuery.sizeOf(context).width * 0.02,
           ),
-        ),
-      ],
+          if (!Responsive.isLargeMobile(context)) const SocialMediaIconList(),
+          SizedBox(
+            width: MediaQuery.sizeOf(context).width * 0.07,
+          ),
+          Expanded(
+            child: VisibilityDetector(
+              key: Key(0.toString()),
+              onVisibilityChanged: (visibilityInfo) {
+                var visiblePercentage = visibilityInfo.visibleFraction * 100;
+                if (visiblePercentage == 100) {
+                  context.read<ViewsController>().changeView(0);
+                }
+              },
+              child: const IntroBody(),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

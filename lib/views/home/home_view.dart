@@ -17,12 +17,10 @@ class HomeView extends StatelessWidget {
     InformationSectionView(
       title: 'Projects',
       index: 1,
-      color: Colors.transparent,
     ),
     InformationSectionView(
       title: 'Certifications',
       index: 2,
-      color: Colors.transparent,
     ),
   ];
   static final GlobalKey<ScaffoldState> scaffoldKey =
@@ -67,19 +65,11 @@ class HomeView extends StatelessWidget {
                           : const SizedBox(),
                     )),
               ),
-              body: LayoutBuilder(
-                builder: (context, box) {
-                  return ScrollablePositionedList.builder(
+              body: ScrollablePositionedList.builder(
                     itemScrollController: state.itemScrollController,
-                    itemBuilder: (context, index) => SizedBox(
-                      width: box.maxWidth,
-                      height: box.maxHeight,
-                      child: pages[index],
-                    ),
+                    itemBuilder: (context, index) =>  pages[index],
                     itemCount: pages.length,
-                  );
-                },
-              ),
+                  )     
             ),
           );
         }),
