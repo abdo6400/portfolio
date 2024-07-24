@@ -38,39 +38,38 @@ class HomeView extends StatelessWidget {
             padding:
                 const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
             child: Scaffold(
-              appBar: PreferredSize(
-                preferredSize: Size(
-                    AppBar().preferredSize.width,
-                    AppBar().preferredSize.height *
-                        (Responsive.isMobile(context) ? 2 : 1.5)),
-                child: AppBar(
-                    scrolledUnderElevation: 0,
-                    elevation: 0,
-                    backgroundColor: Colors.transparent,
-                    centerTitle: true,
-                    leading: MenuButton(
-                      onTap: () => scaffoldKey.currentState!.openDrawer(),
-                    ),
-                    title: (!Responsive.isMobile(context))
-                        ? const NavigationButtonList()
-                        : const SizedBox(),
-                    actions: const [
-                      ConnectButton(),
-                    ],
-                    bottom: PreferredSize(
-                      preferredSize: Size(AppBar().preferredSize.width,
-                          AppBar().preferredSize.height * 2),
-                      child: (Responsive.isMobile(context))
+                appBar: PreferredSize(
+                  preferredSize: Size(
+                      AppBar().preferredSize.width,
+                      AppBar().preferredSize.height *
+                          (Responsive.isMobile(context) ? 2 : 1.5)),
+                  child: AppBar(
+                      scrolledUnderElevation: 0,
+                      elevation: 0,
+                      backgroundColor: Colors.transparent,
+                      centerTitle: true,
+                      leading: MenuButton(
+                        onTap: () => scaffoldKey.currentState!.openDrawer(),
+                      ),
+                      title: (!Responsive.isMobile(context))
                           ? const NavigationButtonList()
                           : const SizedBox(),
-                    )),
-              ),
-              body: ScrollablePositionedList.builder(
-                    itemScrollController: state.itemScrollController,
-                    itemBuilder: (context, index) =>  pages[index],
-                    itemCount: pages.length,
-                  )     
-            ),
+                      actions: const [
+                        ConnectButton(),
+                      ],
+                      bottom: PreferredSize(
+                        preferredSize: Size(AppBar().preferredSize.width,
+                            AppBar().preferredSize.height * 2),
+                        child: (Responsive.isMobile(context))
+                            ? const NavigationButtonList()
+                            : const SizedBox(),
+                      )),
+                ),
+                body: ScrollablePositionedList.builder(
+                  itemScrollController: state.itemScrollController,
+                  itemBuilder: (context, index) => pages[index],
+                  itemCount: pages.length,
+                )),
           );
         }),
       ),
