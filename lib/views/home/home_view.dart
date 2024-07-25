@@ -48,9 +48,9 @@ class HomeView extends StatelessWidget {
                       elevation: 0,
                       backgroundColor: Colors.transparent,
                       centerTitle: true,
-                      leading: MenuButton(
-                        onTap: () => scaffoldKey.currentState!.openDrawer(),
-                      ),
+                      // leading: MenuButton(
+                      //   onTap: () => scaffoldKey.currentState!.openDrawer(),
+                      // ),
                       title: (!Responsive.isMobile(context))
                           ? const NavigationButtonList()
                           : const SizedBox(),

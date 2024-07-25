@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import '../../../res/responsive.dart';
 import 'animated_texts_componenets.dart';
@@ -40,10 +39,9 @@ class IntroBody extends StatelessWidget {
                 largeMobile: MyPortfolioText(start: 40, end: 35),
                 mobile: MyPortfolioText(start: 35, end: 30),
                 tablet: MyPortfolioText(start: 50, end: 40)),
-            if (kIsWeb && Responsive.isLargeMobile(context))
-              SizedBox(
-                height: size.height * 0.005,
-              ),
+            SizedBox(
+              height: size.height * 0.01,
+            ),
             const CombineSubtitleText(),
             SizedBox(
               height: size.height * 0.02,
