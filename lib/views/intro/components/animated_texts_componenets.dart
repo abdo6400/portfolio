@@ -41,19 +41,21 @@ class AnimatedImageContainerState extends State<AnimatedImageContainer>
             padding: const EdgeInsets.all(20.0 / 4),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(30),
-              gradient: const LinearGradient(colors: [
-                Colors.pinkAccent,
-                Colors.blue,
-              ]),
-              boxShadow: const [
+              gradient: LinearGradient(
+                colors: [
+                  Theme.of(context).colorScheme.primary,
+                  Theme.of(context).colorScheme.secondary,
+                ],
+              ),
+              boxShadow: [
                 BoxShadow(
-                  color: Colors.pink,
-                  offset: Offset(-2, 0),
+                  color: Theme.of(context).colorScheme.primary.withOpacity(0.5),
+                  offset: const Offset(-2, 0),
                   blurRadius: 20,
                 ),
                 BoxShadow(
-                  color: Colors.blue,
-                  offset: Offset(2, 0),
+                  color: Theme.of(context).colorScheme.secondary.withOpacity(0.5),
+                  offset: const Offset(2, 0),
                   blurRadius: 20,
                 ),
               ],

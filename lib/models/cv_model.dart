@@ -177,36 +177,44 @@ class Education {
 
 class Project {
   final String name;
+  final String? description;
   final List<String> skillsUsed;
   final String? githubLink;
   final String? appleStoreLink;
   final String? googlePlayLink;
+  final String? image;
 
   Project({
     required this.name,
+    this.description,
     required this.skillsUsed,
     this.githubLink,
     this.appleStoreLink,
     this.googlePlayLink,
+    this.image,
   });
 
   factory Project.fromJson(Map<String, dynamic> json) {
     return Project(
       name: json['name'],
+      description: json['description'],
       skillsUsed: List<String>.from(json['skills_used']),
       githubLink: json['github_link'],
       appleStoreLink: json['apple_store_link'],
       googlePlayLink: json['google_play_link'],
+      image: json['image'],
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
       'name': name,
+      'description': description,
       'skills_used': skillsUsed,
       'github_link': githubLink,
       'apple_store_link': appleStoreLink,
       'google_play_link': googlePlayLink,
+      'image': image,
     };
   }
 }
@@ -248,7 +256,7 @@ class SocialLinks {
   SocialLinks({
     required this.github,
     required this.linkedin,
-    required this .cv
+    required this.cv,
   });
 
   factory SocialLinks.fromJson(Map<String, dynamic> json) {

@@ -24,15 +24,48 @@ class App extends StatelessWidget {
       ],
       child: Consumer<ThemeController>(
         builder: (context, state, child) {
+          // Cohesive color scheme - Modern Blue to Purple gradient
+          const primaryColor = Color(0xFF6366F1); // Indigo
+          const secondaryColor = Color(0xFF8B5CF6); // Purple
+          const tertiaryColor = Color(0xFFEC4899); // Pink
+
+          // Create proper light theme
+          final lightColorScheme = ColorScheme.fromSeed(
+            seedColor: primaryColor,
+            primary: primaryColor,
+            secondary: secondaryColor,
+            tertiary: tertiaryColor,
+            brightness: Brightness.light,
+          );
+
+          // Create proper dark theme
+          final darkColorScheme = ColorScheme.fromSeed(
+            seedColor: primaryColor,
+            primary: primaryColor,
+            secondary: secondaryColor,
+            tertiary: tertiaryColor,
+            brightness: Brightness.dark,
+          );
+
           return MaterialApp(
               theme: FlexThemeData.light(
-                  scheme: FlexScheme.damask,
+                  scheme: FlexScheme.custom,
+                  primary: primaryColor,
+                  secondary: secondaryColor,
+                  tertiary: tertiaryColor,
                   appBarStyle: FlexAppBarStyle.material,
-                  textTheme: GoogleFonts.cairoTextTheme()),
+                  textTheme: GoogleFonts.cairoTextTheme(),
+                  colorScheme: lightColorScheme,
+                  useMaterial3: true),
               darkTheme: FlexThemeData.dark(
-                  scheme: FlexScheme.damask,
+                  scheme: FlexScheme.custom,
+                  primary: primaryColor,
+                  secondary: secondaryColor,
+                  tertiary: tertiaryColor,
                   appBarStyle: FlexAppBarStyle.material,
-                  textTheme: GoogleFonts.cairoTextTheme()),
+                  textTheme: GoogleFonts.cairoTextTheme(),
+                  colorScheme: darkColorScheme,
+                  useMaterial3: true),
               themeMode: state.themeMode,
               debugShowCheckedModeBanner: false,
               home: const SplashView());

@@ -24,7 +24,11 @@ class NavigationButtonList extends StatelessWidget {
               SizedBox(
                 width: 10,
               ),
-              NavigationTextButton(index: 2, text: 'Certifications'),
+              NavigationTextButton(index: 2, text: 'Skills'),
+              SizedBox(
+                width: 10,
+              ),
+              NavigationTextButton(index: 3, text: 'Certifications'),
             ],
           ),
         );

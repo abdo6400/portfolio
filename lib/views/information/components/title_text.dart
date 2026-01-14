@@ -25,18 +25,18 @@ class TitleText extends StatelessWidget {
         // ),
         ShaderMask(
           shaderCallback: (bounds) {
-            return const LinearGradient(
+            return LinearGradient(
                 end: Alignment.centerRight,
                 begin: Alignment.centerLeft,
                 colors: [
-                  Colors.pink,
-                  Colors.cyanAccent,
+                  Theme.of(context).colorScheme.primary,
+                  Theme.of(context).colorScheme.secondary,
                 ]).createShader(bounds);
           },
           child: Text(
             title,
             style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                color: Colors.white,
+                color: Theme.of(context).colorScheme.onSurface,
                 fontSize: !Responsive.isDesktop(context)
                     ? Responsive.isLargeMobile(context)
                         ? 15

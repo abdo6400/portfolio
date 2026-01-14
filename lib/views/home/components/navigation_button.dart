@@ -47,11 +47,11 @@ class NavigationTextButton extends StatelessWidget {
                 duration: Durations.extralong1,
                 height: 2,
                 width: 80,
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                     gradient: LinearGradient(
                   colors: [
-                    Colors.pinkAccent,
-                    Colors.blue,
+                    Theme.of(context).colorScheme.primary,
+                    Theme.of(context).colorScheme.secondary,
                   ],
                 )),
               )

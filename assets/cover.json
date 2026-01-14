@@ -63,16 +63,19 @@
     "projects": [
         {
             "name": "JAMALA (E-Commerce App)",
+            "description": "A comprehensive e-commerce mobile application built with Flutter, featuring seamless shopping experience with Firebase backend integration, user authentication, advanced search functionality, and favorites management.",
             "skills_used": [
                 "Firebase Integration",
                 "User Authentication Services",
                 "Search Functionality",
                 "Favorites Management"
             ],
-            "github_link": "https://github.com/abdo6400/JamalaShoppingApp_using_flutter"
+            "github_link": "https://github.com/abdo6400/JamalaShoppingApp_using_flutter",
+            "image": null
         },
         {
             "name": "ADDUSTOUR (News App)",
+            "description": "A modern news application providing real-time updates with push notifications, user authentication, WebView integration for articles, SQL database for offline reading, and advanced search filters.",
             "skills_used": [
                 "Notifications",
                 "User Authentication Services",
@@ -81,10 +84,12 @@
                 "Search Filters"
             ],
             "apple_store_link": "https://apps.apple.com/us/app/addustour/id6444052571",
-            "google_play_link": "https://play.google.com/store/apps/details?id=com.addustor.addustor_project"
+            "google_play_link": "https://play.google.com/store/apps/details?id=com.addustor.addustor_project",
+            "image": null
         },
         {
             "name": "SADAD (Financial App)",
+            "description": "A robust financial management application with comprehensive features including real-time notifications, multi-printer support for receipts, seamless sharing capabilities, and powerful search functionality.",
             "skills_used": [
                 "Notifications",
                 "Multi-Printer Support",
@@ -92,18 +97,22 @@
                 "Search"
             ],
             "apple_store_link": "https://apps.apple.com/us/app/sadad-logistics/id6480351307",
-            "google_play_link": "https://play.google.com/store/apps/details?id=com.sadad.sadad"
+            "google_play_link": "https://play.google.com/store/apps/details?id=com.sadad.sadad",
+            "image": null
         },
         {
             "name": "Pack and Go (Real Estate App)",
+            "description": "A feature-rich real estate application enabling users to browse properties, manage listings, and connect with real estate professionals. Built with team collaboration using Git workflows.",
             "skills_used": [
                 "User Authentication Services",
                 "GitHub Collaboration within team"
             ],
-            "github_link": "https://github.com/abdo6400/real_state_app_using_flutter"
+            "github_link": "https://github.com/abdo6400/real_state_app_using_flutter",
+            "image": null
         },
         {
             "name": "ALBASHEQ (Financial App)",
+            "description": "An advanced financial application with comprehensive features including notifications, multi-printer support, sharing capabilities, search functionality, dual theme support, and integrated advertising.",
             "skills_used": [
                 "Notifications",
                 "Multi-Printer Support",
@@ -113,25 +122,30 @@
                 "Ads"
             ],
             "apple_store_link": "https://apps.apple.com/jo/app/albasheq/id6462672573",
-            "google_play_link": "https://play.google.com/store/apps/details?id=com.albasheq.albasheq"
+            "google_play_link": "https://play.google.com/store/apps/details?id=com.albasheq.albasheq",
+            "image": null
         },
         {
             "name": "Golden Mark (Financial App)",
+            "description": "A professional financial management solution featuring real-time notifications, multi-printer support for documentation, seamless sharing, and powerful search capabilities for financial records.",
             "skills_used": [
                 "Notifications",
                 "Multi-Printer Support",
                 "Sharing",
                 "Search"
             ],
-            "google_play_link": "https://play.google.com/store/apps/details?id=com.goldenmark.golden_mark"
+            "google_play_link": "https://play.google.com/store/apps/details?id=com.goldenmark.golden_mark",
+            "image": null
         },
         {
             "name": "Car Washing App",
+            "description": "A convenient car washing service application that connects users with service providers. Features include user authentication, booking management, and team collaboration using Git workflows.",
             "skills_used": [
                 "User Authentication Services",
                 "GitHub Collaboration within team"
             ],
-            "github_link": "https://github.com/abdo6400/washing_app_using_flutter"
+            "github_link": "https://github.com/abdo6400/washing_app_using_flutter",
+            "image": null
         }
     ],
     "additional_information": {

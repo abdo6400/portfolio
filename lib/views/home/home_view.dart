@@ -3,12 +3,12 @@ import 'package:provider/provider.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import '../../controllers/views_controller.dart';
 import '../../res/responsive.dart';
-import '../intro/components/side_menu_button.dart';
 import '../intro/introduction.dart';
 import '../information/information_view.dart';
 import 'components/connect_button.dart';
 import 'components/drawer/drawer.dart';
 import 'components/navigation_button_list.dart';
+import 'components/theme_toggle_button.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -17,10 +17,17 @@ class HomeView extends StatelessWidget {
     InformationSectionView(
       title: 'Projects',
       index: 1,
+      contentType: 'projects',
+    ),
+    InformationSectionView(
+      title: 'Skills',
+      index: 2,
+      contentType: 'skills',
     ),
     InformationSectionView(
       title: 'Certifications',
-      index: 2,
+      index: 3,
+      contentType: 'certificates',
     ),
   ];
   static final GlobalKey<ScaffoldState> scaffoldKey =
@@ -53,6 +60,7 @@ class HomeView extends StatelessWidget {
                           ? const NavigationButtonList()
                           : const SizedBox(),
                       actions: const [
+                        ThemeToggleButton(),
                         ConnectButton(),
                       ],
                       bottom: PreferredSize(

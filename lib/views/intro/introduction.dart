@@ -13,9 +13,7 @@ class Introduction extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: MediaQuery.sizeOf(context).width,
-      height: (Responsive.isDesktop(context))
-          ? MediaQuery.sizeOf(context).height * 0.8
-          : MediaQuery.sizeOf(context).height * 0.8,
+      height: 800, // Uniform section height
       child: Row(
         children: [
           SizedBox(

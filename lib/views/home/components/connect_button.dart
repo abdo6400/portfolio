@@ -26,17 +26,17 @@ class ConnectButton extends StatelessWidget {
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20.0),
               gradient: LinearGradient(colors: [
-                Colors.pink,
-                Colors.blue.shade900,
+                Theme.of(context).colorScheme.primary,
+                Theme.of(context).colorScheme.secondary,
               ]),
-              boxShadow: const [
+              boxShadow: [
                 BoxShadow(
-                    color: Colors.blue,
-                    offset: Offset(0, -1),
+                    color: Theme.of(context).colorScheme.primary.withOpacity(0.5),
+                    offset: const Offset(0, -1),
                     blurRadius: 20.0 / 4),
                 BoxShadow(
-                    color: Colors.red,
-                    offset: Offset(0, 1),
+                    color: Theme.of(context).colorScheme.secondary.withOpacity(0.5),
+                    offset: const Offset(0, 1),
                     blurRadius: 20.0 / 4),
               ]),
           child: Row(

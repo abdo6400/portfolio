@@ -27,16 +27,24 @@ class DownloadButton extends StatelessWidget {
             vertical: 20.0 / 1.5, horizontal: 20.0 * 2),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-          boxShadow: const [
-            BoxShadow(color: Colors.blue, offset: Offset(0, -1), blurRadius: 5),
-            BoxShadow(color: Colors.red, offset: Offset(0, 1), blurRadius: 5),
+          boxShadow: [
+            BoxShadow(
+              color: Theme.of(context).colorScheme.primary.withOpacity(0.5),
+              offset: const Offset(0, -1),
+              blurRadius: 5,
+            ),
+            BoxShadow(
+              color: Theme.of(context).colorScheme.secondary.withOpacity(0.5),
+              offset: const Offset(0, 1),
+              blurRadius: 5,
+            ),
           ],
           gradient: LinearGradient(
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
               colors: [
-                Colors.pink,
-                Colors.blue.shade900,
+                Theme.of(context).colorScheme.primary,
+                Theme.of(context).colorScheme.secondary,
               ]),
         ),
         child: Row(
