@@ -39,57 +39,59 @@ class AnimatedImageContainerState extends State<AnimatedImageContainer>
         final primary = isDark ? AppColors.darkPrimary : AppColors.lightPrimary;
         final accent = isDark ? AppColors.darkAccent : AppColors.lightAccent;
 
-        return Transform.translate(
-          offset: Offset(0, 4 * value),
-          child: Container(
-            height: widget.height!,
-            width: widget.width!,
-            padding: const EdgeInsets.all(AppSpacing.xs),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(AppRadius.lg),
-              gradient: LinearGradient(
-                colors: [primary, accent],
-              ),
-              boxShadow: [
-                BoxShadow(
-                  color: primary.withOpacity(0.3),
-                  offset: const Offset(-2, 0),
-                  blurRadius: 15,
-                ),
-                BoxShadow(
-                  color: accent.withOpacity(0.3),
-                  offset: const Offset(2, 0),
-                  blurRadius: 15,
-                ),
-              ],
-            ),
+        return RepaintBoundary(
+          child: Transform.translate(
+            offset: Offset(0, 4 * value),
             child: Container(
-              alignment: Alignment.center,
+              height: widget.height!,
+              width: widget.width!,
+              padding: const EdgeInsets.all(AppSpacing.xs),
               decoration: BoxDecoration(
-                color: isDark
-                    ? AppColors.darkBackground
-                    : AppColors.lightBackground,
-                borderRadius: BorderRadius.circular(AppRadius.lg - 2),
+                borderRadius: BorderRadius.circular(AppRadius.lg),
+                gradient: LinearGradient(
+                  colors: [primary, accent],
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: primary.withOpacity(0.3),
+                    offset: const Offset(-2, 0),
+                    blurRadius: 15,
+                  ),
+                  BoxShadow(
+                    color: accent.withOpacity(0.3),
+                    offset: const Offset(2, 0),
+                    blurRadius: 15,
+                  ),
+                ],
               ),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(AppRadius.lg - 2),
-                child: Image.asset(
-                  'assets/images/image.png',
-                  height: Responsive.isLargeMobile(context)
-                      ? MediaQuery.sizeOf(context).width * 0.2
-                      : Responsive.isTablet(context)
-                          ? MediaQuery.sizeOf(context).width * 0.14
-                          : 200,
-                  width: Responsive.isLargeMobile(context)
-                      ? MediaQuery.sizeOf(context).width * 0.2
-                      : Responsive.isTablet(context)
-                          ? MediaQuery.sizeOf(context).width * 0.14
-                          : 200,
-                  fit: BoxFit.cover,
-                  errorBuilder: (context, error, stackTrace) => Icon(
-                    Icons.person_rounded,
-                    size: 40,
-                    color: primary,
+              child: Container(
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  color: isDark
+                      ? AppColors.darkBackground
+                      : AppColors.lightBackground,
+                  borderRadius: BorderRadius.circular(AppRadius.lg - 2),
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(AppRadius.lg - 2),
+                  child: Image.asset(
+                    'assets/images/image.png',
+                    height: Responsive.isLargeMobile(context)
+                        ? MediaQuery.sizeOf(context).width * 0.2
+                        : Responsive.isTablet(context)
+                            ? MediaQuery.sizeOf(context).width * 0.14
+                            : 200,
+                    width: Responsive.isLargeMobile(context)
+                        ? MediaQuery.sizeOf(context).width * 0.2
+                        : Responsive.isTablet(context)
+                            ? MediaQuery.sizeOf(context).width * 0.14
+                            : 200,
+                    fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) => Icon(
+                      Icons.person_rounded,
+                      size: 40,
+                      color: primary,
+                    ),
                   ),
                 ),
               ),

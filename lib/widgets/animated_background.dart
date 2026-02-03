@@ -37,9 +37,8 @@ class _AnimatedBackgroundState extends State<AnimatedBackground>
       onHover: (event) {
         setState(() {
           _mousePos = Offset(
-            (event.localPosition.dx / MediaQuery.of(context).size.width) * 2 -
-                1,
-            (event.localPosition.dy / MediaQuery.of(context).size.height) * 2 -
+            (event.localPosition.dx / MediaQuery.sizeOf(context).width) * 2 - 1,
+            (event.localPosition.dy / MediaQuery.sizeOf(context).height) * 2 -
                 1,
           );
         });
@@ -74,13 +73,15 @@ class _AnimatedBackgroundState extends State<AnimatedBackground>
             child: AnimatedBuilder(
               animation: _controller,
               builder: (context, child) {
-                return CustomPaint(
-                  painter: _BlobPainter(
-                    progress: _controller.value,
-                    mousePos: _mousePos,
-                    isDark: isDark,
-                    primaryColor: Theme.of(context).colorScheme.primary,
-                    accentColor: Theme.of(context).colorScheme.secondary,
+                return RepaintBoundary(
+                  child: CustomPaint(
+                    painter: _BlobPainter(
+                      progress: _controller.value,
+                      mousePos: _mousePos,
+                      isDark: isDark,
+                      primaryColor: Theme.of(context).colorScheme.primary,
+                      accentColor: Theme.of(context).colorScheme.secondary,
+                    ),
                   ),
                 );
               },
@@ -130,5 +131,7 @@ class _BlobPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(covariant _BlobPainter oldDelegate) => true;
+  bool shouldRepaint(covariant _BlobPainter oldDelegate) {
+    return oldDelegate.progress != progress || oldDelegate.mousePos != mousePos;
+  }
 }

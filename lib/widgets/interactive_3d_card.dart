@@ -64,14 +64,16 @@ class _Interactive3DCardState extends State<Interactive3DCard>
               final tiltX = _tilt.dx * widget.maxTiltAngle * _controller.value;
               final tiltY = _tilt.dy * widget.maxTiltAngle * _controller.value;
 
-              return Transform(
-                transform: Matrix4.identity()
-                  ..setEntry(3, 2, 0.001) // perspective
-                  ..rotateX(tiltX)
-                  ..rotateY(tiltY)
-                  ..scale(scale),
-                alignment: FractionalOffset.center,
-                child: child,
+              return RepaintBoundary(
+                child: Transform(
+                  transform: Matrix4.identity()
+                    ..setEntry(3, 2, 0.001) // perspective
+                    ..rotateX(tiltX)
+                    ..rotateY(tiltY)
+                    ..scale(scale),
+                  alignment: FractionalOffset.center,
+                  child: child,
+                ),
               );
             },
             child: widget.child,
