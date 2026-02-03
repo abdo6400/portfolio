@@ -1,0 +1,163 @@
+{
+    "name": "Abdulrahman Amr",
+    "contact_information": {
+        "email": "abdulrahmanamr348@gmail.com",
+        "phone": "+201069645711",
+        "location": "Cairo, Egypt"
+    },
+    "summary": "Detail-oriented, organized, and meticulous employee. Works at a fast pace to meet tight deadlines. Enthusiastic team player ready to contribute to company success.",
+    "work_experience": [
+        {
+            "company": "LEAPTECH",
+            "position": "Software Engineer",
+            "type": "Remote",
+            "responsibilities": [
+                "Developed scalable and maintainable code, ensuring long-term stability of the software.",
+                "Developed reusable components that significantly reduced development effort on multiple projects.",
+                "Led a remote team in developing four innovative mobile apps using Flutter and Node.js."
+            ],
+            "duration": "Sep 2023 - Mar 2024"
+        },
+        {
+            "company": "PROSYSJO",
+            "position": "Flutter Developer",
+            "type": "Remote",
+            "responsibilities": [],
+            "duration": "Aug 2022 - Jan 2024"
+        }
+    ],
+    "skills": {
+        "languages": [
+            "Dart",
+            "Java",
+            "SQL"
+        ],
+        "frameworks": [
+            "Flutter",
+            "Firebase",
+            "GraphQL",
+            "Restful Api"
+        ],
+        "development_practices": [
+            "Clean Architecture",
+            "Software Design Patterns",
+            "Object-Oriented Programming",
+            "CI/CD"
+        ],
+        "tools_and_libraries": [
+            "Git/GitHub",
+            "Google Maps",
+            "BLoC/Provider State Management",
+            "FlutterFlow",
+            "Dio/HTTP",
+            "SqlFlight/Hive",
+            "Payments Gateways",
+            "Notifications"
+        ]
+    },
+    "education": {
+        "institution": "Ain Shams University",
+        "degree": "Bachelor of Computer Science",
+        "duration": "Aug 2019 - Aug 2023"
+    },
+    "projects": [
+        {
+            "name": "JAMALA (E-Commerce App)",
+            "description": "A comprehensive e-commerce mobile application built with Flutter, featuring seamless shopping experience with Firebase backend integration, user authentication, advanced search functionality, and favorites management.",
+            "skills_used": [
+                "Firebase Integration",
+                "User Authentication Services",
+                "Search Functionality",
+                "Favorites Management"
+            ],
+            "github_link": "https://github.com/abdo6400/JamalaShoppingApp_using_flutter",
+            "image": null
+        },
+        {
+            "name": "ADDUSTOUR (News App)",
+            "description": "A modern news application providing real-time updates with push notifications, user authentication, WebView integration for articles, SQL database for offline reading, and advanced search filters.",
+            "skills_used": [
+                "Notifications",
+                "User Authentication Services",
+                "WebView",
+                "SQL Database",
+                "Search Filters"
+            ],
+            "apple_store_link": "https://apps.apple.com/us/app/addustour/id6444052571",
+            "google_play_link": "https://play.google.com/store/apps/details?id=com.addustor.addustor_project",
+            "image": null
+        },
+        {
+            "name": "SADAD (Financial App)",
+            "description": "A robust financial management application with comprehensive features including real-time notifications, multi-printer support for receipts, seamless sharing capabilities, and powerful search functionality.",
+            "skills_used": [
+                "Notifications",
+                "Multi-Printer Support",
+                "Sharing",
+                "Search"
+            ],
+            "apple_store_link": "https://apps.apple.com/us/app/sadad-logistics/id6480351307",
+            "google_play_link": "https://play.google.com/store/apps/details?id=com.sadad.sadad",
+            "image": null
+        },
+        {
+            "name": "Pack and Go (Real Estate App)",
+            "description": "A feature-rich real estate application enabling users to browse properties, manage listings, and connect with real estate professionals. Built with team collaboration using Git workflows.",
+            "skills_used": [
+                "User Authentication Services",
+                "GitHub Collaboration within team"
+            ],
+            "github_link": "https://github.com/abdo6400/real_state_app_using_flutter",
+            "image": null
+        },
+        {
+            "name": "ALBASHEQ (Financial App)",
+            "description": "An advanced financial application with comprehensive features including notifications, multi-printer support, sharing capabilities, search functionality, dual theme support, and integrated advertising.",
+            "skills_used": [
+                "Notifications",
+                "Multi-Printer Support",
+                "Sharing",
+                "Search",
+                "Dual Themes",
+                "Ads"
+            ],
+            "apple_store_link": "https://apps.apple.com/jo/app/albasheq/id6462672573",
+            "google_play_link": "https://play.google.com/store/apps/details?id=com.albasheq.albasheq",
+            "image": null
+        },
+        {
+            "name": "Golden Mark (Financial App)",
+            "description": "A professional financial management solution featuring real-time notifications, multi-printer support for documentation, seamless sharing, and powerful search capabilities for financial records.",
+            "skills_used": [
+                "Notifications",
+                "Multi-Printer Support",
+                "Sharing",
+                "Search"
+            ],
+            "google_play_link": "https://play.google.com/store/apps/details?id=com.goldenmark.golden_mark",
+            "image": null
+        },
+        {
+            "name": "Car Washing App",
+            "description": "A convenient car washing service application that connects users with service providers. Features include user authentication, booking management, and team collaboration using Git workflows.",
+            "skills_used": [
+                "User Authentication Services",
+                "GitHub Collaboration within team"
+            ],
+            "github_link": "https://github.com/abdo6400/washing_app_using_flutter",
+            "image": null
+        }
+    ],
+    "additional_information": {
+        "languages": [
+            "English B1",
+            "Arabic native"
+        ],
+        "awards_activities": "2ND RANK of NLP project (NEWSGroup CLASSIFICATION)",
+        "social_links": {
+            "github": "https://github.com/abdo6400",
+            "linkedin": "http://www.linkedin.com/in/abdelrahman-amr-729400204",
+            "cv": "https://drive.google.com/file/d/1xjOMo7GZk5Apno_bKs58Ov3C9Ahj6XsV/view?usp=sharing"
+        }
+    }
+}
