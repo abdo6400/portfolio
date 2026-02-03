@@ -24,9 +24,8 @@ class ThemeProvider extends ChangeNotifier {
   bool get isDarkMode => _themeMode == ThemeMode.dark;
 
   void toggleTheme() {
-    _themeMode = _themeMode == ThemeMode.dark
-        ? ThemeMode.light
-        : ThemeMode.dark;
+    _themeMode =
+        _themeMode == ThemeMode.dark ? ThemeMode.light : ThemeMode.dark;
     _saveTheme();
     notifyListeners();
   }
@@ -135,134 +134,134 @@ class AppColors {
 }
 
 ThemeData get lightTheme => ThemeData(
-  useMaterial3: true,
-  colorScheme: const ColorScheme.light(
-    primary: AppColors.lightPrimary,
-    onPrimary: AppColors.lightOnPrimary,
-    secondary: AppColors.lightSecondary,
-    onSecondary: AppColors.lightOnSecondary,
-    tertiary: AppColors.lightAccent,
-    error: AppColors.lightError,
-    onError: AppColors.lightOnError,
-    surface: AppColors.lightSurface,
-    onSurface: AppColors.lightOnSurface,
-    outline: AppColors.lightDivider,
-  ),
-  brightness: Brightness.light,
-  scaffoldBackgroundColor: AppColors.lightBackground,
-  appBarTheme: const AppBarTheme(
-    backgroundColor: Colors.transparent,
-    foregroundColor: AppColors.lightPrimaryText,
-    elevation: 0,
-    scrolledUnderElevation: 0,
-  ),
-  navigationBarTheme: NavigationBarThemeData(
-    backgroundColor: Colors.transparent,
-    indicatorColor: AppColors.lightPrimary.withValues(alpha: 0.06),
-    labelTextStyle: WidgetStateProperty.resolveWith(
-      (states) => GoogleFonts.inter(
-        fontSize: 12,
-        fontWeight: states.contains(WidgetState.selected)
-            ? FontWeight.w700
-            : FontWeight.w500,
-        color: AppColors.lightPrimaryText,
+      useMaterial3: true,
+      colorScheme: const ColorScheme.light(
+        primary: AppColors.lightPrimary,
+        onPrimary: AppColors.lightOnPrimary,
+        secondary: AppColors.lightSecondary,
+        onSecondary: AppColors.lightOnSecondary,
+        tertiary: AppColors.lightAccent,
+        error: AppColors.lightError,
+        onError: AppColors.lightOnError,
+        surface: AppColors.lightSurface,
+        onSurface: AppColors.lightOnSurface,
+        outline: AppColors.lightDivider,
       ),
-    ),
-    iconTheme: WidgetStateProperty.resolveWith(
-      (states) => IconThemeData(
-        color: states.contains(WidgetState.selected)
-            ? AppColors.lightPrimary
-            : AppColors.lightSecondaryText,
+      brightness: Brightness.light,
+      scaffoldBackgroundColor: AppColors.lightBackground,
+      appBarTheme: const AppBarTheme(
+        backgroundColor: Colors.transparent,
+        foregroundColor: AppColors.lightPrimaryText,
+        elevation: 0,
+        scrolledUnderElevation: 0,
       ),
-    ),
-  ),
-  elevatedButtonTheme: ElevatedButtonThemeData(
-    style: ElevatedButton.styleFrom(
-      backgroundColor: AppColors.lightPrimary,
-      foregroundColor: AppColors.lightOnPrimary,
-      elevation: 0,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(AppRadius.md),
+      navigationBarTheme: NavigationBarThemeData(
+        backgroundColor: Colors.transparent,
+        indicatorColor: AppColors.lightPrimary.withOpacity(0.06),
+        labelTextStyle: MaterialStateProperty.resolveWith(
+          (states) => GoogleFonts.inter(
+            fontSize: 12,
+            fontWeight: states.contains(MaterialState.selected)
+                ? FontWeight.w700
+                : FontWeight.w500,
+            color: AppColors.lightPrimaryText,
+          ),
+        ),
+        iconTheme: MaterialStateProperty.resolveWith(
+          (states) => IconThemeData(
+            color: states.contains(MaterialState.selected)
+                ? AppColors.lightPrimary
+                : AppColors.lightSecondaryText,
+          ),
+        ),
       ),
-    ),
-  ),
-  outlinedButtonTheme: OutlinedButtonThemeData(
-    style: OutlinedButton.styleFrom(
-      foregroundColor: AppColors.lightPrimary,
-      side: const BorderSide(color: AppColors.lightDivider),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(AppRadius.md),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: AppColors.lightPrimary,
+          foregroundColor: AppColors.lightOnPrimary,
+          elevation: 0,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(AppRadius.md),
+          ),
+        ),
       ),
-    ),
-  ),
-  iconTheme: const IconThemeData(color: AppColors.lightPrimaryText),
-  textTheme: _buildTextTheme(Brightness.light),
-);
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: OutlinedButton.styleFrom(
+          foregroundColor: AppColors.lightPrimary,
+          side: const BorderSide(color: AppColors.lightDivider),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(AppRadius.md),
+          ),
+        ),
+      ),
+      iconTheme: const IconThemeData(color: AppColors.lightPrimaryText),
+      textTheme: _buildTextTheme(Brightness.light),
+    );
 
 ThemeData get darkTheme => ThemeData(
-  useMaterial3: true,
-  colorScheme: const ColorScheme.dark(
-    primary: AppColors.darkPrimary,
-    onPrimary: AppColors.darkOnPrimary,
-    secondary: AppColors.darkSecondary,
-    onSecondary: AppColors.darkOnSecondary,
-    tertiary: AppColors.darkAccent,
-    error: AppColors.darkError,
-    onError: AppColors.darkOnError,
-    surface: AppColors.darkSurface,
-    onSurface: AppColors.darkOnSurface,
-    outline: AppColors.darkDivider,
-  ),
-  brightness: Brightness.dark,
-  scaffoldBackgroundColor: AppColors.darkBackground,
-  appBarTheme: const AppBarTheme(
-    backgroundColor: Colors.transparent,
-    foregroundColor: AppColors.darkPrimaryText,
-    elevation: 0,
-    scrolledUnderElevation: 0,
-  ),
-  navigationBarTheme: NavigationBarThemeData(
-    backgroundColor: Colors.transparent,
-    indicatorColor: AppColors.darkPrimary.withValues(alpha: 0.08),
-    labelTextStyle: WidgetStateProperty.resolveWith(
-      (states) => GoogleFonts.inter(
-        fontSize: 12,
-        fontWeight: states.contains(WidgetState.selected)
-            ? FontWeight.w700
-            : FontWeight.w500,
-        color: AppColors.darkPrimaryText,
+      useMaterial3: true,
+      colorScheme: const ColorScheme.dark(
+        primary: AppColors.darkPrimary,
+        onPrimary: AppColors.darkOnPrimary,
+        secondary: AppColors.darkSecondary,
+        onSecondary: AppColors.darkOnSecondary,
+        tertiary: AppColors.darkAccent,
+        error: AppColors.darkError,
+        onError: AppColors.darkOnError,
+        surface: AppColors.darkSurface,
+        onSurface: AppColors.darkOnSurface,
+        outline: AppColors.darkDivider,
       ),
-    ),
-    iconTheme: WidgetStateProperty.resolveWith(
-      (states) => IconThemeData(
-        color: states.contains(WidgetState.selected)
-            ? AppColors.darkPrimary
-            : AppColors.darkSecondaryText,
+      brightness: Brightness.dark,
+      scaffoldBackgroundColor: AppColors.darkBackground,
+      appBarTheme: const AppBarTheme(
+        backgroundColor: Colors.transparent,
+        foregroundColor: AppColors.darkPrimaryText,
+        elevation: 0,
+        scrolledUnderElevation: 0,
       ),
-    ),
-  ),
-  elevatedButtonTheme: ElevatedButtonThemeData(
-    style: ElevatedButton.styleFrom(
-      backgroundColor: AppColors.darkPrimary,
-      foregroundColor: AppColors.darkOnPrimary,
-      elevation: 0,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(AppRadius.md),
+      navigationBarTheme: NavigationBarThemeData(
+        backgroundColor: Colors.transparent,
+        indicatorColor: AppColors.darkPrimary.withOpacity(0.08),
+        labelTextStyle: MaterialStateProperty.resolveWith(
+          (states) => GoogleFonts.inter(
+            fontSize: 12,
+            fontWeight: states.contains(MaterialState.selected)
+                ? FontWeight.w700
+                : FontWeight.w500,
+            color: AppColors.darkPrimaryText,
+          ),
+        ),
+        iconTheme: MaterialStateProperty.resolveWith(
+          (states) => IconThemeData(
+            color: states.contains(MaterialState.selected)
+                ? AppColors.darkPrimary
+                : AppColors.darkSecondaryText,
+          ),
+        ),
       ),
-    ),
-  ),
-  outlinedButtonTheme: OutlinedButtonThemeData(
-    style: OutlinedButton.styleFrom(
-      foregroundColor: AppColors.darkPrimary,
-      side: const BorderSide(color: AppColors.darkDivider),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(AppRadius.md),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: AppColors.darkPrimary,
+          foregroundColor: AppColors.darkOnPrimary,
+          elevation: 0,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(AppRadius.md),
+          ),
+        ),
       ),
-    ),
-  ),
-  iconTheme: const IconThemeData(color: AppColors.darkPrimaryText),
-  textTheme: _buildTextTheme(Brightness.dark),
-);
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: OutlinedButton.styleFrom(
+          foregroundColor: AppColors.darkPrimary,
+          side: const BorderSide(color: AppColors.darkDivider),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(AppRadius.md),
+          ),
+        ),
+      ),
+      iconTheme: const IconThemeData(color: AppColors.darkPrimaryText),
+      textTheme: _buildTextTheme(Brightness.dark),
+    );
 
 TextTheme _buildTextTheme(Brightness brightness) {
   final primaryFont = GoogleFonts.inter();

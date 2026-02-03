@@ -62,12 +62,10 @@ class _HomePageState extends State<HomePage> {
     }
 
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final primaryText = isDark
-        ? AppColors.darkPrimaryText
-        : AppColors.lightPrimaryText;
-    final secondaryText = isDark
-        ? AppColors.darkSecondaryText
-        : AppColors.lightSecondaryText;
+    final primaryText =
+        isDark ? AppColors.darkPrimaryText : AppColors.lightPrimaryText;
+    final secondaryText =
+        isDark ? AppColors.darkSecondaryText : AppColors.lightSecondaryText;
     final surface = isDark ? AppColors.darkSurface : AppColors.lightSurface;
     final divider = isDark ? AppColors.darkDivider : AppColors.lightDivider;
     final accent = isDark ? AppColors.darkAccent : AppColors.lightAccent;
@@ -186,11 +184,11 @@ class _HomePageState extends State<HomePage> {
                                     ShaderMask(
                                       shaderCallback: (bounds) =>
                                           LinearGradient(
-                                            colors: [
-                                              primaryText,
-                                              primary.withValues(alpha: 0.7),
-                                            ],
-                                          ).createShader(bounds),
+                                        colors: [
+                                          primaryText,
+                                          primary.withOpacity(0.7),
+                                        ],
+                                      ).createShader(bounds),
                                       child: Text(
                                         _profile?['bio'] ?? '',
                                         style: Theme.of(context)
@@ -355,11 +353,11 @@ class _HomePageState extends State<HomePage> {
                     ),
                     const SizedBox(height: AppSpacing.lg),
                     ..._projects.asMap().entries.map(
-                      (e) => Reveal.staggered(
-                        index: e.key,
-                        child: ProjectCard(project: e.value),
-                      ),
-                    ),
+                          (e) => Reveal.staggered(
+                            index: e.key,
+                            child: ProjectCard(project: e.value),
+                          ),
+                        ),
                   ],
                 ),
               ),
@@ -463,12 +461,10 @@ class NavChip extends StatelessWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final surface = isDark ? AppColors.darkSurface : AppColors.lightSurface;
     final divider = isDark ? AppColors.darkDivider : AppColors.lightDivider;
-    final primaryText = isDark
-        ? AppColors.darkPrimaryText
-        : AppColors.lightPrimaryText;
-    final secondaryText = isDark
-        ? AppColors.darkSecondaryText
-        : AppColors.lightSecondaryText;
+    final primaryText =
+        isDark ? AppColors.darkPrimaryText : AppColors.lightPrimaryText;
+    final secondaryText =
+        isDark ? AppColors.darkSecondaryText : AppColors.lightSecondaryText;
 
     return GestureDetector(
       onTap: onTap,
@@ -480,7 +476,7 @@ class NavChip extends StatelessWidget {
           border: Border.all(color: divider),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withValues(alpha: 0.05),
+              color: Colors.black.withOpacity(0.05),
               blurRadius: 10,
               offset: const Offset(0, 4),
             ),
@@ -520,9 +516,8 @@ class _StatColumn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final secondaryText = isDark
-        ? AppColors.darkSecondaryText
-        : AppColors.lightSecondaryText;
+    final secondaryText =
+        isDark ? AppColors.darkSecondaryText : AppColors.lightSecondaryText;
 
     return Column(
       children: [
@@ -538,10 +533,10 @@ class _StatColumn extends StatelessWidget {
         Text(
           label,
           style: Theme.of(context).textTheme.labelSmall?.copyWith(
-            color: secondaryText,
-            letterSpacing: 1.2,
-            fontSize: 10,
-          ),
+                color: secondaryText,
+                letterSpacing: 1.2,
+                fontSize: 10,
+              ),
         ),
       ],
     );
@@ -558,9 +553,8 @@ class SkillPill extends StatelessWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final surface = isDark ? AppColors.darkSurface : AppColors.lightSurface;
     final divider = isDark ? AppColors.darkDivider : AppColors.lightDivider;
-    final primaryText = isDark
-        ? AppColors.darkPrimaryText
-        : AppColors.lightPrimaryText;
+    final primaryText =
+        isDark ? AppColors.darkPrimaryText : AppColors.lightPrimaryText;
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
@@ -605,15 +599,12 @@ class ProjectCard extends StatelessWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final surface = isDark ? AppColors.darkSurface : AppColors.lightSurface;
     final divider = isDark ? AppColors.darkDivider : AppColors.lightDivider;
-    final primaryText = isDark
-        ? AppColors.darkPrimaryText
-        : AppColors.lightPrimaryText;
-    final secondaryText = isDark
-        ? AppColors.darkSecondaryText
-        : AppColors.lightSecondaryText;
-    final background = isDark
-        ? AppColors.darkBackground
-        : AppColors.lightBackground;
+    final primaryText =
+        isDark ? AppColors.darkPrimaryText : AppColors.lightPrimaryText;
+    final secondaryText =
+        isDark ? AppColors.darkSecondaryText : AppColors.lightSecondaryText;
+    final background =
+        isDark ? AppColors.darkBackground : AppColors.lightBackground;
 
     return GestureDetector(
       onTap: () => context.push('/project-details', extra: project),
@@ -665,9 +656,9 @@ class ProjectCard extends StatelessWidget {
                     Text(
                       project.description,
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: secondaryText,
-                        height: 1.5,
-                      ),
+                            color: secondaryText,
+                            height: 1.5,
+                          ),
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -720,9 +711,8 @@ class SocialButton extends StatelessWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final surface = isDark ? AppColors.darkSurface : AppColors.lightSurface;
     final divider = isDark ? AppColors.darkDivider : AppColors.lightDivider;
-    final primaryText = isDark
-        ? AppColors.darkPrimaryText
-        : AppColors.lightPrimaryText;
+    final primaryText =
+        isDark ? AppColors.darkPrimaryText : AppColors.lightPrimaryText;
 
     return GestureDetector(
       onTap: onTap,
@@ -735,7 +725,7 @@ class SocialButton extends StatelessWidget {
           border: Border.all(color: divider),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withValues(alpha: 0.05),
+              color: Colors.black.withOpacity(0.05),
               blurRadius: 10,
               offset: const Offset(0, 4),
             ),

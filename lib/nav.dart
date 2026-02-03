@@ -168,7 +168,7 @@ class _AppShellState extends State<_AppShell> {
                           onDestinationSelected: _onDestinationSelected,
                           labelType: NavigationRailLabelType.all,
                           backgroundColor: Colors.transparent,
-                          indicatorColor: primaryColor.withValues(alpha: 0.1),
+                          indicatorColor: primaryColor.withOpacity(0.1),
                           destinations: [
                             NavigationRailDestination(
                               icon: const Icon(Icons.home_outlined),
@@ -260,9 +260,8 @@ class _AppShellState extends State<_AppShell> {
         ? Column(
             children: [
               _ToggleButton(
-                icon: isDark
-                    ? Icons.light_mode_rounded
-                    : Icons.dark_mode_rounded,
+                icon:
+                    isDark ? Icons.light_mode_rounded : Icons.dark_mode_rounded,
                 onTap: themeProvider.toggleTheme,
               ),
               const SizedBox(height: 12),
@@ -314,8 +313,8 @@ class _ToggleButton extends StatelessWidget {
         height: 36,
         decoration: BoxDecoration(
           color: isDark
-              ? Colors.white.withValues(alpha: 0.05)
-              : Colors.black.withValues(alpha: 0.05),
+              ? Colors.white.withOpacity(0.05)
+              : Colors.black.withOpacity(0.05),
           shape: BoxShape.circle,
         ),
         alignment: Alignment.center,

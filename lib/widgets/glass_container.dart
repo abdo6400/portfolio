@@ -1,4 +1,5 @@
-import 'dart:ui';
+import 'dart:ui' show ImageFilter;
+
 import 'package:flutter/material.dart';
 
 class GlassContainer extends StatelessWidget {
@@ -36,12 +37,11 @@ class GlassContainer extends StatelessWidget {
         child: Container(
           padding: padding,
           decoration: BoxDecoration(
-            color: baseColor.withValues(alpha: opacity),
+            color: baseColor.withOpacity(opacity),
             borderRadius: BorderRadius.circular(borderRadius),
-            border:
-                border ??
+            border: border ??
                 Border.all(
-                  color: baseColor.withValues(alpha: isDark ? 0.08 : 0.05),
+                  color: baseColor.withOpacity(isDark ? 0.08 : 0.05),
                   width: 1.5,
                 ),
           ),
@@ -52,8 +52,8 @@ class GlassContainer extends StatelessWidget {
                   child: CustomPaint(
                     painter: _RimLightPainter(
                       color: isDark
-                          ? primary.withValues(alpha: 0.15)
-                          : Colors.white.withValues(alpha: 0.4),
+                          ? primary.withOpacity(0.15)
+                          : Colors.white.withOpacity(0.4),
                       radius: borderRadius,
                     ),
                   ),
@@ -83,7 +83,7 @@ class _RimLightPainter extends CustomPainter {
           color,
           Colors.transparent,
           Colors.transparent,
-          color.withValues(alpha: 0.1),
+          color.withOpacity(0.1),
         ],
         stops: const [0.0, 0.4, 0.6, 1.0],
       ).createShader(Rect.fromLTWH(0, 0, size.width, size.height))

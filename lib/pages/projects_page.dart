@@ -48,12 +48,10 @@ class _ProjectsPageState extends State<ProjectsPage> {
     }
 
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final primaryText = isDark
-        ? AppColors.darkPrimaryText
-        : AppColors.lightPrimaryText;
-    final secondaryText = isDark
-        ? AppColors.darkSecondaryText
-        : AppColors.lightSecondaryText;
+    final primaryText =
+        isDark ? AppColors.darkPrimaryText : AppColors.lightPrimaryText;
+    final secondaryText =
+        isDark ? AppColors.darkSecondaryText : AppColors.lightSecondaryText;
     final surface = isDark ? AppColors.darkSurface : AppColors.lightSurface;
     final divider = isDark ? AppColors.darkDivider : AppColors.lightDivider;
     final primary = isDark ? AppColors.darkPrimary : AppColors.lightPrimary;
@@ -109,7 +107,9 @@ class _ProjectsPageState extends State<ProjectsPage> {
                               const SizedBox(height: AppSpacing.xs),
                               Text(
                                 'Senior Product Designer & Flutter Developer',
-                                style: Theme.of(context).textTheme.bodyMedium
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium
                                     ?.copyWith(color: secondaryText),
                               ),
                               const SizedBox(height: 4),
@@ -193,11 +193,11 @@ class _ProjectsPageState extends State<ProjectsPage> {
                     ),
                     const SizedBox(height: AppSpacing.md),
                     ..._projects.asMap().entries.map(
-                      (e) => Reveal.staggered(
-                        index: e.key,
-                        child: _ProjectDetailCard(project: e.value),
-                      ),
-                    ),
+                          (e) => Reveal.staggered(
+                            index: e.key,
+                            child: _ProjectDetailCard(project: e.value),
+                          ),
+                        ),
                   ],
                 ),
               ),
@@ -237,10 +237,10 @@ class _ProjectsPageState extends State<ProjectsPage> {
                     Text(
                       '© 2024 Alex Rivera. Built with Dreamflow.',
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: isDark
-                            ? AppColors.darkHint
-                            : AppColors.lightHint,
-                      ),
+                            color: isDark
+                                ? AppColors.darkHint
+                                : AppColors.lightHint,
+                          ),
                       textAlign: TextAlign.center,
                     ),
                   ],
@@ -264,15 +264,12 @@ class _ProjectDetailCard extends StatelessWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final surface = isDark ? AppColors.darkSurface : AppColors.lightSurface;
     final divider = isDark ? AppColors.darkDivider : AppColors.lightDivider;
-    final primaryText = isDark
-        ? AppColors.darkPrimaryText
-        : AppColors.lightPrimaryText;
-    final secondaryText = isDark
-        ? AppColors.darkSecondaryText
-        : AppColors.lightSecondaryText;
-    final background = isDark
-        ? AppColors.darkBackground
-        : AppColors.lightBackground;
+    final primaryText =
+        isDark ? AppColors.darkPrimaryText : AppColors.lightPrimaryText;
+    final secondaryText =
+        isDark ? AppColors.darkSecondaryText : AppColors.lightSecondaryText;
+    final background =
+        isDark ? AppColors.darkBackground : AppColors.lightBackground;
     final primary = isDark ? AppColors.darkPrimary : AppColors.lightPrimary;
 
     return GestureDetector(
@@ -307,7 +304,9 @@ class _ProjectDetailCard extends StatelessWidget {
                         Expanded(
                           child: Text(
                             project.title,
-                            style: Theme.of(context).textTheme.titleLarge
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleLarge
                                 ?.copyWith(
                                   fontWeight: FontWeight.bold,
                                   color: primaryText,
@@ -326,7 +325,9 @@ class _ProjectDetailCard extends StatelessWidget {
                           ),
                           child: Text(
                             project.category,
-                            style: Theme.of(context).textTheme.labelSmall
+                            style: Theme.of(context)
+                                .textTheme
+                                .labelSmall
                                 ?.copyWith(color: secondaryText),
                           ),
                         ),
@@ -357,7 +358,9 @@ class _ProjectDetailCard extends StatelessWidget {
                           ),
                           child: Text(
                             tech,
-                            style: Theme.of(context).textTheme.labelSmall
+                            style: Theme.of(context)
+                                .textTheme
+                                .labelSmall
                                 ?.copyWith(color: primaryText),
                           ),
                         );
@@ -417,13 +420,11 @@ class _SocialIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final background = isDark
-        ? AppColors.darkBackground
-        : AppColors.lightBackground;
+    final background =
+        isDark ? AppColors.darkBackground : AppColors.lightBackground;
     final primary = isDark ? AppColors.darkPrimary : AppColors.lightPrimary;
-    final secondaryText = isDark
-        ? AppColors.darkSecondaryText
-        : AppColors.lightSecondaryText;
+    final secondaryText =
+        isDark ? AppColors.darkSecondaryText : AppColors.lightSecondaryText;
 
     return Column(
       children: [
@@ -435,7 +436,7 @@ class _SocialIcon extends StatelessWidget {
             borderRadius: BorderRadius.circular(AppRadius.full),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withValues(alpha: 0.05),
+                color: Colors.black.withOpacity(0.05),
                 blurRadius: 4,
                 offset: const Offset(0, 2),
               ),

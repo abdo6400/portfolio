@@ -119,13 +119,13 @@ class _BlobPainter extends CustomPainter {
     // Blob 1 (Primary Depth)
     final x1 = size.width * (0.5 + 0.3 * math.cos(t1)) + (mousePos.dx * 30);
     final y1 = size.height * (0.3 + 0.2 * math.sin(t1)) + (mousePos.dy * 30);
-    paint.color = primaryColor.withValues(alpha: isDark ? 0.05 : 0.08);
+    paint.color = primaryColor.withOpacity(isDark ? 0.05 : 0.08);
     canvas.drawCircle(Offset(x1, y1), size.width * 0.4, paint);
 
     // Blob 2 (Secondary Depth)
     final x2 = size.width * (0.4 + 0.2 * math.cos(t2)) + (mousePos.dx * -50);
     final y2 = size.height * (0.7 + 0.3 * math.sin(t2)) + (mousePos.dy * -50);
-    paint.color = accentColor.withValues(alpha: isDark ? 0.03 : 0.05);
+    paint.color = accentColor.withOpacity(isDark ? 0.03 : 0.05);
     canvas.drawCircle(Offset(x2, y2), size.width * 0.5, paint);
   }
 

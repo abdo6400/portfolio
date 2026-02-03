@@ -12,17 +12,14 @@ class ProjectDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final primaryText = isDark
-        ? AppColors.darkPrimaryText
-        : AppColors.lightPrimaryText;
-    final secondaryText = isDark
-        ? AppColors.darkSecondaryText
-        : AppColors.lightSecondaryText;
+    final primaryText =
+        isDark ? AppColors.darkPrimaryText : AppColors.lightPrimaryText;
+    final secondaryText =
+        isDark ? AppColors.darkSecondaryText : AppColors.lightSecondaryText;
     final surface = isDark ? AppColors.darkSurface : AppColors.lightSurface;
     final divider = isDark ? AppColors.darkDivider : AppColors.lightDivider;
-    final background = isDark
-        ? AppColors.darkBackground
-        : AppColors.lightBackground;
+    final background =
+        isDark ? AppColors.darkBackground : AppColors.lightBackground;
     final accent = isDark ? AppColors.darkAccent : AppColors.lightAccent;
 
     return Scaffold(
@@ -120,7 +117,9 @@ class ProjectDetailsPage extends StatelessWidget {
                         Expanded(
                           child: Text(
                             project.title,
-                            style: Theme.of(context).textTheme.headlineMedium
+                            style: Theme.of(context)
+                                .textTheme
+                                .headlineMedium
                                 ?.copyWith(
                                   fontWeight: FontWeight.w800,
                                   color: primaryText,
@@ -135,7 +134,7 @@ class ProjectDetailsPage extends StatelessWidget {
                           decoration: BoxDecoration(
                             color: const Color(
                               0xFF22D3EE,
-                            ).withValues(alpha: 0.13),
+                            ).withOpacity(0.13),
                             border: Border.all(color: const Color(0xFF22D3EE)),
                             borderRadius: BorderRadius.circular(AppRadius.md),
                           ),
@@ -226,9 +225,9 @@ class ProjectDetailsPage extends StatelessWidget {
                       child: Text(
                         "The primary hurdle was creating a solution that was both intuitive for users and scalable for enterprise needs. We needed to maintain optimal performance while handling complex data operations.",
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: primaryText,
-                          height: 1.6,
-                        ),
+                              color: primaryText,
+                              height: 1.6,
+                            ),
                       ),
                     ),
                     const SizedBox(height: AppSpacing.lg),
@@ -329,9 +328,8 @@ class _StatItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final primaryText = isDark
-        ? AppColors.darkPrimaryText
-        : AppColors.lightPrimaryText;
+    final primaryText =
+        isDark ? AppColors.darkPrimaryText : AppColors.lightPrimaryText;
     final hint = isDark ? AppColors.darkHint : AppColors.lightHint;
 
     return Column(
@@ -345,9 +343,9 @@ class _StatItem extends StatelessWidget {
         Text(
           value,
           style: Theme.of(context).textTheme.titleMedium?.copyWith(
-            fontWeight: FontWeight.bold,
-            color: primaryText,
-          ),
+                fontWeight: FontWeight.bold,
+                color: primaryText,
+              ),
         ),
       ],
     );
@@ -370,12 +368,10 @@ class _ProcessStep extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final primaryText = isDark
-        ? AppColors.darkPrimaryText
-        : AppColors.lightPrimaryText;
-    final secondaryText = isDark
-        ? AppColors.darkSecondaryText
-        : AppColors.lightSecondaryText;
+    final primaryText =
+        isDark ? AppColors.darkPrimaryText : AppColors.lightPrimaryText;
+    final secondaryText =
+        isDark ? AppColors.darkSecondaryText : AppColors.lightSecondaryText;
     final divider = isDark ? AppColors.darkDivider : AppColors.lightDivider;
 
     return Row(
@@ -403,9 +399,9 @@ class _ProcessStep extends StatelessWidget {
               Text(
                 title,
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                  fontWeight: FontWeight.bold,
-                  color: primaryText,
-                ),
+                      fontWeight: FontWeight.bold,
+                      color: primaryText,
+                    ),
               ),
               const SizedBox(height: AppSpacing.xs),
               Text(

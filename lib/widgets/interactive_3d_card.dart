@@ -1,4 +1,5 @@
-import 'dart:ui';
+import 'dart:ui' show lerpDouble;
+
 import 'package:flutter/material.dart';
 
 class Interactive3DCard extends StatefulWidget {

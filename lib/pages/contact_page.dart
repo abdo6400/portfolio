@@ -81,12 +81,10 @@ class _ContactPageState extends State<ContactPage> {
     }
 
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final primaryText = isDark
-        ? AppColors.darkPrimaryText
-        : AppColors.lightPrimaryText;
-    final secondaryText = isDark
-        ? AppColors.darkSecondaryText
-        : AppColors.lightSecondaryText;
+    final primaryText =
+        isDark ? AppColors.darkPrimaryText : AppColors.lightPrimaryText;
+    final secondaryText =
+        isDark ? AppColors.darkSecondaryText : AppColors.lightSecondaryText;
     final surface = isDark ? AppColors.darkSurface : AppColors.lightSurface;
     final divider = isDark ? AppColors.darkDivider : AppColors.lightDivider;
     final hint = isDark ? AppColors.darkHint : AppColors.lightHint;
@@ -136,9 +134,9 @@ class _ContactPageState extends State<ContactPage> {
               Text(
                 'CONNECT_WITH_ME',
                 style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                  fontWeight: FontWeight.w800,
-                  color: primaryText,
-                ),
+                      fontWeight: FontWeight.w800,
+                      color: primaryText,
+                    ),
               ),
               Row(
                 children: [
@@ -152,9 +150,9 @@ class _ContactPageState extends State<ContactPage> {
                   Text(
                     'Available for projects',
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: success,
-                      fontWeight: FontWeight.bold,
-                    ),
+                          color: success,
+                          fontWeight: FontWeight.bold,
+                        ),
                   ),
                 ],
               ),
@@ -165,9 +163,9 @@ class _ContactPageState extends State<ContactPage> {
                   Text(
                     '// SOCIAL_CHANNELS',
                     style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                      color: accent,
-                      fontWeight: FontWeight.bold,
-                    ),
+                          color: accent,
+                          fontWeight: FontWeight.bold,
+                        ),
                   ),
                   Text(
                     '04_ITEMS',
@@ -179,14 +177,14 @@ class _ContactPageState extends State<ContactPage> {
               ),
               const SizedBox(height: AppSpacing.md),
               ..._socials.asMap().entries.map(
-                (e) => Reveal.staggered(
-                  index: e.key,
-                  child: _SocialCard(
-                    social: e.value,
-                    onTap: () => _launchUrl(e.value.url),
+                    (e) => Reveal.staggered(
+                      index: e.key,
+                      child: _SocialCard(
+                        social: e.value,
+                        onTap: () => _launchUrl(e.value.url),
+                      ),
+                    ),
                   ),
-                ),
-              ),
               const SizedBox(height: AppSpacing.md),
               Reveal(
                 delay: const Duration(milliseconds: 80),
@@ -202,11 +200,11 @@ class _ContactPageState extends State<ContactPage> {
                     children: [
                       Text(
                         'SEND_MESSAGE.exe',
-                        style: Theme.of(context).textTheme.titleMedium
-                            ?.copyWith(
-                              fontWeight: FontWeight.bold,
-                              color: primaryText,
-                            ),
+                        style:
+                            Theme.of(context).textTheme.titleMedium?.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                  color: primaryText,
+                                ),
                       ),
                       const SizedBox(height: AppSpacing.xs),
                       Text(
@@ -255,7 +253,7 @@ class _ContactPageState extends State<ContactPage> {
                 child: Container(
                   padding: const EdgeInsets.all(AppSpacing.lg),
                   decoration: BoxDecoration(
-                    color: accent.withValues(alpha: 0.08),
+                    color: accent.withOpacity(0.08),
                     borderRadius: BorderRadius.circular(AppRadius.md),
                     border: Border.all(color: accent),
                   ),
@@ -282,7 +280,9 @@ class _ContactPageState extends State<ContactPage> {
                           children: [
                             Text(
                               'CURRICULUM_VITAE',
-                              style: Theme.of(context).textTheme.labelLarge
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .labelLarge
                                   ?.copyWith(
                                     fontWeight: FontWeight.bold,
                                     color: primaryText,
@@ -290,7 +290,9 @@ class _ContactPageState extends State<ContactPage> {
                             ),
                             Text(
                               'Download latest PDF (2.4MB)',
-                              style: Theme.of(context).textTheme.bodySmall
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodySmall
                                   ?.copyWith(color: secondaryText),
                             ),
                           ],
@@ -365,15 +367,12 @@ class _SocialCard extends StatelessWidget {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final surface = isDark ? AppColors.darkSurface : AppColors.lightSurface;
     final divider = isDark ? AppColors.darkDivider : AppColors.lightDivider;
-    final background = isDark
-        ? AppColors.darkBackground
-        : AppColors.lightBackground;
-    final primaryText = isDark
-        ? AppColors.darkPrimaryText
-        : AppColors.lightPrimaryText;
-    final secondaryText = isDark
-        ? AppColors.darkSecondaryText
-        : AppColors.lightSecondaryText;
+    final background =
+        isDark ? AppColors.darkBackground : AppColors.lightBackground;
+    final primaryText =
+        isDark ? AppColors.darkPrimaryText : AppColors.lightPrimaryText;
+    final secondaryText =
+        isDark ? AppColors.darkSecondaryText : AppColors.lightSecondaryText;
 
     return GestureDetector(
       onTap: onTap,
@@ -413,9 +412,9 @@ class _SocialCard extends StatelessWidget {
                   Text(
                     social.handle,
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                      color: primaryText,
-                    ),
+                          fontWeight: FontWeight.bold,
+                          color: primaryText,
+                        ),
                   ),
                 ],
               ),
@@ -448,9 +447,8 @@ class _InputField extends StatelessWidget {
     final divider = isDark ? AppColors.darkDivider : AppColors.lightDivider;
     final hint = isDark ? AppColors.darkHint : AppColors.lightHint;
     final accent = isDark ? AppColors.darkAccent : AppColors.lightAccent;
-    final secondaryText = isDark
-        ? AppColors.darkSecondaryText
-        : AppColors.lightSecondaryText;
+    final secondaryText =
+        isDark ? AppColors.darkSecondaryText : AppColors.lightSecondaryText;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -460,9 +458,9 @@ class _InputField extends StatelessWidget {
             Text(
               '>',
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                fontWeight: FontWeight.bold,
-                color: accent,
-              ),
+                    fontWeight: FontWeight.bold,
+                    color: accent,
+                  ),
             ),
             const SizedBox(width: AppSpacing.xs),
             Text(

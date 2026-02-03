@@ -1,4 +1,5 @@
-import 'dart:ui';
+import 'dart:ui' show ImageFilter;
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -28,14 +29,10 @@ class FloatingNavBar extends StatelessWidget {
           filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
           child: Container(
             decoration: BoxDecoration(
-              color: (isDark ? Colors.black : Colors.white).withValues(
-                alpha: 0.2,
-              ),
+              color: (isDark ? Colors.black : Colors.white).withOpacity(0.2),
               borderRadius: BorderRadius.circular(32),
               border: Border.all(
-                color: (isDark ? Colors.white : Colors.black).withValues(
-                  alpha: 0.1,
-                ),
+                color: (isDark ? Colors.white : Colors.black).withOpacity(0.1),
                 width: 1.5,
               ),
             ),
@@ -59,7 +56,7 @@ class FloatingNavBar extends StatelessWidget {
                     ),
                     decoration: BoxDecoration(
                       color: isSelected
-                          ? primary.withValues(alpha: 0.2)
+                          ? primary.withOpacity(0.2)
                           : Colors.transparent,
                       borderRadius: BorderRadius.circular(24),
                     ),

@@ -68,8 +68,8 @@ class _TreeNode extends StatelessWidget {
     final textColor = isSecondary
         ? (isDark ? Colors.white70 : Colors.black87)
         : (color != null
-              ? (!isDark ? Colors.white : Colors.black)
-              : Theme.of(context).colorScheme.onSurface);
+            ? (!isDark ? Colors.white : Colors.black)
+            : Theme.of(context).colorScheme.onSurface);
 
     return _PulseAnimation(
       child: Container(
@@ -78,14 +78,13 @@ class _TreeNode extends StatelessWidget {
           color: bgColor,
           borderRadius: BorderRadius.circular(8),
           border: Border.all(
-            color:
-                color?.withValues(alpha: 0.5) ??
-                Theme.of(context).colorScheme.outline.withValues(alpha: 0.3),
+            color: color?.withOpacity(0.5) ??
+                Theme.of(context).colorScheme.outline.withOpacity(0.3),
             width: 1,
           ),
           boxShadow: [
             BoxShadow(
-              color: (color ?? Colors.black).withValues(alpha: 0.1),
+              color: (color ?? Colors.black).withOpacity(0.1),
               blurRadius: 10,
               offset: const Offset(0, 4),
             ),
@@ -150,7 +149,7 @@ class _TreeConnector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final color = Theme.of(context).colorScheme.outline.withValues(alpha: 0.3);
+    final color = Theme.of(context).colorScheme.outline.withOpacity(0.3);
 
     return Transform.rotate(
       angle: angle,
