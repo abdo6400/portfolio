@@ -13,12 +13,12 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
     - name: Set up Flutter
       uses: subosito/flutter-action@v2
       with:
-        flutter-version: '3.9.2'
+        flutter-version: '3.10.1'
         channel: 'stable'
         cache: true
 
@@ -26,11 +26,11 @@ jobs:
       run: flutter pub get
 
     - name: Build web
-    run: flutter build web --release --base-href /portfolio/
+      run: flutter build web --release --base-href /portfolio/
 
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
-        github_token: ${{ secrets.GH_PAT }}
+        github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: build/web
