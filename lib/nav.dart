@@ -13,11 +13,17 @@ import 'package:portfolio/services/localization_service.dart';
 import 'package:portfolio/widgets/glass_container.dart';
 import 'package:portfolio/widgets/animated_background.dart';
 import 'package:portfolio/widgets/floating_nav_bar.dart';
+import 'package:portfolio/pages/splash_view.dart';
 
 class AppRouter {
   static final GoRouter router = GoRouter(
-    initialLocation: AppRoutes.home,
+    initialLocation: AppRoutes.splash,
     routes: [
+      GoRoute(
+        path: AppRoutes.splash,
+        name: 'splash',
+        builder: (context, state) => const SplashView(),
+      ),
       StatefulShellRoute.indexedStack(
         builder: (context, state, navigationShell) =>
             _AppShell(navigationShell: navigationShell),
@@ -87,6 +93,7 @@ class AppRouter {
 }
 
 class AppRoutes {
+  static const String splash = '/splash';
   static const String home = '/';
   static const String projects = '/projects';
   static const String projectDetails = '/project-details';
