@@ -1,0 +1,15 @@
+{
+  "name": "Abdulrahman Amr",
+  "title": "Flutter Developer",
+  "subtitle": "Building scalable and high-performance mobile applications",
+  "bio": "Flutter Developer with 4+ years of experience building high-performance mobile applications across E-commerce, AI, and Real Estate. Proven track record at companies like Code-X and LEAPTECH, delivering scalable solutions and production-ready apps published on Google Play and the App Store. Expert in BLoC state management and Clean Architecture.",
+  "email": "abdulrahmanamr346@gmail.com",
+  "phone": "+201069645711",
+  "location": "Cairo, Egypt",
+  "avatar": "/avatar.png",
+  "cvFile": "/portfolio-web/cv.pdf",
+  "socialLinks": {
+    "github": "https://github.com/abdo6400",
+    "linkedin": "https://www.linkedin.com/in/abdelrahman-amr-729400204"
+  }
+}

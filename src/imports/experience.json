@@ -1,0 +1,58 @@
+{
+    "experience": [
+        {
+            "id": "1",
+            "title": "Flutter Developer",
+            "company": "Code-X",
+            "location": "Remote, Egypt",
+            "startDate": "Jan 2025",
+            "endDate": "Mar 2026",
+            "description": "Developed and maintained Flutter applications including TrendUp (E-commerce) and Thamin (AI pricing platform).",
+            "highlights": [
+                "Integrated REST APIs and optimized performance using BLoC state management",
+                "Collaborated closely with backend teams to design scalable API structures",
+                "Provided post-launch maintenance, bug fixes, and feature enhancements"
+            ]
+        },
+        {
+            "id": "2",
+            "title": "Flutter Developer",
+            "company": "LEAPTECH",
+            "location": "Remote, Egypt",
+            "startDate": "Sep 2023",
+            "endDate": "Mar 2024",
+            "description": "Built multiple mobile applications including Pack and Go (Real Estate) and Najam Al Kora.",
+            "highlights": [
+                "Implemented real-time data handling and secure API integrations",
+                "Worked with QA teams to ensure application stability and performance"
+            ]
+        },
+        {
+            "id": "3",
+            "title": "Flutter Developer",
+            "company": "PROSYSJO",
+            "location": "Freelancer, Jordan",
+            "startDate": "Aug 2022",
+            "endDate": "Jan 2024",
+            "description": "Developed several production applications including ADDUSTOUR (News), ALBASHEQ, Golden Mark, and SADAD (Financial Apps).",
+            "highlights": [
+                "Implemented secure API communication and optimized application performance",
+                "Maintained and supported applications after launch"
+            ]
+        }
+    ],
+    "education": [
+        {
+            "id": "1",
+            "title": "Bachelor of Computer Science",
+            "institution": "Ain Shams University",
+            "location": "Cairo, Egypt",
+            "startDate": "2019-08",
+            "endDate": "2023-08",
+            "description": "Studied computer science with a focus on software engineering and mobile development.",
+            "highlights": [
+                "Strong foundation in data structures and algorithms"
+            ]
+        }
+    ]
+}

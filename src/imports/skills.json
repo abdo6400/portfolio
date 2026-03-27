@@ -1,0 +1,106 @@
+[
+    {
+        "category": "Mobile Development",
+        "icon": "mobile",
+        "skills": [
+            {
+                "name": "Flutter",
+                "level": 95
+            },
+            {
+                "name": "Dart",
+                "level": 95
+            },
+            {
+                "name": "Android",
+                "level": 80
+            },
+            {
+                "name": "iOS",
+                "level": 70
+            }
+        ]
+    },
+    {
+        "category": "Architecture",
+        "icon": "server",
+        "skills": [
+            {
+                "name": "BLoC",
+                "level": 90
+            },
+            {
+                "name": "Clean Architecture",
+                "level": 90
+            },
+            {
+                "name": "Dependency Injection",
+                "level": 85
+            },
+            {
+                "name": "Modular Architecture",
+                "level": 80
+            }
+        ]
+    },
+    {
+        "category": "some Tools & APIs",
+        "icon": "tools",
+        "skills": [
+            {
+                "name": "Firebase",
+                "level": 90
+            },
+            {
+                "name": "Git",
+                "level": 85
+            },
+            {
+                "name": "REST APIs",
+                "level": 90
+            },
+            {
+                "name": "AI Integration",
+                "level": 85
+            },
+            {
+                "name": "PDF Generation",
+                "level": 85
+            },
+            {
+                "name": "Dio",
+                "level": 85
+            },
+            {
+                "name": "GetIt",
+                "level": 80
+            }
+        ]
+    },
+    {
+        "category": "UI & Design",
+        "icon": "flutter",
+        "skills": [
+            {
+                "name": "Responsive Design",
+                "level": 90
+            },
+            {
+                "name": "Custom Widgets",
+                "level": 95
+            },
+            {
+                "name": "Animations",
+                "level": 85
+            },
+            {
+                "name": "Figma",
+                "level": 90
+            },
+            {
+                "name": "Material UI",
+                "level": 90
+            }
+        ]
+    }
+]

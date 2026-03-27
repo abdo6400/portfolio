@@ -1,0 +1,232 @@
+[
+    {
+        "id": "0",
+        "title": "ADDUSTOUR",
+        "image": "/image.png",
+        "description": "Official mobile news application delivering real-time news, articles, and media content.",
+        "detailedDescription": "A comprehensive news ecosystem for Jordan's leading daily newspaper. The app provides a high-performance reading experience with offline caching, multimedia integration, and a sophisticated notification system.",
+        "features": [
+            "Categorized news browsing with media support",
+            "Advanced push notification system with image support",
+            "Persistent offline caching for news reading",
+            "Social media integration and native sharing",
+            "Optimized background services for real-time updates"
+        ],
+        "technologies": [
+            "Flutter",
+            "Bloc",
+            "REST API",
+            "Local Notifications",
+            "Background Services",
+            "Cache Management"
+        ],
+        "category": "News Application",
+        "github": "",
+        "live": "",
+        "store": "https://play.google.com/store/apps/details?id=com.addustor.addustor_project",
+        "appStore": "https://apps.apple.com/us/app/addustour/id6444052571"
+    },
+    {
+        "id": "1",
+        "title": "ALBASHEQ",
+        "description": "Premium digital card purchasing platform with secure transaction handling and printing.",
+        "detailedDescription": "A robust financial platform designed for rapid digital asset procurement. It supports complex Bluetooth thermal printing and secure API integrations to ensure transactions are processed safely and efficiently.",
+        "features": [
+            "Secure wallet management and transactions",
+            "Bluetooth thermal printer integration for receipts",
+            "Real-time card inventory synchronization",
+            "Multi-layer security and encryption",
+            "Quick-search and intelligent filtering system"
+        ],
+        "image": "/image.png",
+        "technologies": [
+            "Flutter",
+            "Bloc",
+            "Dio",
+            "Bluetooth SDK",
+            "Firebase Cloud messaging"
+        ],
+        "category": "Financial",
+        "github": "",
+        "live": "",
+        "store": "https://play.google.com/store/apps/details?id=com.albasheq.albasheq",
+        "appStore": "https://apps.apple.com/jo/app/albasheq/id6462672573"
+    },
+    {
+        "id": "2",
+        "title": "Golden Mark",
+        "description": "Enterprise-grade digital asset management and purchasing system for financial services.",
+        "detailedDescription": "Custom-built for institutional financial services, Golden Mark provides a high-reliability gateway for purchasing and managing digital cards across various providers.",
+        "features": [
+            "Integrated provider API gateway",
+            "Batch processing for card issuance",
+            "Detailed transaction reporting and analytics",
+            "Offline mode for recent transaction viewing",
+            "Enterprise-level security protocols"
+        ],
+        "image": "/image.png",
+        "technologies": [
+            "Flutter",
+            "Bloc",
+            "Dio",
+            "Secure Storage",
+            "Custom Printing Drivers"
+        ],
+        "category": "Financial",
+        "github": "",
+        "live": "",
+        "store": "https://play.google.com/store/apps/details?id=com.goldenmark.golden_mark"
+    },
+    {
+        "id": "3",
+        "title": "SADAD",
+        "description": "All-in-one payment gateway for secure billing, transactions, and gift card purchases.",
+        "detailedDescription": "SADAD simplifies the digital payment experience by consolidating billers, card providers, and P2P transfers into a single, cohesive mobile interface focused on speed and security.",
+        "features": [
+            "Instant P2P fund transfers",
+            "Automated billing and recurring payments",
+            "Digital gift center with instant issuance",
+            "Unified transaction ledger across all services",
+            "Biometric authentication integration"
+        ],
+        "image": "/image.png",
+        "technologies": [
+            "Flutter",
+            "Bloc",
+            "Firebase Auth",
+            "Dio",
+            "Biometrics SDK"
+        ],
+        "category": "Financial",
+        "github": "",
+        "live": "",
+        "store": "https://play.google.com/store/apps/details?id=com.sadad.sadad"
+    },
+    {
+        "id": "4",
+        "title": "Pack and Go",
+        "description": "Collaborative real-estate listing platform with advanced mapping and communication tools.",
+        "detailedDescription": "A modern take on real estate discovery, Pack and Go emphasizes spatial navigation and agent-client collaboration, making property hunting a streamlined experience.",
+        "features": [
+            "Interactive map-based property search",
+            "Real-time geolocation-based alerts",
+            "In-app collaboration hubs for agents and seekers",
+            "Virtual tour media integration",
+            "Dynamic listing management for agents"
+        ],
+        "image": "/image.png",
+        "technologies": [
+            "Flutter",
+            "Bloc",
+            "Google Maps API",
+            "Geolocation Services",
+            "RESTful API"
+        ],
+        "category": "Real Estate",
+        "github": "https://github.com/abdo6400/real_state_app_using_flutter",
+        "live": "",
+        "store": ""
+    },
+    {
+        "id": "5",
+        "title": "TrendUp",
+        "description": "A social marketplace for product reselling with integrated profit tracking.",
+        "detailedDescription": "TrendUp empowers users to build their own e-commerce businesses by providing a platform to purchase products at margin and resell them through a curated social marketplace.",
+        "features": [
+            "Inventory procurement system",
+            "Integrated profit and margin calculator",
+            "Social reselling portal with direct sharing",
+            "Multi-provider supply chain integration",
+            "Dynamic pricing engine"
+        ],
+        "image": "/image.png",
+        "technologies": [
+            "Flutter",
+            "Bloc",
+            "GoRouter",
+            "Firebase Storage",
+            "Revenue Management"
+        ],
+        "category": "E-commerce",
+        "github": "",
+        "live": "",
+        "store": "https://play.google.com/store/apps/details?id=com.trendup.trendup"
+    },
+    {
+        "id": "6",
+        "title": "Package",
+        "description": "Advanced digital directory and فنی service aggregator with geographic filtering.",
+        "detailedDescription": "Package bridges the gap between technical service providers and clients, offering a localized directory that ensures users find verified professionals within their immediate vicinity.",
+        "features": [
+            "Geographic scope filtering (Radius-based)",
+            "Verified technician directory with ratings",
+            "Direct service booking and tracking",
+            "Multi-language support for diverse markets",
+            "Sophisticated service categorization"
+        ],
+        "image": "/image.png",
+        "technologies": [
+            "Flutter",
+            "Bloc",
+            "Google Maps SDK",
+            "Firebase Firestore",
+            "Modular Design"
+        ],
+        "category": "Services",
+        "github": "",
+        "live": "",
+        "store": "https://play.google.com/store/apps/details?id=com.ash3arimobileapp",
+        "appStore": "https://apps.apple.com/jo/app/package-%D8%A8%D9%83%D8%AC/id1523239962"
+    },
+    {
+        "id": "7",
+        "title": "Thamin",
+        "description": "AI-driven market appraisal platform for used goods with professional رپورٹ generation.",
+        "detailedDescription": "Thamin uses advanced AI to analyze historical market data and provide users with professional-grade valuations and PDF reports for second-hand assets.",
+        "features": [
+            "AI-driven valuation engine",
+            "Auto-generated professional PDF reports",
+            "Historical price trend tracking",
+            "Multi-category support (Tech, Furniture, etc.)",
+            "Market data visualization"
+        ],
+        "image": "/image.png",
+        "technologies": [
+            "Flutter",
+            "Bloc",
+            "OpenAI Integration",
+            "PDF Kit",
+            "Firebase Analytics"
+        ],
+        "category": "AI",
+        "github": "",
+        "live": "",
+        "store": "https://play.google.com/store/apps/details?id=com.thamin.thamin",
+        "appStore": "https://apps.apple.com/jo/app/thmmn-%D8%AB%D9%85%D9%86/id6758052199"
+    },
+    {
+        "id": "8",
+        "title": "Khair Al-Madina",
+        "description": "Humanitarian logistics platform coordinating water donations for mosques.",
+        "detailedDescription": "A specialized logistics app that coordinates donors, water suppliers, and mosques to ensure humanitarian aid is delivered precisely where it's needed with full transparency.",
+        "features": [
+            "Real-time donation tracking and status",
+            "Supply chain coordination with delivery firms",
+            "Mosque location directory via Google Maps",
+            "Transparency reports for donors",
+            "Automated receipting and coordination"
+        ],
+        "image": "/image.png",
+        "technologies": [
+            "Flutter",
+            "Bloc",
+            "Google Maps",
+            "Firebase",
+            "Cloud Functions"
+        ],
+        "category": "Charity",
+        "github": "",
+        "live": "",
+        "appStore": "https://apps.apple.com/jo/app/%D8%AE%D9%8A%D8%B1-%D8%A7%D9%84%D9%85%D8%AF%D9%8A%D9%86%D8%A9/id6742254303"
+    }
+]
