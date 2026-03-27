@@ -1,22 +1,28 @@
 import { Code2, Award, Users, Zap } from 'lucide-react';
 import profileData from '../../imports/profile.json';
+import experienceData from '../../imports/experience.json';
+import projectsData from '../../imports/projects.json';
 
 export function About() {
+  const yearsOfExperience = profileData.bio.match(/\d+\+?\s+years/i)?.[0] || '4+ Years';
+  const appsCount = `${projectsData.length}+ Apps`;
+  const companies = experienceData.experience.map(exp => exp.company).join(', ');
+
   const highlights = [
     {
       icon: Code2,
-      title: '4+ Years',
+      title: yearsOfExperience,
       description: 'Flutter Development Experience',
     },
     {
       icon: Award,
-      title: '15+ Apps',
-      description: 'Published on App Stores',
+      title: appsCount,
+      description: 'Published on App Store and Play Store',
     },
     {
       icon: Users,
       title: 'Multiple Companies',
-      description: 'Code-X, LEAPTECH, PROSYSJO',
+      description: companies,
     },
     {
       icon: Zap,
@@ -42,8 +48,8 @@ export function About() {
               {profileData.bio}
             </p>
             <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-              I'm passionate about creating scalable mobile solutions that solve real-world problems. 
-              My expertise spans across various domains including E-commerce, AI integration, Real Estate, 
+              I'm passionate about creating scalable mobile solutions that solve real-world problems.
+              My expertise spans across various domains including E-commerce, AI integration, Real Estate,
               and Financial applications.
             </p>
           </div>
