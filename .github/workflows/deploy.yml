@@ -29,6 +29,5 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          # Next.js static export default output directory is 'out'
-          # Note: User requested 'build/web', but for Next.js export, use 'out'
-          publish_dir: ./out
+          # Vite's default output directory is 'dist'
+          publish_dir: ./dist
