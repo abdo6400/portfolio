@@ -2,17 +2,17 @@
     {
         "id": "0",
         "title": "ADDUSTOUR",
-        "image": "/prots/addustour/proimg.png",
+        "image": "/portfolio/prots/addustour/proimg.png",
         "images": [
-            "/prots/addustour/proimg.png",
-            "/prots/addustour/unnamed (1).jpg",
-            "/prots/addustour/unnamed (2).jpg",
-            "/prots/addustour/unnamed (3).jpg",
-            "/prots/addustour/unnamed (4).jpg",
-            "/prots/addustour/unnamed (5).jpg",
-            "/prots/addustour/unnamed (6).jpg",
-            "/prots/addustour/unnamed.jpg",
-            "/prots/addustour/unnamed.png"
+            "/portfolio/prots/addustour/proimg.png",
+            "/portfolio/prots/addustour/unnamed (1).jpg",
+            "/portfolio/prots/addustour/unnamed (2).jpg",
+            "/portfolio/prots/addustour/unnamed (3).jpg",
+            "/portfolio/prots/addustour/unnamed (4).jpg",
+            "/portfolio/prots/addustour/unnamed (5).jpg",
+            "/portfolio/prots/addustour/unnamed (6).jpg",
+            "/portfolio/prots/addustour/unnamed.jpg",
+            "/portfolio/prots/addustour/unnamed.png"
         ],
         "description": "Official mobile news application delivering real-time news, articles, and media content.",
         "detailedDescription": "A comprehensive news ecosystem for Jordan's leading daily newspaper. The app provides a high-performance reading experience with offline caching, multimedia integration, and a sophisticated notification system.",
@@ -49,16 +49,16 @@
             "Multi-layer security and encryption",
             "Quick-search and intelligent filtering system"
         ],
-        "image": "/prots/albasheq/proimg.png",
+        "image": "/portfolio/prots/albasheq/proimg.png",
         "images": [
-            "/prots/albasheq/proimg.png",
-            "/prots/albasheq/unnamed (1).png",
-            "/prots/albasheq/unnamed (2).png",
-            "/prots/albasheq/unnamed (3).png",
-            "/prots/albasheq/unnamed (4).png",
-            "/prots/albasheq/unnamed (5).png",
-            "/prots/albasheq/unnamed (6).png",
-            "/prots/albasheq/unnamed.png"
+            "/portfolio/prots/albasheq/proimg.png",
+            "/portfolio/prots/albasheq/unnamed (1).png",
+            "/portfolio/prots/albasheq/unnamed (2).png",
+            "/portfolio/prots/albasheq/unnamed (3).png",
+            "/portfolio/prots/albasheq/unnamed (4).png",
+            "/portfolio/prots/albasheq/unnamed (5).png",
+            "/portfolio/prots/albasheq/unnamed (6).png",
+            "/portfolio/prots/albasheq/unnamed.png"
         ],
         "technologies": [
             "Flutter",
@@ -85,13 +85,13 @@
             "Offline mode for recent transaction viewing",
             "Enterprise-level security protocols"
         ],
-        "image": "/prots/golden/golenproimg.png",
+        "image": "/portfolio/prots/golden/golenproimg.png",
         "images": [
-            "/prots/golden/golenproimg.png",
-            "/prots/golden/screenshot-1690128415633.png",
-            "/prots/golden/screenshot-1690128433665.png",
-            "/prots/golden/screenshot-1690128455465.png",
-            "/prots/golden/screenshot-1690128471404.png"
+            "/portfolio/prots/golden/golenproimg.png",
+            "/portfolio/prots/golden/screenshot-1690128415633.png",
+            "/portfolio/prots/golden/screenshot-1690128433665.png",
+            "/portfolio/prots/golden/screenshot-1690128455465.png",
+            "/portfolio/prots/golden/screenshot-1690128471404.png"
         ],
         "technologies": [
             "Flutter",
@@ -117,16 +117,16 @@
             "Unified transaction ledger across all services",
             "Biometric authentication integration"
         ],
-        "image": "/prots/sadad/sadadproimg.png",
+        "image": "/portfolio/prots/sadad/sadadproimg.png",
         "images": [
-            "/prots/sadad/sadadproimg.png",
-            "/prots/sadad/unnamed (1).png",
-            "/prots/sadad/unnamed (2).png",
-            "/prots/sadad/unnamed (3).png",
-            "/prots/sadad/unnamed (4).png",
-            "/prots/sadad/unnamed (5).png",
-            "/prots/sadad/unnamed (6).png",
-            "/prots/sadad/unnamed.png"
+            "/portfolio/prots/sadad/sadadproimg.png",
+            "/portfolio/prots/sadad/unnamed (1).png",
+            "/portfolio/prots/sadad/unnamed (2).png",
+            "/portfolio/prots/sadad/unnamed (3).png",
+            "/portfolio/prots/sadad/unnamed (4).png",
+            "/portfolio/prots/sadad/unnamed (5).png",
+            "/portfolio/prots/sadad/unnamed (6).png",
+            "/portfolio/prots/sadad/unnamed.png"
         ],
         "technologies": [
             "Flutter",
@@ -152,10 +152,10 @@
             "Virtual tour media integration",
             "Dynamic listing management for agents"
         ],
-        "image": "/prots/packAndGo.png",
+        "image": "/portfolio/prots/packAndGo.png",
         "images": [
-            "/prots/packAndGo.png",
-            "/prots/packAndGoDash.PNG"
+            "/portfolio/prots/packAndGo.png",
+            "/portfolio/prots/packAndGoDash.PNG"
         ],
         "technologies": [
             "Flutter",
@@ -181,16 +181,12 @@
             "Multi-provider supply chain integration",
             "Dynamic pricing engine"
         ],
-        "image": "/prots/trendup/proimg.png",
+        "image": "/portfolio/prots/trendup/Screenshot_28-3-2026_73444_play.google.com.jpeg",
         "images": [
-            "/prots/trendup/proimg.png",
-            "/prots/trendup/unnamed (1).png",
-            "/prots/trendup/unnamed (2).png",
-            "/prots/trendup/unnamed (3).png",
-            "/prots/trendup/unnamed (4).png",
-            "/prots/trendup/unnamed (5).png",
-            "/prots/trendup/unnamed (6).png",
-            "/prots/trendup/unnamed.png"
+            "/portfolio/prots/trendup/Screenshot_28-3-2026_73444_play.google.com.jpeg",
+            "/portfolio/prots/trendup/Screenshot_28-3-2026_7350_play.google.com.jpeg",
+            "/portfolio/prots/trendup/Screenshot_28-3-2026_73518_play.google.com.jpeg",
+            "/portfolio/prots/trendup/Screenshot_28-3-2026_7359_play.google.com.jpeg"
         ],
         "technologies": [
             "Flutter",
@@ -216,17 +212,17 @@
             "Multi-language support for diverse markets",
             "Sophisticated service categorization"
         ],
-        "image": "/prots/package/proimg.png",
+        "image": "/portfolio/prots/package/proimg.png",
         "images": [
-            "/prots/package/proimg.png",
-            "/prots/package/unnamed (1).png",
-            "/prots/package/unnamed (2).png",
-            "/prots/package/unnamed (3).png",
-            "/prots/package/unnamed (4).png",
-            "/prots/package/unnamed (5).png",
-            "/prots/package/unnamed (6).png",
-            "/prots/package/unnamed (7).png",
-            "/prots/package/unnamed.png"
+            "/portfolio/prots/package/proimg.png",
+            "/portfolio/prots/package/unnamed (1).png",
+            "/portfolio/prots/package/unnamed (2).png",
+            "/portfolio/prots/package/unnamed (3).png",
+            "/portfolio/prots/package/unnamed (4).png",
+            "/portfolio/prots/package/unnamed (5).png",
+            "/portfolio/prots/package/unnamed (6).png",
+            "/portfolio/prots/package/unnamed (7).png",
+            "/portfolio/prots/package/unnamed.png"
         ],
         "technologies": [
             "Flutter",
@@ -253,16 +249,15 @@
             "Multi-category support (Tech, Furniture, etc.)",
             "Market data visualization"
         ],
-        "image": "/prots/thamin/proimg.png",
+        "image": "/portfolio/prots/thamin/Screenshot_28-3-2026_73832_play.google.com.jpeg",
         "images": [
-            "/prots/thamin/proimg.png",
-            "/prots/thamin/unnamed (1).png",
-            "/prots/thamin/unnamed (2).png",
-            "/prots/thamin/unnamed (3).png",
-            "/prots/thamin/unnamed (4).png",
-            "/prots/thamin/unnamed (5).png",
-            "/prots/thamin/unnamed (6).png",
-            "/prots/thamin/unnamed.png"
+            "/portfolio/prots/thamin/Screenshot_28-3-2026_73832_play.google.com.jpeg",
+            "/portfolio/prots/thamin/Screenshot_28-3-2026_73840_play.google.com.jpeg",
+            "/portfolio/prots/thamin/Screenshot_28-3-2026_73847_play.google.com.jpeg",
+            "/portfolio/prots/thamin/Screenshot_28-3-2026_73853_play.google.com.jpeg",
+            "/portfolio/prots/thamin/Screenshot_28-3-2026_73919_play.google.com.jpeg",
+            "/portfolio/prots/thamin/Screenshot_28-3-2026_73927_play.google.com.jpeg",
+            "/portfolio/prots/thamin/Screenshot_28-3-2026_7397_play.google.com.jpeg"
         ],
         "technologies": [
             "Flutter",
@@ -289,16 +284,16 @@
             "Transparency reports for donors",
             "Automated receipting and coordination"
         ],
-        "image": "/prots/khairalmadina/proimg.png",
+        "image": "/portfolio/prots/khairalmadina/Screenshot_28-3-2026_74017_play.google.com.jpeg",
         "images": [
-            "/prots/khairalmadina/proimg.png",
-            "/prots/khairalmadina/unnamed (1).png",
-            "/prots/khairalmadina/unnamed (2).png",
-            "/prots/khairalmadina/unnamed (3).png",
-            "/prots/khairalmadina/unnamed (4).png",
-            "/prots/khairalmadina/unnamed (5).png",
-            "/prots/khairalmadina/unnamed (6).png",
-            "/prots/khairalmadina/unnamed.png"
+            "/portfolio/prots/khairalmadina/Screenshot_28-3-2026_74017_play.google.com.jpeg",
+            "/portfolio/prots/khairalmadina/unnamed (1).png",
+            "/portfolio/prots/khairalmadina/unnamed (2).png",
+            "/portfolio/prots/khairalmadina/unnamed (3).png",
+            "/portfolio/prots/khairalmadina/unnamed (4).png",
+            "/portfolio/prots/khairalmadina/unnamed (5).png",
+            "/portfolio/prots/khairalmadina/unnamed (6).png",
+            "/portfolio/prots/khairalmadina/unnamed.png"
         ],
         "technologies": [
             "Flutter",
@@ -324,13 +319,13 @@
             "User profile and address management",
             "Promotional banners and discounts system"
         ],
-        "image": "/prots/jamala/jamalaprimg.png",
+        "image": "/portfolio/prots/jamala/jamalaprimg.png",
         "images": [
-            "/prots/jamala/jamalaprimg.png",
-            "/prots/jamala/Screenshot_1659151031.png",
-            "/prots/jamala/Screenshot_1659151136.png",
-            "/prots/jamala/Screenshot_1659153794.png",
-            "/prots/jamala/Screenshot_1659154061.png"
+            "/portfolio/prots/jamala/jamalaprimg.png",
+            "/portfolio/prots/jamala/Screenshot_1659151031.png",
+            "/portfolio/prots/jamala/Screenshot_1659151136.png",
+            "/portfolio/prots/jamala/Screenshot_1659153794.png",
+            "/portfolio/prots/jamala/Screenshot_1659154061.png"
         ],
         "technologies": [
             "Flutter",
@@ -356,11 +351,11 @@
             "Batch transaction processing",
             "Custom API integrations"
         ],
-        "image": "/prots/leapTech.png",
+        "image": "/portfolio/prots/leapTech.png",
         "images": [
-            "/prots/leapTech.png",
-            "/prots/leaptheckdash.PNG",
-            "/prots/leptechdash.PNG"
+            "/portfolio/prots/leapTech.png",
+            "/portfolio/prots/leaptheckdash.PNG",
+            "/portfolio/prots/leptechdash.PNG"
         ],
         "technologies": [
             "Flutter",
@@ -386,9 +381,9 @@
             "Team and player statistics",
             "Interactive fan community features"
         ],
-        "image": "/prots/nejamAlkora.png",
+        "image": "/portfolio/prots/nejamAlkora.png",
         "images": [
-            "/prots/nejamAlkora.png"
+            "/portfolio/prots/nejamAlkora.png"
         ],
         "technologies": [
             "Flutter",
@@ -414,9 +409,9 @@
             "Service rating and reviews",
             "Loyalty rewards program"
         ],
-        "image": "/prots/car_washing.png",
+        "image": "/portfolio/prots/car_washing.png",
         "images": [
-            "/prots/car_washing.png"
+            "/portfolio/prots/car_washing.png"
         ],
         "technologies": [
             "Flutter",
