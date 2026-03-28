@@ -179,3 +179,52 @@
     line-height: 1.5;
   }
 }
+
+/* Premium Enhancements */
+@layer utilities {
+  .glass-card {
+    @apply bg-white/70 dark:bg-gray-950/70 backdrop-blur-md border border-white/20 dark:border-gray-800/50 shadow-xl;
+  }
+
+  .glass-morphism {
+    @apply backdrop-blur-xl bg-white/10 dark:bg-black/20 border border-white/20 dark:border-white/10;
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-float-delayed {
+    animation: float 6s ease-in-out 3s infinite;
+  }
+
+  .hover-lift {
+    @apply transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-blue-500/20 active:scale-95;
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400;
+  }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0px); }
+}
+
+.mesh-gradient {
+  background-color: #ffffff;
+  background-image: 
+    radial-gradient(at 0% 0%, hsla(225, 100%, 94%, 1) 0, transparent 50%), 
+    radial-gradient(at 50% 0%, hsla(225, 100%, 94%, 1) 0, transparent 50%), 
+    radial-gradient(at 100% 0%, hsla(225, 100%, 94%, 1) 0, transparent 50%);
+}
+
+.dark .mesh-gradient {
+  background-color: oklch(0.145 0 0);
+  background-image: 
+    radial-gradient(at 0% 0%, hsla(225, 30%, 10%, 1) 0, transparent 50%), 
+    radial-gradient(at 50% 0%, hsla(225, 30%, 15%, 1) 0, transparent 50%), 
+    radial-gradient(at 100% 0%, hsla(225, 30%, 20%, 1) 0, transparent 50%);
+}
