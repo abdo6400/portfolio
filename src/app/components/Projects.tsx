@@ -69,18 +69,12 @@ export function Projects() {
               className="bg-white dark:bg-gray-950 rounded-xl shadow-md dark:shadow-blue-900/10 hover:shadow-xl dark:hover:shadow-blue-900/20 transition-all overflow-hidden group cursor-pointer border border-transparent dark:border-gray-800 hover:scale-105"
               onClick={() => setSelectedProject(project)}
             >
-              <div className="relative h-48 bg-gradient-to-br from-blue-500 to-indigo-600 overflow-hidden">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-white text-6xl opacity-20">
-                    {project.category === 'Financial' && '💰'}
-                    {project.category === 'E-commerce' && '🛒'}
-                    {project.category === 'Real Estate' && '🏠'}
-                    {project.category === 'News Application' && '📰'}
-                    {project.category === 'AI' && '🤖'}
-                    {project.category === 'Services' && '🔧'}
-                    {project.category === 'Charity' && '❤️'}
-                  </div>
-                </div>
+              <div className="relative h-48 overflow-hidden group">
+                <img 
+                  src={project.image} 
+                  alt={project.title}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
                 <div className="absolute top-4 right-4 bg-blue-900/80 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm">
                   {project.category}
                 </div>
