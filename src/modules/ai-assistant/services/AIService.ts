@@ -6,8 +6,9 @@ import skillsData from '../../../imports/skills.json';
 import { Message } from '../types';
 
 const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
-const MODEL_NAME = 'gemini-3-flash-preview';
-const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL_NAME}:generateContent`;
+const PRIMARY_MODEL = 'gemini-3-flash-preview';
+const FALLBACK_MODEL = 'gemini-1.5-flash';
+const BASE_URL = 'https://generativelanguage.googleapis.com/v1beta/models';
 
 export class AIService {
   private static getSystemPrompt(): string {
@@ -17,8 +18,6 @@ export class AIService {
 
     return `
 You are a helpful AI assistant for ${profile.name}'s professional portfolio. 
-Your goal is to answer questions about ${profile.name} (also known as "me" or "the developer") accurately and professionally.
-
 Context about ${profile.name}:
 - Title: ${profile.title}
 - Bio: ${profile.bio}
@@ -37,59 +36,81 @@ ${skillsSummary}
 
 Guidelines:
 1. Be professional, friendly, and concise.
-2. If you don't know the answer based on the provided context, politely say so and suggest contacting ${profile.name} directly via email.
-3. Don't mention that you are an AI model unless asked. Act as a digital concierge for this portfolio.
-4. If asked about a project, provide its title and a brief highlight from its description.
+2. Answer based ON THE ABOVE CONTEXT about ${profile.name}.
+3. Don't mention that you are an AI model unless asked.
 `;
   }
 
   static async sendMessage(messages: Message[]): Promise<string> {
     if (!GEMINI_API_KEY) {
-      console.error('Gemini API Key is missing. Check your .env file.');
       return "I'm sorry, but the AI Assistant is not configured yet. Please add a valid Gemini API key to the environment variables.";
     }
 
     const systemPrompt = this.getSystemPrompt();
     
     // Format messages for Gemini API
-    const contents = messages.map(msg => ({
-      role: msg.role === 'assistant' ? 'model' : 'user',
-      parts: [{ text: msg.content }]
-    }));
+    const contents = [
+      {
+        role: 'user',
+        parts: [{ text: `INSTRUCTIONS: ${systemPrompt}\n\nUSER QUESTION: ${messages[0].content}` }]
+      },
+      ...messages.slice(1).map(msg => ({
+        role: msg.role === 'assistant' ? 'model' : 'user',
+        parts: [{ text: msg.content }]
+      }))
+    ];
 
     try {
-      console.log(`Calling Gemini API: ${GEMINI_API_URL}`);
-      const response = await fetch(GEMINI_API_URL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-goog-api-key': GEMINI_API_KEY,
-        },
-        body: JSON.stringify({ 
-          contents,
-          system_instruction: {
-            parts: [{ text: systemPrompt }]
-          }
-        }),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        console.error('Gemini API Error Response:', errorData);
-        throw new Error(`API error: ${response.status} ${response.statusText}`);
-      }
-
-      const data = await response.json();
+      // Attempt 1: Primary Model
+      return await this.fetchWithRetry(PRIMARY_MODEL, contents);
+    } catch (error: any) {
+      console.warn(`Primary model (${PRIMARY_MODEL}) failed. Error: ${error.message}. Attempting fallback...`);
       
-      if (!data.candidates || data.candidates.length === 0) {
-        console.error('Gemini API returned no candidates:', data);
-        return "I'm sorry, I couldn't generate a response. Please try again.";
+      try {
+        // Attempt 2: Fallback Model
+        return await this.fetchWithRetry(FALLBACK_MODEL, contents);
+      } catch (fallbackError) {
+        console.error('All AI models failed:', fallbackError);
+        return "I'm having trouble connecting right now. Please try again later or reach out to me via the contact form!";
       }
-
-      return data.candidates[0].content.parts[0].text;
-    } catch (error) {
-      console.error('AI Service Error:', error);
-      return "I'm having trouble connecting right now. Please try again later or reach out to me via the contact form!";
     }
+  }
+
+  private static async fetchWithRetry(model: string, contents: any[], retries = 2, delay = 1000): Promise<string> {
+    const url = `${BASE_URL}/${model}:generateContent`;
+
+    for (let i = 0; i <= retries; i++) {
+      try {
+        const response = await fetch(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-goog-api-key': GEMINI_API_KEY,
+          },
+          body: JSON.stringify({ contents }),
+        });
+
+        if (response.status === 503 || response.status === 429) {
+          // If overloaded or rate limited, retry after delay
+          if (i < retries) {
+            console.log(`Retrying ${model} after ${delay}ms... (Attempt ${i + 1}/${retries})`);
+            await new Promise(resolve => setTimeout(resolve, delay));
+            delay *= 2; // Exponential backoff
+            continue;
+          }
+        }
+
+        if (!response.ok) {
+          const errorData = await response.json().catch(() => ({}));
+          throw new Error(`API error: ${response.status} ${response.statusText} ${JSON.stringify(errorData)}`);
+        }
+
+        const data = await response.json();
+        return data.candidates[0].content.parts[0].text;
+      } catch (error) {
+        if (i === retries) throw error;
+      }
+    }
+    throw new Error('Retries exhausted');
   }
 }
