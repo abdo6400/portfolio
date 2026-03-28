@@ -6,6 +6,7 @@ import { Projects } from './components/Projects';
 import { Contact } from './components/Contact';
 import { Navigation } from './components/Navigation';
 import { ThemeProvider } from './components/ThemeProvider';
+import { ChatAssistant } from '../modules/ai-assistant';
 
 export default function App() {
   return (
@@ -25,6 +26,7 @@ export default function App() {
             <p>&copy; 2026 Abdulrahman Amr. All rights reserved.</p>
           </div>
         </footer>
+        <ChatAssistant />
       </div>
     </ThemeProvider>
   );
