@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { X, Github, Play, Apple, ExternalLink, Share2, ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface ProjectModalProps {
@@ -9,10 +9,18 @@ interface ProjectModalProps {
 export function ProjectModal({ project, onClose }: ProjectModalProps) {
   const images: string[] = project.images && project.images.length > 0 ? project.images : [project.image];
   const [activeIndex, setActiveIndex] = useState(0);
-  const activeImage = images[activeIndex];
+  const touchStartX = useRef<number>(0);
+  const touchEndX = useRef<number>(0);
 
   const prev = () => setActiveIndex((i) => (i - 1 + images.length) % images.length);
   const next = () => setActiveIndex((i) => (i + 1) % images.length);
+
+  const onTouchStart = (e: React.TouchEvent) => { touchStartX.current = e.touches[0].clientX; };
+  const onTouchEnd = (e: React.TouchEvent) => {
+    touchEndX.current = e.changedTouches[0].clientX;
+    const diff = touchStartX.current - touchEndX.current;
+    if (Math.abs(diff) > 50) diff > 0 ? next() : prev();
+  };
 
   const handleShare = async () => {
     const url = project.store || project.appStore || project.github || project.live || window.location.href;
@@ -21,11 +29,9 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
         await navigator.share({ title: project.title, text: project.description, url });
       } else {
         await navigator.clipboard.writeText(url);
-        alert('Link copied to clipboard!');
+        alert('Link copied!');
       }
-    } catch (err) {
-      console.error('Error sharing:', err);
-    }
+    } catch (err) { console.error(err); }
   };
 
   return (
@@ -37,113 +43,120 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
 
         {/* ── Top bar ── */}
         <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100 dark:border-gray-800 shrink-0">
-          <div className="flex items-center gap-3">
-            <span className="px-3 py-1 bg-blue-600/10 dark:bg-blue-500/20 text-blue-600 dark:text-blue-400 rounded-full text-xs font-semibold uppercase tracking-wide">
+          <div className="flex items-center gap-3 min-w-0">
+            <span className="shrink-0 px-3 py-1 bg-blue-600/10 dark:bg-blue-500/20 text-blue-600 dark:text-blue-400 rounded-full text-xs font-semibold uppercase tracking-wide">
               {project.category}
             </span>
             <h2 className="text-lg sm:text-2xl font-bold text-gray-900 dark:text-white truncate">
               {project.title}
             </h2>
           </div>
-          <div className="flex items-center gap-2 shrink-0">
-            <button
-              onClick={handleShare}
-              className="p-2 rounded-xl text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-              title="Share"
-            >
+          <div className="flex items-center gap-2 shrink-0 ml-3">
+            <button onClick={handleShare} className="p-2 rounded-xl text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" title="Share">
               <Share2 size={18} />
             </button>
-            <button
-              onClick={onClose}
-              className="p-2 rounded-xl text-gray-500 dark:text-gray-400 hover:bg-red-50 dark:hover:bg-red-900/20 hover:text-red-500 transition-colors"
-              aria-label="Close"
-            >
+            <button onClick={onClose} className="p-2 rounded-xl text-gray-500 dark:text-gray-400 hover:bg-red-50 dark:hover:bg-red-900/20 hover:text-red-500 transition-colors" aria-label="Close">
               <X size={20} />
             </button>
           </div>
         </div>
 
-        {/* ── Image gallery section ── */}
-        <div className="flex flex-col md:flex-row gap-0 md:gap-4 bg-gray-950 p-3 sm:p-4 shrink-0">
-          {/* Thumbnail strip — left on desktop, bottom on mobile */}
+        {/* ── Carousel ── */}
+        <div className="relative bg-gray-950 overflow-hidden select-none shrink-0" style={{ height: '480px' }}
+          onTouchStart={onTouchStart}
+          onTouchEnd={onTouchEnd}
+        >
+          {/* Sliding track */}
+          <div
+            className="flex h-full transition-transform duration-500 ease-in-out"
+            style={{ transform: `translateX(-${activeIndex * 100}%)`, width: `${images.length * 100}%` }}
+          >
+            {images.map((img, idx) => (
+              <div
+                key={idx}
+                className="flex items-center justify-center h-full flex-shrink-0"
+                style={{ width: `${100 / images.length}%` }}
+              >
+                <img
+                  src={img}
+                  alt={`${project.title} - ${idx + 1}`}
+                  className="max-h-full max-w-full object-contain"
+                  draggable={false}
+                  loading={idx === 0 ? 'eager' : 'lazy'}
+                />
+              </div>
+            ))}
+          </div>
+
+          {/* Prev / Next arrows */}
           {images.length > 1 && (
-            <div className="flex md:flex-col gap-2 overflow-x-auto md:overflow-y-auto md:overflow-x-visible pb-2 md:pb-0 md:pr-2 order-2 md:order-1 shrink-0"
-              style={{ maxHeight: '480px' }}
-            >
-              {images.map((img, idx) => (
+            <>
+              <button
+                onClick={prev}
+                className="absolute left-3 top-1/2 -translate-y-1/2 z-10 p-2.5 bg-black/50 hover:bg-black/80 text-white rounded-full backdrop-blur-sm transition-all hover:scale-110 shadow-lg"
+              >
+                <ChevronLeft size={22} />
+              </button>
+              <button
+                onClick={next}
+                className="absolute right-3 top-1/2 -translate-y-1/2 z-10 p-2.5 bg-black/50 hover:bg-black/80 text-white rounded-full backdrop-blur-sm transition-all hover:scale-110 shadow-lg"
+              >
+                <ChevronRight size={22} />
+              </button>
+            </>
+          )}
+
+          {/* Counter badge */}
+          {images.length > 1 && (
+            <div className="absolute top-3 right-3 z-10 bg-black/60 backdrop-blur-sm text-white text-xs px-2.5 py-1 rounded-full font-medium">
+              {activeIndex + 1} / {images.length}
+            </div>
+          )}
+
+          {/* Dot indicators */}
+          {images.length > 1 && (
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 flex items-center gap-1.5">
+              {images.map((_, idx) => (
                 <button
                   key={idx}
                   onClick={() => setActiveIndex(idx)}
-                  className={`flex-shrink-0 w-14 h-20 sm:w-16 sm:h-24 rounded-lg overflow-hidden border-2 transition-all duration-200 ${
+                  className={`rounded-full transition-all duration-300 ${
                     activeIndex === idx
-                      ? 'border-blue-500 ring-2 ring-blue-500/30 opacity-100'
-                      : 'border-transparent opacity-40 hover:opacity-75'
+                      ? 'w-5 h-2 bg-blue-500'
+                      : 'w-2 h-2 bg-white/35 hover:bg-white/60'
                   }`}
-                >
-                  <img
-                    src={img}
-                    alt={`Screen ${idx + 1}`}
-                    className="w-full h-full object-cover bg-gray-900"
-                    loading="lazy"
-                  />
-                </button>
+                />
               ))}
             </div>
           )}
 
-          {/* Main image viewer */}
-          <div className="relative flex-1 flex items-center justify-center order-1 md:order-2 bg-gray-900 rounded-xl overflow-hidden" style={{ minHeight: '320px', maxHeight: '520px' }}>
-            <img
-              key={activeImage}
-              src={activeImage}
-              alt={project.title}
-              className="max-w-full max-h-full object-contain transition-all duration-300"
-              style={{ maxHeight: '516px' }}
-              onError={(e) => {
-                const t = e.target as HTMLImageElement;
-                t.style.display = 'none';
-              }}
-            />
-
-            {/* Prev / Next arrows */}
-            {images.length > 1 && (
-              <>
-                <button
-                  onClick={prev}
-                  className="absolute left-2 top-1/2 -translate-y-1/2 p-2 bg-black/50 hover:bg-black/80 text-white rounded-full backdrop-blur-sm transition-all"
-                >
-                  <ChevronLeft size={20} />
-                </button>
-                <button
-                  onClick={next}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 p-2 bg-black/50 hover:bg-black/80 text-white rounded-full backdrop-blur-sm transition-all"
-                >
-                  <ChevronRight size={20} />
-                </button>
-
-                {/* Dot indicator */}
-                <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5">
-                  {images.map((_, idx) => (
-                    <button
-                      key={idx}
-                      onClick={() => setActiveIndex(idx)}
-                      className={`rounded-full transition-all duration-200 ${
-                        activeIndex === idx ? 'w-4 h-2 bg-blue-500' : 'w-2 h-2 bg-white/40 hover:bg-white/70'
-                      }`}
-                    />
-                  ))}
-                </div>
-              </>
-            )}
-
-            {/* Count badge */}
-            {images.length > 1 && (
-              <div className="absolute top-3 right-3 bg-black/60 backdrop-blur-sm text-white text-xs px-2.5 py-1 rounded-full font-medium">
-                {activeIndex + 1} / {images.length}
-              </div>
-            )}
-          </div>
+          {/* Swipe hint (hidden after first interaction) */}
+          {images.length > 1 && activeIndex === 0 && (
+            <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 text-white/40 text-xs pointer-events-none hidden sm:flex items-center gap-1">
+              <ChevronLeft size={12} /> swipe or use arrows <ChevronRight size={12} />
+            </div>
+          )}
         </div>
+
+        {/* ── Thumbnail strip ── */}
+        {images.length > 1 && (
+          <div className="flex gap-2 overflow-x-auto bg-gray-900 px-4 py-3 scrollbar-thin scrollbar-thumb-gray-700">
+            {images.map((img, idx) => (
+              <button
+                key={idx}
+                onClick={() => setActiveIndex(idx)}
+                className={`flex-shrink-0 rounded-lg overflow-hidden border-2 transition-all duration-200 ${
+                  activeIndex === idx
+                    ? 'border-blue-500 ring-2 ring-blue-500/30 opacity-100 scale-105'
+                    : 'border-transparent opacity-40 hover:opacity-70'
+                }`}
+                style={{ width: 48, height: 72 }}
+              >
+                <img src={img} alt={`thumb ${idx + 1}`} className="w-full h-full object-cover" loading="lazy" />
+              </button>
+            ))}
+          </div>
+        )}
 
         {/* ── Content body ── */}
         <div className="p-5 sm:p-8 flex-grow">
