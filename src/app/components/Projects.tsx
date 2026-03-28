@@ -70,7 +70,12 @@ export function Projects() {
               onClick={() => setSelectedProject(project)}
             >
               <div className="relative h-48 overflow-hidden group">
-                {project.image?.endsWith('.mp4') ? (
+                {!project.image ? (
+                  <div className="w-full h-full bg-gradient-to-br from-blue-600 to-indigo-700 flex flex-col items-center justify-center gap-2">
+                    <span className="text-5xl font-black text-white/20">{project.title.charAt(0)}</span>
+                    <span className="text-white/60 text-xs font-medium uppercase tracking-widest">{project.category}</span>
+                  </div>
+                ) : project.image?.endsWith('.mp4') ? (
                   <>
                     <video
                       src={project.image}

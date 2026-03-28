@@ -492,5 +492,47 @@
         "github":  "https://github.com/abdo6400/ARkANOID_GAME_using_java",
         "live":  "",
         "store":  ""
+    },
+    {
+        "id":  "15",
+        "title":  "Retail PC Stores",
+        "description":  "Full-featured POS system for retail stores with offline support, barcode scanning, USB printing, and multi-language Arabic/English UI.",
+        "detailedDescription":  "Retail PC Stores is a professional Point of Sale (POS) application designed for retail businesses. It supports full offline operation with on-device SQLite storage, seamlessly syncing when connectivity is restored. Key capabilities include USB barcode scanner integration, thermal receipt printing via USB, screenshot-based invoice generation, and advanced data grids for inventory and sales management. The app is fully localized for Arabic and English markets with an adaptive theme engine.",
+        "features":  [
+                         "Full offline-first operation with SQLite local database",
+                         "USB barcode scanner integration for fast product lookup",
+                         "USB thermal receipt printer support with dotted-line formatting",
+                         "Screenshot-based invoice and receipt generation",
+                         "SyncFusion DataGrid for advanced inventory and sales tables",
+                         "Arabic \u0026 English localization with NeoSansArabic font",
+                         "Adaptive light/dark theme engine (flex_color_scheme)",
+                         "Connectivity-aware sync — queues actions offline, syncs on reconnect",
+                         "Bloc state persistence with HydratedBloc",
+                         "Multi-select product filtering and batch operations",
+                         "Responsive layout for tablets and desktops (responsive_framework)"
+                     ],
+        "image":  "",
+        "images":  [
+
+                   ],
+        "technologies":  [
+                             "Flutter",
+                             "BLoC / HydratedBloc",
+                             "Clean Architecture",
+                             "Dio",
+                             "GoRouter",
+                             "SQLite (sqflite)",
+                             "USB Serial",
+                             "Thermal Printer SDK",
+                             "SyncFusion DataGrid",
+                             "Secure Storage",
+                             "Easy Localization",
+                             "Responsive Framework"
+                         ],
+        "category":  "Services",
+        "github":  "",
+        "live":  "",
+        "store":  "",
+        "appStore":  "https://apps.apple.com/jo/app/retail-pc-stores/id6753711418"
     }
 ]
