@@ -33,11 +33,12 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
     <div className="fixed inset-0 bg-black/60 dark:bg-black/80 z-50 flex items-start justify-center p-0 sm:p-4 overflow-y-auto backdrop-blur-md transition-all duration-300">
       <div className="bg-white dark:bg-gray-950 rounded-none sm:rounded-2xl max-w-4xl w-full sm:my-8 shadow-2xl border-x-0 sm:border border-transparent dark:border-gray-800 flex flex-col min-h-screen sm:min-h-0 animate-in fade-in zoom-in duration-200">
         {/* Header / Main Image */}
-        <div className="relative w-full aspect-video sm:h-80 md:h-96 overflow-hidden rounded-t-none sm:rounded-t-2xl group shrink-0">
+        <div className="relative w-full bg-gray-950 overflow-hidden rounded-t-none sm:rounded-t-2xl group shrink-0" style={{minHeight: '320px', maxHeight: '520px', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
           <img 
             src={activeImage} 
             alt={project.title}
-            className="w-full h-full object-cover transition-all duration-700 hover:scale-105"
+            className="w-full h-full object-contain transition-all duration-700"
+            style={{maxHeight: '520px'}}
             onError={(e) => {
               const target = e.target as HTMLImageElement;
               target.style.display = 'none';
@@ -143,13 +144,13 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                   <button
                     key={idx}
                     onClick={() => setActiveImage(img)}
-                    className={`relative flex-shrink-0 w-32 h-20 sm:w-40 sm:h-24 rounded-xl overflow-hidden border-2 transition-all duration-300 active:scale-95 ${
+                    className={`relative flex-shrink-0 w-20 h-32 sm:w-24 sm:h-40 rounded-xl overflow-hidden border-2 transition-all duration-300 active:scale-95 ${
                       activeImage === img 
                         ? 'border-blue-600 scale-105 shadow-xl ring-4 ring-blue-500/20' 
                         : 'border-transparent opacity-60 hover:opacity-100 grayscale hover:grayscale-0'
                     }`}
                   >
-                    <img src={img} alt={`Screenshot ${idx + 1}`} className="w-full h-full object-cover" loading="lazy" />
+                    <img src={img} alt={`Screenshot ${idx + 1}`} className="w-full h-full object-contain bg-gray-900" loading="lazy" />
                   </button>
                 ))}
               </div>

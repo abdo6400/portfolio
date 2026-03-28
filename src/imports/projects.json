@@ -52,13 +52,15 @@
         "image": "/portfolio/prots/albasheq/proimg.png",
         "images": [
             "/portfolio/prots/albasheq/proimg.png",
-            "/portfolio/prots/albasheq/unnamed (1).png",
-            "/portfolio/prots/albasheq/unnamed (2).png",
-            "/portfolio/prots/albasheq/unnamed (3).png",
-            "/portfolio/prots/albasheq/unnamed (4).png",
-            "/portfolio/prots/albasheq/unnamed (5).png",
-            "/portfolio/prots/albasheq/unnamed (6).png",
-            "/portfolio/prots/albasheq/unnamed.png"
+            "/portfolio/prots/albasheq/home.png",
+            "/portfolio/prots/albasheq/cards.png",
+            "/portfolio/prots/albasheq/buycard.png",
+            "/portfolio/prots/albasheq/search.png",
+            "/portfolio/prots/albasheq/favorite.png",
+            "/portfolio/prots/albasheq/drawer.png",
+            "/portfolio/prots/albasheq/demination.png",
+            "/portfolio/prots/albasheq/printlastcards.png",
+            "/portfolio/prots/albasheq/account.PNG"
         ],
         "technologies": [
             "Flutter",
@@ -212,17 +214,12 @@
             "Multi-language support for diverse markets",
             "Sophisticated service categorization"
         ],
-        "image": "/portfolio/prots/package/proimg.png",
+        "image": "/portfolio/prots/package/Screenshot_28-3-2026_73624_play.google.com.jpeg",
         "images": [
-            "/portfolio/prots/package/proimg.png",
-            "/portfolio/prots/package/unnamed (1).png",
-            "/portfolio/prots/package/unnamed (2).png",
-            "/portfolio/prots/package/unnamed (3).png",
-            "/portfolio/prots/package/unnamed (4).png",
-            "/portfolio/prots/package/unnamed (5).png",
-            "/portfolio/prots/package/unnamed (6).png",
-            "/portfolio/prots/package/unnamed (7).png",
-            "/portfolio/prots/package/unnamed.png"
+            "/portfolio/prots/package/Screenshot_28-3-2026_73624_play.google.com.jpeg",
+            "/portfolio/prots/package/Screenshot_28-3-2026_73633_play.google.com.jpeg",
+            "/portfolio/prots/package/Screenshot_28-3-2026_73645_play.google.com.jpeg",
+            "/portfolio/prots/package/Screenshot_28-3-2026_73653_play.google.com.jpeg"
         ],
         "technologies": [
             "Flutter",
@@ -284,16 +281,13 @@
             "Transparency reports for donors",
             "Automated receipting and coordination"
         ],
-        "image": "/portfolio/prots/khairalmadina/Screenshot_28-3-2026_74017_play.google.com.jpeg",
+        "image": "/portfolio/prots/khairalmadina/Screenshot_28-3-2026_74027_apps.apple.com.jpeg",
         "images": [
-            "/portfolio/prots/khairalmadina/Screenshot_28-3-2026_74017_play.google.com.jpeg",
-            "/portfolio/prots/khairalmadina/unnamed (1).png",
-            "/portfolio/prots/khairalmadina/unnamed (2).png",
-            "/portfolio/prots/khairalmadina/unnamed (3).png",
-            "/portfolio/prots/khairalmadina/unnamed (4).png",
-            "/portfolio/prots/khairalmadina/unnamed (5).png",
-            "/portfolio/prots/khairalmadina/unnamed (6).png",
-            "/portfolio/prots/khairalmadina/unnamed.png"
+            "/portfolio/prots/khairalmadina/Screenshot_28-3-2026_74027_apps.apple.com.jpeg",
+            "/portfolio/prots/khairalmadina/Screenshot_28-3-2026_74048_apps.apple.com.jpeg",
+            "/portfolio/prots/khairalmadina/Screenshot_28-3-2026_74055_apps.apple.com.jpeg",
+            "/portfolio/prots/khairalmadina/Screenshot_28-3-2026_74110_apps.apple.com.jpeg",
+            "/portfolio/prots/khairalmadina/Screenshot_28-3-2026_7413_apps.apple.com.jpeg"
         ],
         "technologies": [
             "Flutter",
