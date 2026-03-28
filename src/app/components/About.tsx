@@ -5,7 +5,8 @@ import projectsData from '../../imports/projects.json';
 
 export function About() {
   const yearsOfExperience = profileData.bio.match(/\d+\+?\s+years/i)?.[0] || '4+ Years';
-  const appsCount = `${projectsData.length}+ Apps`;
+  const publishedAppsCount = projectsData.filter(p => p.store || p.appStore).length;
+  const appsCount = `${publishedAppsCount}+ Apps`;
   const companies = experienceData.experience.map(exp => exp.company).join(', ');
 
   const highlights = [

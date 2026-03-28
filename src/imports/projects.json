@@ -534,5 +534,71 @@
         "live":  "",
         "store":  "",
         "appStore":  "https://apps.apple.com/jo/app/retail-pc-stores/id6753711418"
+    },
+    {
+        "id":  "16",
+        "title":  "IoT Parking System",
+        "description":  "IoT-based smart parking management system that tracks real-time parking space availability using connected sensors and WebSockets.",
+        "detailedDescription":  "A Flutter application built around real-time IoT sensor integration for smart city parking management. The system communicates with hardware sensors over WebSockets to provide live updates on parking space occupancy, helping drivers quickly locate available spots. Built to address urban parking congestion, the app reduces time spent searching for parking and improves overall space utilization efficiency.",
+        "features":  [
+                         "Real-time parking space availability via IoT sensors",
+                         "WebSocket-based live data streaming from hardware",
+                         "Network-aware connectivity using network_info_plus",
+                         "Visual parking map with available/occupied indicators",
+                         "Animated UI with smooth transitions and avatar glow effects",
+                         "Low-latency sensor event handling",
+                         "Designed for smart city and campus parking scenarios"
+                     ],
+        "image":  "",
+        "images":  [
+
+                   ],
+        "technologies":  [
+                             "Flutter",
+                             "WebSocket (web_socket_channel)",
+                             "IoT Integration",
+                             "Network Info Plus",
+                             "Real-time Data Streaming",
+                             "Embedded Systems"
+                         ],
+        "category":  "IoT",
+        "github":  "https://github.com/abdo6400/parking_system_using_flutter",
+        "live":  "",
+        "store":  "",
+        "appStore":  ""
+    },
+    {
+        "id":  "17",
+        "title":  "Speech Emotion Recognition",
+        "description":  "Real-time speech emotion recognition system using deep learning (LSTM) with a Flutter mobile app and web interface.",
+        "detailedDescription":  "A graduation project focused on building an efficient real-time system that accurately identifies emotions from speech signals. The system employs preprocessing, multi-level feature extraction (MFCC, Mel Spectrogram, ZCR), and a CUDA-enabled LSTM deep learning model for high-accuracy classification across diverse emotion datasets. It includes a user-friendly mobile application and a web interface for seamless human-computer interaction.",
+        "features":  [
+                         "Real-time emotion identification from audio signals",
+                         "CUDA-enabled LSTM deep learning architecture",
+                         "Multi-platform support: Web-based and Mobile UI",
+                         "Advanced preprocessing (silence removal, normalization, balancing)",
+                         "Feature extraction using MFCC and Mel Spectrograms",
+                         "Trained on Ryerson (RAVDESS) and Toronto (TESS) datasets",
+                         "Instant emotion detection visualization and results display"
+                     ],
+        "image":  "/portfolio/prots/emtion.mp4",
+        "images":  [
+                       "/portfolio/prots/emtion.mp4"
+                   ],
+        "technologies":  [
+                             "Flutter",
+                             "Python (FastAPI/Flask)",
+                             "TensorFlow / Keras",
+                             "LSTM Architecture",
+                             "CUDA",
+                             "Audio Signal Processing",
+                             "Provider (State Management)",
+                             "HTTP (API integration)"
+                         ],
+        "category":  "AI",
+        "github":  "https://github.com/abdo6400/speech_emotion_app_using_flutter",
+        "live":  "",
+        "store":  "",
+        "appStore":  ""
     }
 ]
