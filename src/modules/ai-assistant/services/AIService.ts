@@ -6,7 +6,8 @@ import skillsData from '../../../imports/skills.json';
 import { Message } from '../types';
 
 const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
-const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent';
+const MODEL_NAME = 'gemini-3-flash-preview';
+const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL_NAME}:generateContent`;
 
 export class AIService {
   private static getSystemPrompt(): string {
@@ -57,10 +58,12 @@ Guidelines:
     }));
 
     try {
-      const response = await fetch(`${GEMINI_API_URL}?key=${GEMINI_API_KEY}`, {
+      console.log(`Calling Gemini API: ${GEMINI_API_URL}`);
+      const response = await fetch(GEMINI_API_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'x-goog-api-key': GEMINI_API_KEY,
         },
         body: JSON.stringify({ 
           contents,
