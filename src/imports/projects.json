@@ -458,5 +458,39 @@
         "store":  "",
         "title":  "AMA E-Commerce",
         "live":  ""
+    },
+    {
+        "id":  "14",
+        "title":  "Arkanoid Game",
+        "description":  "A Java-based classic arcade Arkanoid game with power-ups, enemies, laser cannons, and multi-level gameplay.",
+        "detailedDescription":  "A full-featured Java implementation of the classic Arkanoid arcade game. Players control a paddle to bounce a ball and destroy bricks across progressively harder levels. Features a rich power-up system (laser cannon, multi-ball, sticky ball, paddle expansion), enemies that fight back with weapons, and a fully object-oriented design with a complete class hierarchy. The final level introduces a boss enemy requiring 25 hits to defeat.",
+        "features":  [
+                         "Classic Arkanoid paddle-and-ball gameplay",
+                         "Power-up system: laser cannon, multi-ball, sticky ball, size expansion",
+                         "Destructible bricks with hit counters — some require multiple hits",
+                         "Enemy AI that moves on the board and attacks the paddle with weapons",
+                         "Boss level: final enemy with 25 HP and its own weapon",
+                         "Randomly generated brick patterns per level",
+                         "Player stats: name, score, and high score tracking",
+                         "Laser Cannon and Shoot-Gun weapons with intensity and duration",
+                         "Full OOP design with a detailed class diagram"
+                     ],
+        "image":  "/portfolio/prots/game.mp4",
+        "images":  [
+                       "/portfolio/prots/game.mp4"
+                   ],
+        "video":  "/portfolio/prots/game.mp4",
+        "technologies":  [
+                             "Java",
+                             "OOP",
+                             "Data Structures",
+                             "Design Patterns",
+                             "Game Physics",
+                             "Swing / AWT"
+                         ],
+        "category":  "Game",
+        "github":  "https://github.com/abdo6400/ARkANOID_GAME_using_java",
+        "live":  "",
+        "store":  ""
     }
 ]

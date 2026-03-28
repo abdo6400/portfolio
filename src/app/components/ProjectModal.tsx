@@ -77,13 +77,23 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                 className="flex items-center justify-center h-full flex-shrink-0"
                 style={{ width: `${100 / images.length}%` }}
               >
-                <img
-                  src={img}
-                  alt={`${project.title} - ${idx + 1}`}
-                  className="max-h-full max-w-full object-contain"
-                  draggable={false}
-                  loading={idx === 0 ? 'eager' : 'lazy'}
-                />
+                {img.endsWith('.mp4') ? (
+                  <video
+                    src={img}
+                    className="max-h-full max-w-full"
+                    controls
+                    playsInline
+                    style={{ maxHeight: '476px' }}
+                  />
+                ) : (
+                  <img
+                    src={img}
+                    alt={`${project.title} - ${idx + 1}`}
+                    className="max-h-full max-w-full object-contain"
+                    draggable={false}
+                    loading={idx === 0 ? 'eager' : 'lazy'}
+                  />
+                )}
               </div>
             ))}
           </div>
@@ -152,7 +162,13 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                 }`}
                 style={{ width: 48, height: 72 }}
               >
-                <img src={img} alt={`thumb ${idx + 1}`} className="w-full h-full object-cover" loading="lazy" />
+                {img.endsWith('.mp4') ? (
+                  <div className="w-full h-full bg-gray-800 flex items-center justify-center">
+                    <svg className="w-5 h-5 text-blue-400" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                  </div>
+                ) : (
+                  <img src={img} alt={`thumb ${idx + 1}`} className="w-full h-full object-cover" loading="lazy" />
+                )}
               </button>
             ))}
           </div>
