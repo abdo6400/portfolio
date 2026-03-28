@@ -17,63 +17,207 @@
             },
             {
                 "name": "iOS",
-                "level": 70
+                "level": 75
+            },
+            {
+                "name": "FCM Push Notifications",
+                "level": 90
+            },
+            {
+                "name": "Real-time Chat",
+                "level": 85
+            },
+            {
+                "name": "Video Streaming",
+                "level": 80
+            },
+            {
+                "name": "Payment Integration",
+                "level": 85
+            },
+            {
+                "name": "Maps & Tracking",
+                "level": 85
+            },
+            {
+                "name": "App Store Publishing",
+                "level": 90
+            },
+            {
+                "name": "Google Play Publishing",
+                "level": 90
             }
         ]
     },
     {
-        "category": "Architecture",
-        "icon": "server",
+        "category": "State Management",
+        "icon": "layers",
         "skills": [
             {
-                "name": "BLoC",
-                "level": 90
+                "name": "BLoC / Cubit",
+                "level": 95
             },
+            {
+                "name": "Riverpod",
+                "level": 85
+            },
+            {
+                "name": "Provider",
+                "level": 85
+            },
+            {
+                "name": "GetX",
+                "level": 80
+            }
+        ]
+    },
+    {
+        "category": "Architecture & Patterns",
+        "icon": "server",
+        "skills": [
             {
                 "name": "Clean Architecture",
                 "level": 90
             },
             {
-                "name": "Dependency Injection",
+                "name": "MVC",
                 "level": 85
             },
             {
-                "name": "Modular Architecture",
+                "name": "OOP",
+                "level": 95
+            },
+            {
+                "name": "Design Patterns",
+                "level": 85
+            },
+            {
+                "name": "Data Structures",
                 "level": 80
+            },
+            {
+                "name": "Algorithms",
+                "level": 80
+            },
+            {
+                "name": "Dependency Injection",
+                "level": 90
+            },
+            {
+                "name": "Modular Architecture",
+                "level": 85
             }
         ]
     },
     {
-        "category": "some Tools & APIs",
+        "category": "Backend & Databases",
+        "icon": "database",
+        "skills": [
+            {
+                "name": ".NET / C#",
+                "level": 75
+            },
+            {
+                "name": "SQL",
+                "level": 80
+            },
+            {
+                "name": "Databases",
+                "level": 80
+            },
+            {
+                "name": "REST APIs",
+                "level": 95
+            },
+            {
+                "name": "Dio (HTTP Client)",
+                "level": 90
+            },
+            {
+                "name": "HTTP Package",
+                "level": 85
+            },
+            {
+                "name": "Postman",
+                "level": 85
+            }
+        ]
+    },
+    {
+        "category": "Languages",
+        "icon": "code",
+        "skills": [
+            {
+                "name": "Dart",
+                "level": 95
+            },
+            {
+                "name": "C++",
+                "level": 75
+            },
+            {
+                "name": "Java",
+                "level": 75
+            },
+            {
+                "name": "C#",
+                "level": 75
+            }
+        ]
+    },
+    {
+        "category": "Tools & DevOps",
         "icon": "tools",
         "skills": [
+            {
+                "name": "Git",
+                "level": 90
+            },
+            {
+                "name": "GitHub",
+                "level": 90
+            },
             {
                 "name": "Firebase",
                 "level": 90
             },
             {
-                "name": "Git",
+                "name": "Figma",
                 "level": 85
             },
             {
-                "name": "REST APIs",
-                "level": 90
-            },
-            {
-                "name": "AI Integration",
-                "level": 85
-            },
-            {
-                "name": "PDF Generation",
-                "level": 85
-            },
-            {
-                "name": "Dio",
+                "name": "Postman",
                 "level": 85
             },
             {
                 "name": "GetIt",
-                "level": 80
+                "level": 85
+            }
+        ]
+    },
+    {
+        "category": "AI Tools",
+        "icon": "cpu",
+        "skills": [
+            {
+                "name": "Antigravity",
+                "level": 90
+            },
+            {
+                "name": "Cursor",
+                "level": 88
+            },
+            {
+                "name": "Windsurf",
+                "level": 85
+            },
+            {
+                "name": "Claude",
+                "level": 90
+            },
+            {
+                "name": "AI Integration (APIs)",
+                "level": 85
             }
         ]
     },
@@ -95,11 +239,15 @@
             },
             {
                 "name": "Figma",
-                "level": 90
+                "level": 85
             },
             {
                 "name": "Material UI",
                 "level": 90
+            },
+            {
+                "name": "PDF Generation",
+                "level": 85
             }
         ]
     }
