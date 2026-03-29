@@ -12,14 +12,14 @@ export const ChatAssistant: React.FC = () => {
   return (
     <>
       <ChatButton isOpen={isOpen} onClick={toggleChat} />
-      
+
       <AnimatePresence>
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, scale: 0.9, translateY: 20, transformOrigin: 'bottom right' }}
             animate={{ opacity: 1, scale: 1, translateY: 0 }}
             exit={{ opacity: 0, scale: 0.9, translateY: 20 }}
-            className="fixed bottom-24 right-6 w-[90vw] md:w-[400px] h-[580px] max-h-[80vh] flex flex-col bg-slate-900 border border-slate-700/50 rounded-3xl shadow-2xl z-40 overflow-hidden"
+            className="fixed bottom-24 right-6 w-[90vw] md:w-[420px] h-[600px] max-h-[80vh] flex flex-col bg-white/95 dark:bg-gray-950/95 backdrop-blur-xl border border-gray-200/50 dark:border-gray-800/50 rounded-3xl shadow-2xl z-40 overflow-hidden"
           >
             <ChatHeader onClose={toggleChat} onClear={clearChat} />
             <MessageList messages={messages} isLoading={isLoading} />

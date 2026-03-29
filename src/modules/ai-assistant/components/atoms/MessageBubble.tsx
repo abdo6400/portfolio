@@ -22,17 +22,21 @@ export const MessageBubble: React.FC<MessageBubbleProps> = ({ message }) => {
     >
       <div
         className={cn(
-          "max-w-[85%] px-4 py-2 rounded-2xl text-sm leading-relaxed",
-          isAssistant 
-            ? "bg-slate-800 text-slate-100 rounded-bl-sm border border-slate-700" 
-            : "bg-cyan-600 text-white rounded-br-sm"
+          "max-w-[85%] px-5 py-3 rounded-2xl text-sm leading-relaxed shadow-sm",
+          isAssistant
+            ? "bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white rounded-bl-sm border border-gray-200/50 dark:border-gray-700/50"
+            : "bg-gradient-to-r from-cyan-500 to-violet-600 text-white rounded-br-sm"
         )}
       >
         <p className="whitespace-pre-wrap">{message.content}</p>
-        <span className="text-[10px] opacity-70 mt-1 block">
+        <span className={cn(
+          "text-[10px] mt-1.5 block",
+          isAssistant ? "text-gray-500 dark:text-gray-400" : "text-white/70"
+        )}>
           {new Date(message.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
         </span>
       </div>
     </motion.div>
   );
 };
+

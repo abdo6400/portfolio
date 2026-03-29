@@ -10,35 +10,35 @@ interface ChatHeaderProps {
 
 export const ChatHeader: React.FC<ChatHeaderProps> = ({ onClose, onClear }) => {
   return (
-    <div className="flex items-center justify-between p-4 border-b border-slate-700 bg-slate-900/80 backdrop-blur-md rounded-t-3xl">
+    <div className="flex items-center justify-between p-5 border-b border-gray-200/50 dark:border-gray-800/50 bg-white/80 dark:bg-gray-950/80 backdrop-blur-xl rounded-t-3xl">
       <div className="flex items-center gap-3">
         <div className="relative">
           <img
             src={profileImage}
             alt={profile.name}
-            className="w-10 h-10 rounded-full border-2 border-cyan-500/30 object-cover shadow-sm shadow-cyan-900/10"
+            className="w-11 h-11 rounded-xl border-2 border-cyan-500/30 object-cover shadow-sm shadow-cyan-900/10"
           />
-          <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-slate-900 ring-2 ring-transparent animate-pulse" />
+          <div className="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 bg-emerald-500 rounded-full border-2 border-white dark:border-gray-950 ring-2 ring-emerald-500/30 animate-pulse" />
         </div>
         <div className="flex flex-col">
-          <h3 className="text-sm font-semibold text-slate-100 flex items-center gap-1.5 leading-tight">
-            AI Assistant <Sparkles size={12} className="text-cyan-400" />
+          <h3 className="text-sm font-bold text-gray-900 dark:text-white flex items-center gap-1.5 leading-tight">
+            AI Assistant <Sparkles size={14} className="text-cyan-500" />
           </h3>
-          <span className="text-[10px] text-slate-400 font-medium">Online • Powered by Gemini</span>
+          <span className="text-[11px] text-gray-500 dark:text-gray-400 font-medium">Online • Powered by Gemini</span>
         </div>
       </div>
-      <div className="flex items-center gap-1.5">
+      <div className="flex items-center gap-1">
         <button
           onClick={onClear}
           title="Clear Chat"
-          className="p-2 text-slate-400 hover:text-cyan-400 hover:bg-slate-800 rounded-full transition-all duration-200"
+          className="p-2.5 text-gray-400 hover:text-cyan-500 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-xl transition-all duration-200"
         >
           <RotateCcw size={18} />
         </button>
         <button
           onClick={onClose}
           title="Close Chat"
-          className="p-2 text-slate-400 hover:text-red-400 hover:bg-slate-800 rounded-full transition-all duration-200"
+          className="p-2.5 text-gray-400 hover:text-red-500 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-xl transition-all duration-200"
         >
           <X size={20} />
         </button>

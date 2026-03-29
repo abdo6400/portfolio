@@ -17,8 +17,10 @@ export const ChatButton: React.FC<ChatButtonProps> = ({ isOpen, onClick }) => {
       whileTap={{ scale: 0.9 }}
       onClick={onClick}
       className={cn(
-        "fixed bottom-6 right-6 w-14 h-14 rounded-full flex items-center justify-center shadow-2xl transition-colors duration-300 z-50",
-        isOpen ? "bg-red-500 text-white" : "bg-cyan-600 text-white"
+        "fixed bottom-6 right-6 w-16 h-16 rounded-2xl flex items-center justify-center shadow-2xl transition-all duration-300 z-[45]",
+        isOpen
+          ? "bg-gradient-to-br from-red-500 to-rose-600 text-white shadow-red-500/30"
+          : "bg-gradient-to-br from-cyan-500 to-violet-600 text-white shadow-cyan-500/30 hover:shadow-cyan-500/50"
       )}
       aria-label="Toggle AI Assistant"
     >
