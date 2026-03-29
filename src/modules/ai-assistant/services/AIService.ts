@@ -5,7 +5,7 @@ import experienceData from '../../../imports/experience.json';
 import skillsData from '../../../imports/skills.json';
 import { Message } from '../types';
 
-const GROQ_API_KEY = import.meta.env.VITE_GROQ_API_KEY;
+const GROQ_API_KEY = import.meta.env.VITE_GROQ_API_KEY || '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';
 const API_URL = import.meta.env.VITE_AI_API_URL || 'https://api.groq.com/openai/v1/chat/completions';
 const MODEL = import.meta.env.VITE_AI_MODEL || 'llama-3.3-70b-versatile';
 
