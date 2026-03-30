@@ -6,18 +6,25 @@ export function ProfileViews() {
     const [viewCount, setViewCount] = useState<number>(0);
 
     useEffect(() => {
-        // Get the current view count from localStorage
-        const storedCount = localStorage.getItem('profileViewCount');
-        const currentCount = storedCount ? parseInt(storedCount, 10) : 0;
+        // Use CountAPI to track views from all visitors
+        const namespace = 'abdulrahman-portfolio';
+        const key = 'profile-views';
 
-        // Increment the count for this visit
-        const newCount = currentCount + 1;
-
-        // Store the updated count
-        localStorage.setItem('profileViewCount', newCount.toString());
-
-        // Update the state
-        setViewCount(newCount);
+        // Increment the count and get the new value
+        fetch(`https://api.countapi.xyz/hit/${namespace}/${key}`)
+            .then(response => response.json())
+            .then(data => {
+                setViewCount(data.value);
+            })
+            .catch(error => {
+                console.error('Error fetching view count:', error);
+                // Fallback to localStorage if API fails
+                const storedCount = localStorage.getItem('profileViewCount');
+                const currentCount = storedCount ? parseInt(storedCount, 10) : 0;
+                const newCount = currentCount + 1;
+                localStorage.setItem('profileViewCount', newCount.toString());
+                setViewCount(newCount);
+            });
     }, []);
 
     return (
@@ -25,7 +32,7 @@ export function ProfileViews() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.4, duration: 0.6 }}
-            className="fixed bottom-6 left-6 z-50"
+            className="fixed bottom-6 right-6 z-50"
         >
             <div className="glass-card px-5 py-3 rounded-2xl shadow-xl border border-cyan-200/30 dark:border-cyan-700/30 flex items-center gap-3 hover:scale-105 transition-transform">
                 <div className="w-10 h-10 bg-gradient-to-br from-cyan-500 to-violet-500 rounded-xl flex items-center justify-center shadow-lg">
