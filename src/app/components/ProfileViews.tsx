@@ -6,25 +6,29 @@ export function ProfileViews() {
     const [viewCount, setViewCount] = useState<number>(0);
 
     useEffect(() => {
-        // Use CountAPI to track views from all visitors
-        const namespace = 'abdulrahman-portfolio';
-        const key = 'profile-views';
-
-        // Increment the count and get the new value
-        fetch(`https://api.countapi.xyz/hit/${namespace}/${key}`)
-            .then(response => response.json())
-            .then(data => {
-                setViewCount(data.value);
-            })
-            .catch(error => {
+        // Try to use a global counter service
+        const fetchViewCount = async () => {
+            try {
+                // Use visitorbadge.io - a reliable global counter service
+                const response = await fetch('https://api.visitorbadge.io/api/visitors?path=abdulrahman-portfolio&label=Profile%20Views&style=flat');
+                const data = await response.json();
+                if (data && data.value) {
+                    setViewCount(data.value);
+                } else {
+                    throw new Error('Invalid response');
+                }
+            } catch (error) {
                 console.error('Error fetching view count:', error);
-                // Fallback to localStorage if API fails
+                // Fallback to localStorage
                 const storedCount = localStorage.getItem('profileViewCount');
                 const currentCount = storedCount ? parseInt(storedCount, 10) : 0;
                 const newCount = currentCount + 1;
                 localStorage.setItem('profileViewCount', newCount.toString());
                 setViewCount(newCount);
-            });
+            }
+        };
+
+        fetchViewCount();
     }, []);
 
     return (
