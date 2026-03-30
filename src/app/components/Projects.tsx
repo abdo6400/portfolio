@@ -1,5 +1,5 @@
-nimport { useState, useRef, useEffect } from 'react';
-import { ExternalLink, Github, Play, Apple, Share2, Eye, ChevronRight } from 'lucide-react';
+import { useState, useRef, useEffect } from 'react';
+import { ExternalLink, Github, Play, Apple, Share2, Eye, ChevronRight, MessageCircle } from 'lucide-react';
 import projectsData from '../../imports/projects.json';
 import { ProjectModal } from './ProjectModal';
 
@@ -38,6 +38,16 @@ export function Projects() {
 
   const handleImageLoad = (projectId: number) => {
     setImageLoaded(prev => ({ ...prev, [projectId]: true }));
+  };
+
+  const handleWhatsAppOrder = (project: any, e: React.MouseEvent) => {
+    e.stopPropagation();
+    const phoneNumber = '201069645711'; // WhatsApp number
+    const message = encodeURIComponent(
+      `Hello! I'm interested in ordering a project similar to: ${project.title}\n\nProject Description: ${project.description}\n\nPlease provide more details about pricing and timeline.`
+    );
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+    window.open(whatsappUrl, '_blank');
   };
 
   return (
@@ -228,6 +238,13 @@ export function Projects() {
                     </a>
                   )}
                   <div className="flex-grow"></div>
+                  <button
+                    onClick={(e) => handleWhatsAppOrder(project, e)}
+                    className="w-9 h-9 glass-card flex items-center justify-center rounded-lg hover:bg-green-600 hover:text-white transition-all hover:-translate-y-1 active:scale-90"
+                    title="Order via WhatsApp"
+                  >
+                    <MessageCircle size={16} />
+                  </button>
                   <button
                     onClick={(e) => handleShare(project, e)}
                     className="w-9 h-9 glass-card flex items-center justify-center rounded-lg hover:bg-indigo-600 hover:text-white transition-all hover:-translate-y-1 active:scale-90"

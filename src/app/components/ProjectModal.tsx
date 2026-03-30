@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
-import { X, Github, Play, Apple, ExternalLink, Share2, ChevronLeft, ChevronRight, ZoomIn, ZoomOut, Maximize2, Minimize2 } from 'lucide-react';
+import { X, Github, Play, Apple, ExternalLink, Share2, ChevronLeft, ChevronRight, ZoomIn, ZoomOut, Maximize2, Minimize2, MessageCircle } from 'lucide-react';
 
 interface ProjectModalProps {
   project: any;
@@ -86,6 +86,15 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
     } catch (err) {
       console.error(err);
     }
+  };
+
+  const handleWhatsAppOrder = () => {
+    const phoneNumber = '201069645711'; // WhatsApp number
+    const message = encodeURIComponent(
+      `Hello! I'm interested in ordering a project similar to: ${project.title}\n\nProject Description: ${project.description}\n\nPlease provide more details about pricing and timeline.`
+    );
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+    window.open(whatsappUrl, '_blank');
   };
 
   const toggleZoom = () => {
@@ -394,6 +403,12 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
 
           {/* Links */}
           <div className="flex flex-col sm:flex-row flex-wrap gap-3 pt-6 border-t border-gray-100 dark:border-gray-800">
+            <button
+              onClick={handleWhatsAppOrder}
+              className="flex items-center justify-center gap-2.5 px-6 py-3.5 bg-gradient-to-r from-green-600 to-emerald-600 text-white rounded-xl hover:from-green-700 hover:to-emerald-700 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 font-semibold text-sm"
+            >
+              <MessageCircle size={18} /> Order via WhatsApp
+            </button>
             {project.github && (
               <a
                 href={project.github}
