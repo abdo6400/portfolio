@@ -24,7 +24,7 @@ export const ChatHeader: React.FC<ChatHeaderProps> = ({ onClose, onClear }) => {
           <h3 className="text-sm font-bold text-gray-900 dark:text-white flex items-center gap-1.5 leading-tight">
             AI Assistant <Sparkles size={14} className="text-cyan-500" />
           </h3>
-          <span className="text-[11px] text-gray-500 dark:text-gray-400 font-medium">Online • Powered by Gemini</span>
+          <span className="text-[11px] text-gray-500 dark:text-gray-400 font-medium">Online • Powered by Groq</span>
         </div>
       </div>
       <div className="flex items-center gap-1">
