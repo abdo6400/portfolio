@@ -5,7 +5,7 @@ import { AIService } from '../services/AIService';
 const GREETING: Message = {
   id: 'greeting',
   role: 'assistant',
-  content: "Hi! I'm Abdulrahman's Digital Assistant. Ask me anything about his projects, experience, or skills. How can I help you today?",
+  content: "Hello! 👋 I'm **Antigravity**, your digital guide to Abdulrahman's portfolio. I can detail his projects, tech stack, or professional journey. How can I assist you today?",
   timestamp: Date.now(),
 };
 
