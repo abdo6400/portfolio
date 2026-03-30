@@ -1,4 +1,4 @@
-﻿[
+[
     {
         "id":  "0",
         "title":  "ADDUSTOUR",
@@ -599,6 +599,45 @@
         "github":  "https://github.com/abdo6400/speech_emotion_app_using_flutter",
         "live":  "",
         "store":  "",
-        "appStore":  ""
+        "appStore":  "",
+        "id": "17"
+    },
+    {
+        "id": "18",
+        "title": "E-commerce Backend API",
+        "image": "/portfolio/prots/ecommerce_backend/banner.png",
+        "images": [
+            "/portfolio/prots/ecommerce_backend/banner.png"
+        ],
+        "description": "Robust .NET 8.0 enterprise-grade backend for scalable e-commerce platforms with Stripe and SignalR.",
+        "detailedDescription": "A high-performance, enterprise-ready backend solution engineered with .NET 8.0 and ASP.NET Core. Built on Clean Architecture principles, it integrates advanced features like Stripe for seamless payments, SignalR for real-time order updates, and Azure Identity for secure authentication. The system employs the Repository and Unit of Work patterns for efficient SQL Server data management, ensuring a highly scalable and maintainable infrastructure for modern e-commerce services.",
+        "features": [
+            "Modern .NET 8.0 & ASP.NET Core implementation",
+            "Stripe.net integration for secure payment processing",
+            "Real-time communication via SignalR Client",
+            "Azure Identity & JWT Bearer authentication",
+            "Automated data seeding with Bogus",
+            "MailKit & MimeKit for professional email services",
+            "Clean Architecture with Repository and Unit of Work patterns",
+            "SQL Server integration with Entity Framework Core",
+            "Comprehensive Swagger/OpenAPI documentation",
+            "Global error handling and middleware optimization"
+        ],
+        "technologies": [
+            ".NET 8.0",
+            "ASP.NET Core",
+            "EF Core",
+            "SQL Server",
+            "Stripe.net",
+            "SignalR",
+            "JWT Auth",
+            "Azure Identity",
+            "MailKit",
+            "Swagger"
+        ],
+        "category": "E-commerce",
+        "github": "https://github.com/abdo6400/ecommerce_backend",
+        "live": "",
+        "store": ""
     }
 ]
