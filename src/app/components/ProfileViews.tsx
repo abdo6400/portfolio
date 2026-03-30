@@ -2,37 +2,40 @@ import { useState, useEffect } from 'react';
 import { Eye } from 'lucide-react';
 import { motion } from 'motion/react';
 
-declare global {
-    interface Window {
-        Counter: any;
-    }
-}
+const COUNTER_API_BASE = 'https://api.counterapi.dev/v2/abdelrahman-amrs-team-3524/first-counter-3524';
 
 export function ProfileViews() {
     const [viewCount, setViewCount] = useState<number>(0);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        // Use CounterAPI to track views from all visitors
-        const trackView = () => {
+        const trackView = async () => {
             try {
-                // Check if Counter is available
-                if (typeof window.Counter !== 'undefined') {
-                    const counter = new window.Counter({ workspace: 'abdulrahman-portfolio' });
-                    counter.up('profile-views')
-                        .then((result: any) => {
-                            setViewCount(result.value);
-                        })
-                        .catch((error: any) => {
-                            console.error('Error tracking page view:', error);
-                            // Fallback to localStorage
-                            fallbackToLocalStorage();
-                        });
-                } else {
-                    // Counter not loaded yet, fallback to localStorage
+                const apiKey = import.meta.env.VITE_COUNTER_API_KEY || 'ut_w5EsE8891lgtGu5HLKvROCezTBTHO6YtVkVsH55W';
+
+                if (!apiKey) {
+                    console.warn('Counter API key not found, using localStorage fallback');
                     fallbackToLocalStorage();
+                    return;
                 }
+
+                // Increment the counter
+                const response = await fetch(`${COUNTER_API_BASE}/up`, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${apiKey}`
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                setViewCount(data.value || data.count || 0);
+                setIsLoading(false);
             } catch (error) {
-                console.error('Error initializing Counter:', error);
+                console.error('Error tracking page view:', error);
                 fallbackToLocalStorage();
             }
         };
@@ -43,9 +46,10 @@ export function ProfileViews() {
             const newCount = currentCount + 1;
             localStorage.setItem('profileViewCount', newCount.toString());
             setViewCount(newCount);
+            setIsLoading(false);
         };
 
-        // Wait a bit for the Counter script to load
+        // Wait a bit for the page to load
         const timer = setTimeout(trackView, 100);
         return () => clearTimeout(timer);
     }, []);
@@ -62,7 +66,9 @@ export function ProfileViews() {
                     <Eye className="text-white" size={20} />
                 </div>
                 <div>
-                    <div className="text-2xl font-black text-gradient">{viewCount}</div>
+                    <div className="text-2xl font-black text-gradient">
+                        {isLoading ? '...' : viewCount}
+                    </div>
                     <div className="text-xs text-gray-600 dark:text-gray-400 font-semibold">Profile Views</div>
                 </div>
             </div>
