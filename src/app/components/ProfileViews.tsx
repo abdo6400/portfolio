@@ -29,7 +29,7 @@ export function ProfileViews() {
                 }
 
                 const data = await response.json();
-                setViewCount(data.up_count || 1);
+                setViewCount(data.data.up_count || 1);
                 setIsLoading(false);
             } catch (error) {
                 console.error('Error tracking page view:', error);
