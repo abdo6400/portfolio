@@ -20,11 +20,8 @@ export function ProfileViews() {
                 }
 
                 // Increment the counter
-                const response = await fetch(`${COUNTER_API_BASE}/up`, {
-                    method: 'GET',
-                    headers: {
-                        'Authorization': `Bearer ${apiKey}`
-                    }
+                const response = await fetch(`${COUNTER_API_BASE}/up?key=${apiKey}`, {
+                    method: 'GET'
                 });
 
                 if (!response.ok) {
