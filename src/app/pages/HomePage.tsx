@@ -1,11 +1,14 @@
-import { Github, Linkedin, Mail, Phone, MapPin, Download, ArrowRight, Sparkles, ChevronDown, Code2, Smartphone, Zap, Star } from 'lucide-react';
+import { useState } from 'react';
+import { Github, Linkedin, Mail, Phone, MapPin, Download, ArrowRight, Sparkles, ChevronDown, Code2, Smartphone, Zap, Star, Eye } from 'lucide-react';
 import { motion } from 'motion/react';
 import profileData from '../../imports/profile.json';
 import profileImage from 'figma:asset/197868cc9149d5b4b12480e05e963f942645a274.png';
 import mascotImage from 'figma:asset/5663d54f4cf091ab3318cb77a4ee222db0fd7688.png';
 import { Link } from 'react-router';
+import { CVModal } from '../components/CVModal';
 
 export function HomePage() {
+  const [isCVOpen, setIsCVOpen] = useState(false);
   return (
     <div className="min-h-screen pt-28 pb-20 mesh-gradient overflow-hidden relative">
       {/* Enhanced Decorative Blur Orbs */}
@@ -113,17 +116,28 @@ export function HomePage() {
               transition={{ delay: 0.7, duration: 0.7 }}
               className="flex flex-col sm:flex-row items-center gap-6 justify-center lg:justify-start"
             >
-              {/* CTA Button */}
-              <a
-                href={profileData.cvFile}
-                download
-                className="group relative inline-flex items-center gap-3 px-12 py-5 bg-gradient-to-r from-cyan-600 to-violet-600 text-white rounded-2xl transition-all shadow-xl shadow-cyan-500/25 hover:shadow-2xl hover:shadow-cyan-500/40 font-bold active:scale-95 hover:scale-105 overflow-hidden"
-              >
-                <span className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></span>
-                <span className="absolute inset-0 shimmer"></span>
-                <Download size={22} className="group-hover:translate-y-1 transition-transform relative z-10" />
-                <span className="relative z-10">Download Resume</span>
-              </a>
+              {/* CTA Buttons */}
+              <div className="flex flex-col sm:flex-row items-center gap-4">
+                <button
+                  onClick={() => setIsCVOpen(true)}
+                  className="group relative inline-flex items-center gap-3 px-10 py-5 bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100 rounded-2xl transition-all border border-gray-200 dark:border-gray-800 hover:border-cyan-500/50 hover:bg-cyan-50/50 dark:hover:bg-cyan-900/10 font-bold active:scale-95 shadow-lg shadow-cyan-500/5"
+                >
+                  <Eye size={22} className="group-hover:scale-110 transition-transform" />
+                  <span>View CV</span>
+                  <div className="absolute inset-0 rounded-2xl transition-opacity opacity-0 group-hover:opacity-10 shadow-[0_0_25px_rgba(6,182,212,0.3)]"></div>
+                </button>
+
+                <a
+                  href={profileData.cvFile}
+                  download
+                  className="group relative inline-flex items-center gap-3 px-12 py-5 bg-gradient-to-r from-cyan-600 to-violet-600 text-white rounded-2xl transition-all shadow-xl shadow-cyan-500/25 hover:shadow-2xl hover:shadow-cyan-500/40 font-bold active:scale-95 hover:scale-105 overflow-hidden"
+                >
+                  <span className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                  <span className="absolute inset-0 shimmer"></span>
+                  <Download size={22} className="group-hover:translate-y-1 transition-transform relative z-10" />
+                  <span className="relative z-10">Download</span>
+                </a>
+              </div>
 
               {/* View Projects Button */}
               <Link
@@ -292,6 +306,7 @@ export function HomePage() {
           </Link>
         </motion.div>
       </div>
+      <CVModal isOpen={isCVOpen} onClose={() => setIsCVOpen(false)} cvUrl={profileData.cvFile} />
     </div>
   );
 }

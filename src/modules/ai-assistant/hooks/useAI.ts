@@ -5,7 +5,7 @@ import { AIService } from '../services/AIService';
 const GREETING: Message = {
   id: 'greeting',
   role: 'assistant',
-  content: "Hello! 👋 I'm **Antigravity**, your digital guide to Abdulrahman's portfolio. I can detail his projects, tech stack, or professional journey. How can I assist you today?",
+  content: "Hello! 👋 I'm **your AI assistant**, your digital guide to Abdulrahman's portfolio. I can detail his projects, tech stack, or professional journey. How can I assist you today?",
   timestamp: Date.now(),
 };
 
@@ -40,7 +40,7 @@ export function useAI() {
       // API requires starting with a user message, so we filter out the initial assistant greeting
       const conversationHistory = [...state.messages, userMessage].filter(msg => msg.id !== 'greeting');
       const response = await AIService.sendMessage(conversationHistory);
-      
+
       const assistantMessage: Message = {
         id: (Date.now() + 1).toString(),
         role: 'assistant',

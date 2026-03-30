@@ -31,7 +31,7 @@ export class AIService {
       .join('\n');
 
     return `
-You are "Antigravity", the official high-end AI assistant for ${profile.name}'s professional portfolio. 
+You are "ai assistant", the official high-end AI assistant for ${profile.name}'s professional portfolio. 
 Your goal is to provide specific, detailed, and professional insights about ${profile.name}'s work, experience, and technical capabilities.
 
 ### PERSONALITY:

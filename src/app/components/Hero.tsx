@@ -1,9 +1,12 @@
-import { Github, Linkedin, Mail, Phone, MapPin, Download } from 'lucide-react';
+import { useState } from 'react';
+import { Github, Linkedin, Mail, Phone, MapPin, Download, Eye } from 'lucide-react';
 import profileData from '../../imports/profile.json';
 import profileImage from 'figma:asset/197868cc9149d5b4b12480e05e963f942645a274.png';
 import mascotImage from 'figma:asset/5663d54f4cf091ab3318cb77a4ee222db0fd7688.png';
+import { CVModal } from './CVModal';
 
 export function Hero() {
+  const [isCVOpen, setIsCVOpen] = useState(false);
   return (
     <section id="home" className="pt-24 pb-16 mesh-gradient overflow-hidden relative">
       {/* Decorative Blur Orbs */}
@@ -52,16 +55,27 @@ export function Hero() {
             </div>
 
             <div className="flex flex-col sm:flex-row items-center gap-6 justify-center lg:justify-start">
-              {/* CTA Button */}
-              <a
-                href={profileData.cvFile}
-                download
-                className="group relative inline-flex items-center gap-3 px-10 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-2xl transition-all shadow-xl shadow-blue-500/25 hover:shadow-2xl hover:shadow-blue-500/40 font-bold active:scale-95"
-              >
-                <Download size={20} className="group-hover:translate-y-1 transition-transform" />
-                <span>Download Resume</span>
-                <div className="absolute inset-0 rounded-2xl bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-              </a>
+              {/* CTA Buttons */}
+              <div className="flex flex-col sm:flex-row items-center gap-4">
+                <button
+                  onClick={() => setIsCVOpen(true)}
+                  className="group relative inline-flex items-center gap-3 px-8 py-4 bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100 rounded-2xl transition-all border border-gray-200 dark:border-gray-800 hover:border-blue-500/50 hover:bg-blue-50/50 dark:hover:bg-blue-900/10 font-bold active:scale-95 shadow-lg shadow-blue-500/5"
+                >
+                  <Eye size={20} className="group-hover:scale-110 transition-transform" />
+                  <span>View CV</span>
+                  <div className="absolute inset-0 rounded-2xl transition-opacity opacity-0 group-hover:opacity-10 shadow-[0_0_20px_rgba(37,99,235,0.3)]"></div>
+                </button>
+
+                <a
+                  href={profileData.cvFile}
+                  download
+                  className="group relative inline-flex items-center gap-3 px-10 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-2xl transition-all shadow-xl shadow-blue-500/25 hover:shadow-2xl hover:shadow-blue-500/40 font-bold active:scale-95"
+                >
+                  <Download size={20} className="group-hover:translate-y-1 transition-transform" />
+                  <span>Download</span>
+                  <div className="absolute inset-0 rounded-2xl bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                </a>
+              </div>
 
               {/* Social Links */}
               <div className="flex gap-4">
@@ -120,6 +134,7 @@ export function Hero() {
           </div>
         </div>
       </div>
+      <CVModal isOpen={isCVOpen} onClose={() => setIsCVOpen(false)} cvUrl={profileData.cvFile} />
     </section>
   );
 }
