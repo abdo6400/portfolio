@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router';
 import { Navigation } from './components/Navigation';
 import { ThemeProvider } from './components/ThemeProvider';
 import { ChatAssistant } from '../modules/ai-assistant';
+import { ProfileViews } from './components/ProfileViews';
 import { HomePage } from './pages/HomePage';
 import { AboutPage } from './pages/AboutPage';
 import { SkillsPage } from './pages/SkillsPage';
@@ -31,6 +32,7 @@ export default function App() {
             </div>
           </footer>
           <ChatAssistant />
+          <ProfileViews />
         </div>
       </BrowserRouter>
     </ThemeProvider>
