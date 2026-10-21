@@ -1,0 +1,19 @@
+{
+  "name": "Abdelrahman Amr | Flutter Developer",
+  "short_name": "Amr",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#f6f8fc",
+  "theme_color": "#101d35",
+  "description": "Bilingual Flutter portfolio",
+  "orientation": "any",
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
