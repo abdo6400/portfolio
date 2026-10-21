@@ -13,6 +13,9 @@ abstract final class Brand {
   static const radius = 24.0;
   static const contentWidth = 1160.0;
   static const desktop = 850.0;
+  static const mobileSectionSpace = 32.0;
+  static const mobileHeaderSpace = 12.0;
+  static const mobileIntroGap = 18.0;
 }
 
 abstract final class BrandTheme {

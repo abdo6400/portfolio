@@ -4,19 +4,29 @@ import '../content/portfolio_content.dart';
 import '../design/theme.dart';
 
 class ContentWidth extends StatelessWidget {
-  const ContentWidth({super.key, required this.child, this.vertical = 0});
+  const ContentWidth({
+    super.key,
+    required this.child,
+    this.vertical = 0,
+    this.mobileVertical,
+  });
   final Widget child;
   final double vertical;
+  final double? mobileVertical;
   @override
   Widget build(BuildContext context) => Center(
     child: ConstrainedBox(
       constraints: const BoxConstraints(maxWidth: Brand.contentWidth + 48),
-      child: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: Brand.space,
-          vertical: vertical,
+      child: LayoutBuilder(
+        builder: (_, constraints) => Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: Brand.space,
+            vertical: constraints.maxWidth - Brand.space * 2 < Brand.desktop
+                ? mobileVertical ?? vertical
+                : vertical,
+          ),
+          child: child,
         ),
-        child: child,
       ),
     ),
   );

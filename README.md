@@ -12,3 +12,5 @@
 ## Flutter portfolio
 
 The new English/Arabic Flutter Web portfolio is in [flutter-portfolio](flutter-portfolio/README.md). It contains all 19 projects, image galleries, optional video demos, and the current digitalH role. See its README for validation and Vercel deployment commands. The existing React app and GitHub Pages workflow remain available in the repository root.
+
+Live Flutter site: [abdelrahman-amr-flutter.vercel.app](https://abdelrahman-amr-flutter.vercel.app).

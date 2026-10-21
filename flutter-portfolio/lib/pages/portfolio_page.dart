@@ -164,49 +164,74 @@ class _PortfolioPageState extends State<PortfolioPage> {
     ),
   );
 
-  Widget navigation(bool wide) => Wrap(
-    alignment: WrapAlignment.spaceBetween,
-    crossAxisAlignment: WrapCrossAlignment.center,
-    spacing: 16,
-    runSpacing: 12,
-    children: [
-      BrandIdentity(arabic: widget.arabic),
-      if (wide) ...[
-        TextButton(onPressed: () => jump(workKey), child: Text(t(Copy.work))),
-        TextButton(
-          onPressed: () => jump(experienceKey),
-          child: Text(t(Copy.experience)),
-        ),
-        TextButton(onPressed: () => jump(aboutKey), child: Text(t(Copy.about))),
-        const SizedBox(width: 16),
-      ] else
-        PopupMenuButton<int>(
-          tooltip: t(Copy.menu),
-          icon: const Icon(Icons.menu),
-          onSelected: (value) =>
-              jump([workKey, experienceKey, aboutKey, contactKey][value]),
-          itemBuilder: (_) =>
-              [Copy.work, Copy.experience, Copy.about, Copy.contact]
-                  .asMap()
-                  .entries
-                  .map(
-                    (e) => PopupMenuItem(value: e.key, child: Text(t(e.value))),
-                  )
-                  .toList(),
-        ),
-      OutlinedButton(
-        key: const ValueKey('language-toggle'),
-        onPressed: widget.onLanguageChange,
-        child: Text(widget.arabic ? 'English' : 'العربية'),
-      ),
-      if (wide) ...[
-        const SizedBox(width: 12),
-        FilledButton(
-          onPressed: () => jump(contactKey),
-          child: Text(t(Copy.contact)),
-        ),
-      ],
-    ],
+  Widget languageToggle({bool compact = false}) => OutlinedButton(
+    key: const ValueKey('language-toggle'),
+    style: compact
+        ? OutlinedButton.styleFrom(
+            padding: const EdgeInsets.symmetric(horizontal: 12),
+          )
+        : null,
+    onPressed: widget.onLanguageChange,
+    child: Text(widget.arabic ? 'English' : 'العربية'),
+  );
+
+  Widget navigation(bool wide) => Padding(
+    padding: EdgeInsets.symmetric(
+      vertical: wide ? 20 : Brand.mobileHeaderSpace,
+    ),
+    child: wide
+        ? Wrap(
+            alignment: WrapAlignment.spaceBetween,
+            crossAxisAlignment: WrapCrossAlignment.center,
+            spacing: 16,
+            runSpacing: 12,
+            children: [
+              BrandIdentity(arabic: widget.arabic),
+              TextButton(
+                onPressed: () => jump(workKey),
+                child: Text(t(Copy.work)),
+              ),
+              TextButton(
+                onPressed: () => jump(experienceKey),
+                child: Text(t(Copy.experience)),
+              ),
+              TextButton(
+                onPressed: () => jump(aboutKey),
+                child: Text(t(Copy.about)),
+              ),
+              const SizedBox(width: 16),
+              languageToggle(),
+              const SizedBox(width: 12),
+              FilledButton(
+                onPressed: () => jump(contactKey),
+                child: Text(t(Copy.contact)),
+              ),
+            ],
+          )
+        : Row(
+            children: [
+              Expanded(child: BrandIdentity(arabic: widget.arabic)),
+              const SizedBox(width: 8),
+              languageToggle(compact: true),
+              PopupMenuButton<int>(
+                tooltip: t(Copy.menu),
+                icon: const Icon(Icons.menu),
+                onSelected: (value) =>
+                    jump([workKey, experienceKey, aboutKey, contactKey][value]),
+                itemBuilder: (_) =>
+                    [Copy.work, Copy.experience, Copy.about, Copy.contact]
+                        .asMap()
+                        .entries
+                        .map(
+                          (e) => PopupMenuItem(
+                            value: e.key,
+                            child: Text(t(e.value)),
+                          ),
+                        )
+                        .toList(),
+              ),
+            ],
+          ),
   );
 
   Widget hero(bool wide) {
@@ -227,16 +252,16 @@ class _PortfolioPageState extends State<PortfolioPage> {
             ),
           ),
         ),
-        const SizedBox(height: 30),
+        SizedBox(height: wide ? 30 : Brand.mobileIntroGap),
         Text(
           t(Copy.hero),
           style: wide
               ? Theme.of(context).textTheme.displayLarge
               : Theme.of(context).textTheme.displaySmall,
         ),
-        const SizedBox(height: 24),
+        SizedBox(height: wide ? 24 : 16),
         Text(t(Copy.intro), style: Theme.of(context).textTheme.bodyLarge),
-        const SizedBox(height: 30),
+        SizedBox(height: wide ? 30 : Brand.space),
         Wrap(
           spacing: 12,
           runSpacing: 12,
@@ -284,7 +309,7 @@ class _PortfolioPageState extends State<PortfolioPage> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Entrance(child: intro),
-              const SizedBox(height: 40),
+              const SizedBox(height: Brand.space),
               artwork,
             ],
           );
@@ -298,16 +323,14 @@ class _PortfolioPageState extends State<PortfolioPage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             ContentWidth(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 20),
-                child: LayoutBuilder(
-                  builder: (_, c) => navigation(c.maxWidth >= Brand.desktop),
-                ),
+              child: LayoutBuilder(
+                builder: (_, c) => navigation(c.maxWidth >= Brand.desktop),
               ),
             ),
             const Divider(height: 1),
             ContentWidth(
               vertical: 72,
+              mobileVertical: Brand.mobileSectionSpace,
               child: LayoutBuilder(
                 builder: (_, c) => hero(c.maxWidth >= Brand.desktop),
               ),
@@ -344,6 +367,7 @@ class _PortfolioPageState extends State<PortfolioPage> {
             ContentWidth(
               key: workKey,
               vertical: 72,
+              mobileVertical: Brand.mobileSectionSpace,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -400,6 +424,7 @@ class _PortfolioPageState extends State<PortfolioPage> {
             ContentWidth(
               key: experienceKey,
               vertical: 64,
+              mobileVertical: Brand.mobileSectionSpace,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -471,6 +496,7 @@ class _PortfolioPageState extends State<PortfolioPage> {
               child: ContentWidth(
                 key: aboutKey,
                 vertical: 64,
+                mobileVertical: Brand.mobileSectionSpace,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -500,6 +526,7 @@ class _PortfolioPageState extends State<PortfolioPage> {
               child: ContentWidth(
                 key: contactKey,
                 vertical: 64,
+                mobileVertical: Brand.mobileSectionSpace,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

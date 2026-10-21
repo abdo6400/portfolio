@@ -2,7 +2,11 @@
 
 Bilingual portfolio for employment and freelance audiences, built with Flutter Web and Dart. The original website at D:/work/portfolio is unchanged.
 
+Live site: [abdelrahman-amr-flutter.vercel.app](https://abdelrahman-amr-flutter.vercel.app).
+
 The homepage highlights four projects, with a searchable archive containing all 19 projects from the original portfolio. Project galleries include thumbnails, swipe/arrow navigation, larger image viewing, and user-initiated video demos. The rotating showcase changes every five seconds, pauses during hover/focus or when the app is hidden, and respects reduced-motion settings. The header uses the existing photo and name. Shared theme tokens use navy, blue, and soft white.
+
+Mobile navigation keeps the photo/name, language switch, and menu on one row. Mobile sections use 32px vertical padding, with tighter introduction and showcase spacing; desktop spacing is preserved.
 
 ## Run
 
