@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import '../content/portfolio_content.dart';
+import '../content/featured_projects.dart';
 import '../content/project_covers.dart';
 import '../design/theme.dart';
 import 'brand_widgets.dart';
@@ -102,7 +103,7 @@ class _HeroShowcaseState extends State<HeroShowcase>
     if (!reducedMotion) {
       timer = Timer.periodic(const Duration(seconds: 5), (_) {
         if (mounted && !paused && !hovered && !focused && foreground) {
-          setState(() => index = (index + 1) % projects.length);
+          setState(() => index = (index + 1) % featuredProjects.length);
         }
       });
     }
@@ -122,7 +123,7 @@ class _HeroShowcaseState extends State<HeroShowcase>
 
   @override
   Widget build(BuildContext context) {
-    final project = projects[index];
+    final project = featuredProjects[index];
     return RepaintBoundary(
       child: MouseRegion(
         onEnter: (_) => hovered = true,
@@ -197,7 +198,7 @@ class _HeroShowcaseState extends State<HeroShowcase>
                 const SizedBox(height: 14),
                 Wrap(
                   spacing: 8,
-                  children: projects
+                  children: featuredProjects
                       .asMap()
                       .entries
                       .map(

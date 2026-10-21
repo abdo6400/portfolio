@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../content/portfolio_content.dart';
+import '../content/featured_projects.dart';
 import '../content/studio_content.dart';
 import '../design/theme.dart';
 import 'brand_widgets.dart';
@@ -28,14 +29,14 @@ class _FeaturedProjectsState extends State<FeaturedProjects> {
     Bilingual('News & media', 'الأخبار والإعلام'),
   ];
   bool matches(Project p) => switch (category) {
-    1 => p.id == 'sadad',
-    2 => p.id == 'thamin' || p.id == 'pack-and-go',
+    1 => p.id == 'sadad' || p.id == 'albasheq',
+    2 => p.id == 'pack-and-go',
     3 => p.id == 'addustour',
     _ => true,
   };
   @override
   Widget build(BuildContext context) {
-    final visible = projects.where(matches).toList();
+    final visible = featuredProjects.where(matches).toList();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -72,7 +73,7 @@ class _FeaturedProjectsState extends State<FeaturedProjects> {
                       child: ProjectCard(
                         project: p,
                         arabic: widget.arabic,
-                        index: projects.indexOf(p) + 1,
+                        index: featuredProjects.indexOf(p) + 1,
                         onTap: () => widget.onProject(p),
                       ),
                     ),

@@ -2,7 +2,7 @@
 
 Live: https://abdelrahman-amr-flutter.vercel.app/
 
-A bilingual, dark-first portfolio using Flutter Web and Dart. It includes a light theme, sticky navigation with active-section highlighting and scroll progress, a responsive mobile menu, scroll-driven stacked desktop panels, a rotating project showcase, four filterable featured projects, a searchable 19-project archive, image galleries/zoom, opt-in video demos, skills, experience, services, and a validated contact composer. Arabic supports RTL. Existing project/CV configuration and dependencies are preserved; no Flutter packages were added for this redesign.
+A bilingual, dark-first portfolio using Flutter Web and Dart. It includes a light theme, sticky navigation with active-section highlighting and scroll progress, a responsive mobile menu, scroll-driven stacked desktop panels, a rotating project showcase, four filterable featured projects (ADDUSTOUR, ALBASHEQ, SADAD, and Pack and Go), a searchable 19-project archive, image galleries/zoom, opt-in video demos, skills, experience, services, and a validated contact composer. Arabic supports RTL. Existing project/CV configuration and dependencies are preserved; no Flutter packages were added for this redesign.
 
 ## Setup and preview
 
@@ -44,6 +44,7 @@ There is no supplied automated architecture checker. Manually review content ind
 - lib/pages/project_archive.dart: lazy searchable project grid.
 - lib/widgets/brand_widgets.dart: shared layout, typography, gradient heading, chips and interactive project cards.
 - lib/widgets/hero_showcase.dart: rotating showcase, pause/focus/lifecycle/reduced-motion handling.
+- lib/content/featured_projects.dart: selected work drawn from the complete archive; Thamin remains archived.
 - lib/widgets/featured_projects.dart: category filtering for the four selected projects.
 - lib/widgets/section_reveal.dart: finite fallback fades with stable keyboard/anchor geometry.
 - lib/widgets/project_details.dart and project_gallery.dart: project modal, image navigation/zoom, user-started videos.

@@ -161,7 +161,9 @@ void main() {
     expect(find.byType(ProjectCard), findsNWidgets(4));
     await tester.tap(find.widgetWithText(ChoiceChip, 'Financial services'));
     await tester.pumpAndSettle();
-    expect(find.byType(ProjectCard), findsOneWidget);
+    expect(find.byType(ProjectCard), findsNWidgets(2));
+    expect(find.text('ALBASHEQ'), findsOneWidget);
+    expect(find.text('Thamin'), findsNothing);
     expect(find.text('SADAD'), findsOneWidget);
     await tester.tap(find.widgetWithText(ChoiceChip, 'News & media'));
     await tester.pumpAndSettle();

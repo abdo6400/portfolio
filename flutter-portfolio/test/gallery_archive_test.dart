@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:personal_portfolio/content/all_projects.dart';
+import 'package:personal_portfolio/content/featured_projects.dart';
 import 'package:personal_portfolio/design/theme.dart';
 import 'package:personal_portfolio/main.dart';
 import 'package:personal_portfolio/pages/project_archive.dart';
@@ -11,6 +12,13 @@ import 'package:personal_portfolio/widgets/project_gallery.dart';
 void main() {
   test('migration includes mobile, backend, game, IoT, and research work', () {
     expect(allProjects.length, 19);
+    expect(allProjects.any((p) => p.id == 'thamin'), isTrue);
+    expect(featuredProjects.map((p) => p.id), [
+      'addustour',
+      'albasheq',
+      'sadad',
+      'pack-and-go',
+    ]);
     expect(allProjects.map((p) => p.id).toSet().length, 19);
     expect(allProjects.any((p) => p.name == 'E-commerce Backend API'), isTrue);
     expect(allProjects.any((p) => p.name == 'IoT Parking System'), isTrue);
@@ -93,7 +101,7 @@ void main() {
       tester
           .widget<Text>(find.byKey(const ValueKey('showcase-project-name')))
           .data,
-      'Thamin',
+      'ALBASHEQ',
     );
     await tester.tap(find.byTooltip('Pause slideshow'));
     await tester.pump(const Duration(seconds: 10));
@@ -102,7 +110,7 @@ void main() {
       tester
           .widget<Text>(find.byKey(const ValueKey('showcase-project-name')))
           .data,
-      'Thamin',
+      'ALBASHEQ',
     );
   });
 
