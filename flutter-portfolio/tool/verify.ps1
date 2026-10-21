@@ -7,7 +7,7 @@ try {
     if ($LASTEXITCODE -ne 0) { throw 'Analysis failed.' }
     flutter test --no-pub
     if ($LASTEXITCODE -ne 0) { throw 'Tests failed.' }
-    flutter build web --release --no-pub
+    flutter build web --release --wasm --no-pub
     if ($LASTEXITCODE -ne 0) { throw 'Web build failed.' }
 } finally {
     Pop-Location

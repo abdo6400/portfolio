@@ -139,7 +139,7 @@ class _ProjectGalleryState extends State<ProjectGallery> {
               button: true,
               label: '${widget.project.name} ${i + 1}',
               child: Material(
-                color: index == i ? Brand.accent : Brand.mist,
+                color: index == i ? Brand.accent : Palette.of(context).raised,
                 borderRadius: BorderRadius.circular(10),
                 clipBehavior: Clip.antiAlias,
                 child: InkWell(

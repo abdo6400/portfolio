@@ -5,10 +5,7 @@ try {
     if (-not (Test-Path -LiteralPath '.vercel/project.json')) {
         throw 'Link the intended Vercel project with vercel link before deploying.'
     }
-    $staticOutput = Join-Path (Get-Location) '.vercel/output/static'
-    New-Item -ItemType Directory -Path $staticOutput -Force | Out-Null
-    Get-ChildItem -LiteralPath 'build/web' -Force | Copy-Item -Destination $staticOutput -Recurse -Force
-    '{"version":3}' | Set-Content -LiteralPath '.vercel/output/config.json' -Encoding utf8
+    & (Join-Path $PSScriptRoot 'package.ps1')
     vercel deploy --prebuilt --prod --yes
     if ($LASTEXITCODE -ne 0) { throw 'Vercel deployment failed.' }
 } finally {

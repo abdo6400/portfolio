@@ -1,0 +1,14 @@
+{
+  "version": 3,
+  "routes": [
+    {
+      "src": "/(.*)",
+      "headers": {
+        "Cross-Origin-Embedder-Policy": "credentialless",
+        "Cross-Origin-Opener-Policy": "same-origin"
+      },
+      "continue": true
+    },
+    { "handle": "filesystem" }
+  ]
+}

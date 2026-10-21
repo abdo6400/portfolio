@@ -14,16 +14,28 @@ void main() {
     await tester.pumpWidget(PortfolioApp(openLink: (_) async => true));
     await tester.pumpAndSettle();
     expect(tester.takeException(), isNull);
-    expect(find.text('Senior Flutter Developer at digitalH'), findsOneWidget);
+    expect(
+      find.text('Senior Flutter Developer at digitalH', skipOffstage: false),
+      findsNWidgets(2),
+    );
     await tester.tap(find.byKey(const ValueKey('language-toggle')));
     await tester.pumpAndSettle();
-    expect(find.text('مطور Flutter أول لدى digitalH'), findsOneWidget);
     expect(
-      Directionality.of(tester.element(find.byType(ProjectCard).first)),
+      find.text('مطور Flutter أول لدى digitalH', skipOffstage: false),
+      findsNWidgets(2),
+    );
+    expect(
+      Directionality.of(
+        tester.element(find.byType(ProjectCard, skipOffstage: false).first),
+      ),
       TextDirection.rtl,
     );
-    await tester.ensureVisible(find.byType(ProjectCard).first);
-    await tester.tap(find.byType(ProjectCard).first);
+    await tester.ensureVisible(
+      find.byType(ProjectCard, skipOffstage: false).first,
+    );
+    await tester.pumpAndSettle();
+    await tester.pumpAndSettle();
+    await tester.tap(find.byType(ProjectCard, skipOffstage: false).first);
     await tester.pumpAndSettle();
     expect(find.text('مساهمتي'), findsOneWidget);
     expect(tester.takeException(), isNull);
@@ -49,12 +61,19 @@ void main() {
         ),
       );
       await tester.pumpAndSettle();
+      await tester.ensureVisible(find.text('Explore my work'));
+      await tester.pumpAndSettle();
+      await tester.pumpAndSettle();
       await tester.tap(find.text('Explore my work'));
       await tester.pumpAndSettle();
-      await tester.ensureVisible(find.byType(ProjectCard).first);
-      await tester.tap(find.byType(ProjectCard).first);
+      await tester.ensureVisible(
+        find.byType(ProjectCard, skipOffstage: false).first,
+      );
+      await tester.pumpAndSettle();
+      await tester.tap(find.byType(ProjectCard, skipOffstage: false).first);
       await tester.pumpAndSettle();
       await tester.ensureVisible(find.text('View app'));
+      await tester.pumpAndSettle();
       await tester.tap(find.text('View app'));
       await tester.pumpAndSettle();
       expect(opened?.host, 'apps.apple.com');
@@ -66,8 +85,10 @@ void main() {
   testWidgets('failed contact links give useful feedback', (tester) async {
     await tester.pumpWidget(PortfolioApp(openLink: (_) async => false));
     await tester.pumpAndSettle();
-    final contact = find.text('Connect on LinkedIn');
+    final contact = find.text('Connect on LinkedIn', skipOffstage: false);
     await tester.ensureVisible(contact);
+    await tester.pumpAndSettle();
+    await tester.pumpAndSettle();
     await tester.tap(contact);
     await tester.pumpAndSettle();
     expect(

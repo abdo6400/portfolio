@@ -25,8 +25,11 @@ void main() {
     (tester) async {
       await tester.pumpWidget(PortfolioApp(openLink: (_) async => true));
       await tester.pumpAndSettle();
-      await tester.ensureVisible(find.byType(ProjectCard).first);
-      await tester.tap(find.byType(ProjectCard).first);
+      await tester.ensureVisible(
+        find.byType(ProjectCard, skipOffstage: false).first,
+      );
+      await tester.pumpAndSettle();
+      await tester.tap(find.byType(ProjectCard, skipOffstage: false).first);
       await tester.pumpAndSettle();
       expect(find.text('1 / 9'), findsOneWidget);
       await tester.tap(find.byTooltip('Next image'));

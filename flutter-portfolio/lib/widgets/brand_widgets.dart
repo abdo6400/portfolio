@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../content/portfolio_content.dart';
+import '../content/project_covers.dart';
 import '../design/theme.dart';
 
 class ContentWidth extends StatelessWidget {
@@ -16,12 +17,14 @@ class ContentWidth extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Center(
     child: ConstrainedBox(
-      constraints: const BoxConstraints(maxWidth: Brand.contentWidth + 48),
+      constraints: const BoxConstraints(
+        maxWidth: Brand.contentWidth + Brand.space * 2,
+      ),
       child: LayoutBuilder(
-        builder: (_, constraints) => Padding(
+        builder: (_, c) => Padding(
           padding: EdgeInsets.symmetric(
             horizontal: Brand.space,
-            vertical: constraints.maxWidth - Brand.space * 2 < Brand.desktop
+            vertical: c.maxWidth - Brand.space * 2 < Brand.desktop
                 ? mobileVertical ?? vertical
                 : vertical,
           ),
@@ -40,8 +43,8 @@ class Eyebrow extends StatelessWidget {
   Widget build(BuildContext context) => Text(
     text,
     style: Theme.of(context).textTheme.labelLarge!.copyWith(
-      color: light ? Brand.lime : Brand.accent,
-      letterSpacing: 1.3,
+      color: light ? Brand.lime : Palette.of(context).accent,
+      letterSpacing: 1.2,
       height: 1.6,
     ),
   );
@@ -55,8 +58,7 @@ class ProjectImage extends StatelessWidget {
     required this.arabic,
     this.height = 280,
   });
-  final String asset;
-  final String label;
+  final String asset, label;
   final bool arabic;
   final double height;
   @override
@@ -66,13 +68,13 @@ class ProjectImage extends StatelessWidget {
     child: Container(
       height: height,
       width: double.infinity,
-      color: Brand.mist,
+      color: Palette.of(context).raised,
       child: asset.endsWith('.mp4')
           ? Center(
               child: Icon(
                 Icons.play_circle_outline,
                 size: 56,
-                color: Brand.accent,
+                color: Palette.of(context).accent,
               ),
             )
           : Image.asset(
@@ -86,7 +88,7 @@ class ProjectImage extends StatelessWidget {
   );
 }
 
-class ProjectCard extends StatelessWidget {
+class ProjectCard extends StatefulWidget {
   const ProjectCard({
     super.key,
     required this.project,
@@ -96,121 +98,174 @@ class ProjectCard extends StatelessWidget {
     this.compact = false,
   });
   final Project project;
-  final bool arabic;
+  final bool arabic, compact;
   final VoidCallback onTap;
   final int index;
-  final bool compact;
   @override
-  Widget build(BuildContext context) => Material(
-    color: Brand.white,
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(Brand.radius),
-      side: const BorderSide(color: Brand.line),
-    ),
-    clipBehavior: Clip.antiAlias,
-    child: InkWell(
-      onTap: onTap,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          if (project.images.isNotEmpty)
-            ProjectImage(
-              asset: project.images.first,
-              label: project.name,
-              arabic: arabic,
-              height: compact ? 200 : 280,
-            )
-          else
-            Container(
-              height: compact ? 200 : 280,
-              width: double.infinity,
-              color: Brand.mist,
-              child: Icon(
-                project.tags.any((t) => t.contains('.NET'))
-                    ? Icons.code
-                    : Icons.devices,
-                size: 64,
-                color: Brand.accent,
-              ),
-            ),
-          Padding(
-            padding: const EdgeInsets.all(Brand.space),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Expanded(
-                      child: Eyebrow(project.category.inLanguage(arabic)),
+  State<ProjectCard> createState() => _ProjectCardState();
+}
+
+class _ProjectCardState extends State<ProjectCard> {
+  bool engaged = false;
+  void engage(bool value) {
+    if (engaged != value) setState(() => engaged = value);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final p = Palette.of(context);
+    final project = widget.project;
+    return Semantics(
+      button: true,
+      label:
+          '${project.name}. ${project.description.inLanguage(widget.arabic)}. ${Copy.readProject.inLanguage(widget.arabic)}',
+      excludeSemantics: true,
+      onTap: widget.onTap,
+      child: MouseRegion(
+        onEnter: (_) => engage(true),
+        onExit: (_) => engage(false),
+        child: AnimatedContainer(
+          duration: MediaQuery.disableAnimationsOf(context)
+              ? Duration.zero
+              : Brand.motion,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(Brand.radius),
+            border: Border.all(color: engaged ? p.accent : p.border),
+            color: p.panel,
+            boxShadow: engaged
+                ? [
+                    BoxShadow(
+                      color: p.accent.withValues(alpha: .10),
+                      blurRadius: 24,
+                      offset: const Offset(0, 8),
                     ),
-                    Text(
-                      index.toString().padLeft(2, '0'),
-                      style: Theme.of(context).textTheme.labelLarge,
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 10),
-                Text(
-                  project.name,
-                  maxLines: compact ? 2 : null,
-                  overflow: compact ? TextOverflow.ellipsis : null,
-                  style: Theme.of(context).textTheme.titleLarge,
-                ),
-                const SizedBox(height: 10),
-                Text(
-                  project.description.inLanguage(arabic),
-                  maxLines: compact ? 3 : null,
-                  overflow: compact ? TextOverflow.ellipsis : null,
-                ),
-                const SizedBox(height: 18),
-                Wrap(
-                  spacing: 8,
-                  runSpacing: 8,
-                  children: (compact ? project.tags.take(3) : project.tags)
-                      .map(
-                        (tag) => DecoratedBox(
-                          decoration: BoxDecoration(
-                            color: Brand.paper,
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 10,
-                              vertical: 5,
-                            ),
-                            child: Text(
-                              tagTranslations[tag]?.inLanguage(arabic) ?? tag,
-                              style: Theme.of(context).textTheme.labelMedium,
-                            ),
-                          ),
-                        ),
-                      )
-                      .toList(),
-                ),
-                const SizedBox(height: 22),
-                Row(
-                  children: [
-                    Expanded(
-                      child: Text(
-                        Copy.readProject.inLanguage(arabic),
-                        style: Theme.of(context).textTheme.labelLarge!
-                            .copyWith(color: Brand.accent),
+                  ]
+                : [],
+          ),
+          clipBehavior: Clip.antiAlias,
+          child: Material(
+            color: Colors.transparent,
+            child: InkWell(
+              onTap: widget.onTap,
+              onFocusChange: engage,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  if (project.images.isNotEmpty)
+                    ProjectImage(
+                      asset: projectCovers[project.id] ?? project.images.first,
+                      label: project.name,
+                      arabic: widget.arabic,
+                      height: widget.compact ? 190 : 260,
+                    )
+                  else
+                    Container(
+                      height: widget.compact ? 190 : 260,
+                      width: double.infinity,
+                      color: p.raised,
+                      child: Icon(
+                        project.tags.any((t) => t.contains('.NET'))
+                            ? Icons.code
+                            : Icons.devices,
+                        size: 64,
+                        color: p.accent,
                       ),
                     ),
-                    const SizedBox(width: 8),
-                    const Icon(
-                      Icons.arrow_forward,
-                      size: 18,
-                      color: Brand.accent,
+                  Padding(
+                    padding: const EdgeInsets.all(Brand.space),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Expanded(
+                              child: Eyebrow(
+                                project.category.inLanguage(widget.arabic),
+                              ),
+                            ),
+                            Text(
+                              widget.index.toString().padLeft(2, '0'),
+                              style: TextStyle(color: p.muted, fontSize: 12),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 10),
+                        Text(
+                          project.name,
+                          maxLines: widget.compact ? 2 : null,
+                          overflow: widget.compact
+                              ? TextOverflow.ellipsis
+                              : null,
+                          style: Theme.of(context).textTheme.titleLarge,
+                        ),
+                        const SizedBox(height: 10),
+                        Text(
+                          project.description.inLanguage(widget.arabic),
+                          maxLines: widget.compact ? 3 : null,
+                          overflow: widget.compact
+                              ? TextOverflow.ellipsis
+                              : null,
+                        ),
+                        const SizedBox(height: 18),
+                        Wrap(
+                          spacing: 8,
+                          runSpacing: 8,
+                          children:
+                              (widget.compact
+                                      ? project.tags.take(3)
+                                      : project.tags)
+                                  .map(
+                                    (tag) => TechnologyChip(
+                                      label:
+                                          tagTranslations[tag]?.inLanguage(
+                                            widget.arabic,
+                                          ) ??
+                                          tag,
+                                    ),
+                                  )
+                                  .toList(),
+                        ),
+                        const SizedBox(height: 22),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: Text(
+                                Copy.readProject.inLanguage(widget.arabic),
+                                style: Theme.of(context).textTheme.labelLarge!
+                                    .copyWith(color: p.accent),
+                              ),
+                            ),
+                            Icon(
+                              Icons.arrow_outward,
+                              size: 20,
+                              color: p.accent,
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              ],
+                  ),
+                ],
+              ),
             ),
           ),
-        ],
+        ),
       ),
+    );
+  }
+}
+
+class TechnologyChip extends StatelessWidget {
+  const TechnologyChip({super.key, required this.label});
+  final String label;
+  @override
+  Widget build(BuildContext context) => Container(
+    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
+    decoration: BoxDecoration(
+      color: Palette.of(context).raised,
+      borderRadius: BorderRadius.circular(8),
     ),
+    child: Text(label, style: Theme.of(context).textTheme.labelMedium),
   );
 }
 
@@ -221,8 +276,7 @@ class SectionHeading extends StatelessWidget {
     required this.title,
     this.description,
   });
-  final String index;
-  final String title;
+  final String index, title;
   final String? description;
   @override
   Widget build(BuildContext context) => Column(
@@ -233,8 +287,45 @@ class SectionHeading extends StatelessWidget {
       Text(title, style: Theme.of(context).textTheme.displaySmall),
       if (description != null) ...[
         const SizedBox(height: 16),
-        Text(description!, style: Theme.of(context).textTheme.bodyLarge),
+        ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 650),
+          child: Text(
+            description!,
+            style: Theme.of(context).textTheme.bodyLarge,
+          ),
+        ),
       ],
     ],
+  );
+}
+
+class GradientHeading extends StatelessWidget {
+  const GradientHeading({
+    super.key,
+    required this.leading,
+    required this.accent,
+    required this.label,
+    required this.style,
+  });
+  final String leading, accent, label;
+  final TextStyle style;
+  @override
+  Widget build(BuildContext context) => Semantics(
+    header: true,
+    label: label,
+    excludeSemantics: true,
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(leading, style: style),
+        ShaderMask(
+          blendMode: BlendMode.srcIn,
+          shaderCallback: (bounds) => LinearGradient(
+            colors: [Palette.of(context).accent, Palette.of(context).violet],
+          ).createShader(bounds),
+          child: Text(accent, style: style.copyWith(color: Colors.white)),
+        ),
+      ],
+    ),
   );
 }

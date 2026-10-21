@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import '../content/portfolio_content.dart';
+import '../content/project_covers.dart';
 import '../design/theme.dart';
 import 'brand_widgets.dart';
 
@@ -16,9 +17,9 @@ class BrandIdentity extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         CircleAvatar(
-          radius: 22,
+          radius: 18,
           backgroundColor: Brand.mist,
-          backgroundImage: const AssetImage('assets/projects/profile.png'),
+          backgroundImage: const AssetImage('assets/covers/profile.webp'),
         ),
         const SizedBox(width: 10),
         Expanded(
@@ -131,7 +132,14 @@ class _HeroShowcaseState extends State<HeroShowcase>
           child: Container(
             padding: const EdgeInsets.all(24),
             decoration: BoxDecoration(
-              color: Brand.ink,
+              color: Palette.of(context).panel,
+              border: Border.all(color: Palette.of(context).border),
+              boxShadow: [
+                BoxShadow(
+                  color: Palette.of(context).accent.withValues(alpha: .08),
+                  blurRadius: 42,
+                ),
+              ],
               borderRadius: BorderRadius.circular(Brand.radius),
             ),
             child: Column(
@@ -142,7 +150,7 @@ class _HeroShowcaseState extends State<HeroShowcase>
                     Expanded(
                       child: Eyebrow(
                         Copy.work.inLanguage(widget.arabic),
-                        light: true,
+                        light: false,
                       ),
                     ),
                     if (!reducedMotion)
@@ -164,7 +172,8 @@ class _HeroShowcaseState extends State<HeroShowcase>
                       key: ValueKey(project.id),
                       onTap: () => widget.onProject(project),
                       child: ProjectImage(
-                        asset: project.images.first,
+                        asset:
+                            projectCovers[project.id] ?? project.images.first,
                         label: project.name,
                         arabic: widget.arabic,
                         height: widget.wide ? 240 : 190,
@@ -177,13 +186,13 @@ class _HeroShowcaseState extends State<HeroShowcase>
                   project.name,
                   key: const ValueKey('showcase-project-name'),
                   style: Theme.of(context).textTheme.titleLarge!
-                      .copyWith(color: Brand.white),
+                      .copyWith(color: Palette.of(context).text),
                 ),
                 const SizedBox(height: 6),
                 Text(
                   project.category.inLanguage(widget.arabic),
                   style: Theme.of(context).textTheme.bodyMedium!
-                      .copyWith(color: Brand.line),
+                      .copyWith(color: Palette.of(context).muted),
                 ),
                 const SizedBox(height: 14),
                 Wrap(
@@ -202,7 +211,9 @@ class _HeroShowcaseState extends State<HeroShowcase>
                                   ? Icons.radio_button_checked
                                   : Icons.radio_button_unchecked,
                               size: 17,
-                              color: index == e.key ? Brand.lime : Brand.line,
+                              color: index == e.key
+                                  ? Palette.of(context).violet
+                                  : Palette.of(context).muted,
                             ),
                           ),
                         ),

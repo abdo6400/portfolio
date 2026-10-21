@@ -1,74 +1,102 @@
-# Abdelrahman Amr — Flutter portfolio
+# Abdelrahman Amr — Flutter Web portfolio
 
-Bilingual portfolio for employment and freelance audiences, built with Flutter Web and Dart. The original website at D:/work/portfolio is unchanged.
+Live: https://abdelrahman-amr-flutter.vercel.app/
 
-Live site: [abdelrahman-amr-flutter.vercel.app](https://abdelrahman-amr-flutter.vercel.app).
+A bilingual, dark-first portfolio using Flutter Web and Dart. It includes a light theme, sticky navigation with active-section highlighting and scroll progress, a responsive mobile menu, scroll-driven stacked desktop panels, a rotating project showcase, four filterable featured projects, a searchable 19-project archive, image galleries/zoom, opt-in video demos, skills, experience, services, and a validated contact composer. Arabic supports RTL. Existing project/CV configuration and dependencies are preserved; no Flutter packages were added for this redesign.
 
-The homepage highlights four projects, with a searchable archive containing all 19 projects from the original portfolio. Project galleries include thumbnails, swipe/arrow navigation, larger image viewing, and user-initiated video demos. The rotating showcase changes every five seconds, pauses during hover/focus or when the app is hidden, and respects reduced-motion settings. The header uses the existing photo and name. Shared theme tokens use navy, blue, and soft white.
+## Setup and preview
 
-Mobile navigation keeps the photo/name, language switch, and menu on one row. Mobile sections use 32px vertical padding, with tighter introduction and showcase spacing; desktop spacing is preserved.
-
-## Run
+Use the Flutter/Dart versions allowed by pubspec.yaml (the checked SDK was Flutter 3.47.4 / Dart 3.13.3).
 
 ```powershell
 flutter pub get
-flutter run -d web-server --web-hostname 127.0.0.1 --web-port 5314
+flutter run -d chrome --wasm
 ```
 
-For a release preview, build and serve build/web with a static HTTP server.
+For the actual production renderer, build and serve the release:
 
 ```powershell
-flutter build web --release
-python -m http.server 5314 --bind 127.0.0.1 --directory build/web
+flutter build web --release --wasm
+python tool/preview.py --port 5314
 ```
 
-## Validation
+The preview binds to 127.0.0.1 and sets COOP/COEP headers. The release build emits WebAssembly and a JavaScript fallback for browsers without WasmGC. The browser console reports the selected compilation target once at startup. The project does not claim a measured 60 FPS or a universal Wasm speedup.
+
+## Verification
 
 ```powershell
-dart format --output=none --set-exit-if-changed lib test
-flutter analyze
-flutter test
-flutter build web --release
+./tool/verify.ps1
 ```
 
-The nine tests cover mobile Arabic layout and RTL direction, project details and image enlargement, correct project links, failed-link feedback, 320px enlarged-text layout, complete project migration, archive search and empty results, slideshow rotation/pause, and videos waiting for user interaction. Run `tool/verify.ps1` for the full command sequence. Perform desktop/mobile browser inspection as well; widget tests do not establish browser compatibility or real external-link availability.
+This checks formatting, runs Flutter analysis and all tests, and builds the release with --wasm. Tests cover Arabic/RTL, 320px enlarged text, details/gallery enlargement, link failures, project migration/search, slideshow pause and reduced motion, mobile anchors and theme switching, real-project filters, and contact validation/loading/failures/disposal. Release browser QA must also cover desktop, tablet, mobile, keyboard focus, anchor offsets, theme contrast, and console errors.
 
-## Structure
+There is no supplied automated architecture checker. Manually review content independence, page composition, service ownership of external I/O, shared design tokens, and controller/listener cleanup.
 
-- lib/content: bilingual copy and factual project/experience records; no widget or service dependencies.
-- lib/design: shared colors, typography, spacing, radii, and button styling.
-- lib/services: external-link launching and failure handling; no UI dependencies.
-- lib/widgets: shared presentation components using content and design.
-- lib/pages: page composition, scrolling, and project dialogs. Link actions are injected.
-- lib/main.dart: locale state and dependency wiring.
+## Architecture and files
 
-No automated architecture checker was supplied. Review import direction, service isolation, content centralization, and shared-widget use explicitly before release.
+- lib/main.dart: locale/theme state, app wiring, runtime target log.
+- lib/design/theme.dart: light/dark palettes, typography, layout/motion tokens, control themes.
+- lib/content/portfolio_content.dart, all_projects.dart, project_media.dart: verified professional/project records and original galleries.
+- lib/content/studio_content.dart: bilingual section copy, skills, services, configurable contact links.
+- lib/content/project_covers.dart: generated map of lightweight cover images.
+- lib/pages/portfolio_page.dart: sticky navigation, untransformed section anchors, responsive panel composition and scroll state.
+- lib/pages/portfolio_sections.dart: hero, about, skills, experience, services, contact.
+- lib/pages/project_archive.dart: lazy searchable project grid.
+- lib/widgets/brand_widgets.dart: shared layout, typography, gradient heading, chips and interactive project cards.
+- lib/widgets/hero_showcase.dart: rotating showcase, pause/focus/lifecycle/reduced-motion handling.
+- lib/widgets/featured_projects.dart: category filtering for the four selected projects.
+- lib/widgets/section_reveal.dart: finite fallback fades with stable keyboard/anchor geometry.
+- lib/widgets/project_details.dart and project_gallery.dart: project modal, image navigation/zoom, user-started videos.
+- lib/widgets/contact_form.dart and lib/services/contact_service.dart: validation, draft preparation, clipboard/link failure handling.
+- lib/services/link_service.dart: validated external HTTP(S)/mailto launching.
+- assets/covers/: generated WebP previews. Original galleries remain in assets/projects/.
+- tool/verify.ps1, package.ps1, deploy.ps1, vercel-output.json, preview.py: checks, clean static packaging, hosting headers, deployment and preview.
+- tool/optimize_covers.py: optional Pillow-based preview generation; generated covers are committed, so normal builds do not require Pillow.
+- web/index.html and manifest.json: page/social metadata, canonical URL, icon and theme configuration.
+- test/: regression and interaction tests.
 
-## Content and links
+## Content, links and contact behavior
 
-English is the default. The language switch sets Arabic locale and RTL direction. Add `?lang=ar` to open Arabic directly. Project deep links use `?project=addustour`, `?project=thamin`, `?project=sadad`, or `?project=pack-and-go`. Combine parameters, for example `?lang=ar&project=addustour`.
+The site uses the supplied CV, existing portfolio assets, and the owner's LinkedIn role verified on 21 October 2026: Senior Flutter Developer at digitalH, August 2026-present. Existing employers, education, project names and dates are preserved. No client counts, results, testimonials or unverified credentials are invented. Statistics are the actual 19 archived projects and two portfolio languages.
 
-Content comes from the supplied CV and the user's LinkedIn profile, read on 21 October 2026. The current role is Senior Flutter Developer at digitalH, August 2026-present. Two historical end dates differ between the CV and LinkedIn, so the portfolio uses years for LEAPTECH and ProsysJo until confirmed. Product features are distinguished from the developer's contribution. No audience, revenue, performance, or AI-model-development claims are invented.
+The supplied CV is unchanged and predates digitalH. Historical CV/LinkedIn month differences are represented with years for LEAPTECH and ProsysJo. The public email remains unconfirmed; no email address is guessed.
 
-The public Pack and Go repository was inspected for folder structure, both dependency manifests, and both entry points. Its runtime behavior was not audited.
+The contact form validates name, email and message, copies a draft locally, and opens LinkedIn. It never claims to send a message. Nothing is stored or submitted to a form backend; visitors must paste and send in LinkedIn themselves. Copy/link failures produce explicit feedback. Length limits and a single pending action prevent oversized drafts and duplicate clicks; a future real form endpoint needs server-side validation, rate limits and spam protection before enabling submission.
 
-## Assets
+Edit ContactLinks in lib/content/studio_content.dart for social destinations. To display an email link after confirming the owner's email, build with:
 
-All 71 project images/videos, the profile photo, and the unchanged CV were copied from the existing portfolio. The user explicitly authorized reusing that code and publishing this site. Client and third-party assets retain their existing rights. Videos are not initialized until playback is requested. The archive uses a lazy grid; opening it does not mount every card at once.
+```powershell
+flutter build web --release --wasm --dart-define=PORTFOLIO_EMAIL=your-confirmed-address@example.com
+```
 
-## Content follow-ups
+The email link opens the visitor's email application; it does not send automatically. EN/AR and theme choices apply to the current session. Query links: ?lang=ar and ?project=addustour (any archive project ID is supported).
 
-- Vercel hosts this Flutter version at the domain returned by the deployment. The existing GitHub Pages site has its own React build and is unchanged.
-- Confirm the public email: CV ends in 348, existing portfolio data ends in 346. This site uses LinkedIn as its contact destination.
-- Confirm historical employment dates and preferred English/Arabic name spelling.
-- Keep new project additions grounded in supplied work; existing source material was authorized for reuse and publication.
-- Replace web/cv.pdf with an updated CV including digitalH when responsibilities and dates are confirmed. The current download is the supplied CV, which ends in March 2026.
-- Add the final canonical URL and absolute social-preview image once the destination is known. Current metadata includes title, description, and theme color; it does not solve Flutter search-indexing limitations.
-- Vercel serves the app at the domain root; use the default `/` base path. A future subdirectory deployment requires a matching `--base-href`.
-- Verify asset, CV, language, project-dialog, keyboard, browser-back, and external-link behavior at the deployed path. No analytics or tracking is configured.
+## Performance and motion
 
-## Deploying to Vercel
+One scroll listener measures section visibility and updates small notifiers for navigation/progress; the full page does not rebuild per scroll tick. Desktop panel motion is computed in native sliver layout/paint, with cached section children. Fallback fades run once with stable geometry and respect reduced motion. Hover is short and local. There is no scroll hijacking, large blur, video background, or extra animation package. Timers, scroll/page/video controllers and listeners are disposed; autoplay pauses for focus/hover/background lifecycle.
 
-This site uses Vercel's Build Output API with the locally compiled static files in `.vercel/output/static` and `{"version":3}` in `.vercel/output/config.json`. Run `vercel link` for the intended account/project, then `tool/deploy.ps1`. It validates and builds before uploading only the prebuilt output. Do not commit `.vercel`, `.env*`, `.dart_tool`, or `build`.
+The archive builds grid entries lazily. Fifteen cover originals totaling 17,171,234 bytes have WebP previews totaling 861,876 bytes; original media loads in the gallery when requested. Videos initialize only on Play. Static files are served from the same origin.
 
-Vercel project: `abdelrahman-amr-flutter`, under `abdelrahman-amrs-projects`. The current deploy command is `vercel deploy --prebuilt --prod --yes`. Static hosting requires no application environment variables or server functions. Automatic Git-triggered deployment is not configured; use the documented local build/deploy workflow.
+## Vercel deployment
+
+```powershell
+vercel login
+vercel link --project abdelrahman-amr-flutter --scope abdelrahman-amrs-projects
+./tool/deploy.ps1
+```
+
+The deploy script verifies/builds, replaces only this project's generated .vercel/output directory, packages build/web as static output, applies tool/vercel-output.json, and deploys with vercel deploy --prebuilt --prod --yes. To package an already verified build, run tool/package.ps1, then that deploy command. The output sets Cross-Origin-Embedder-Policy: credentialless and Cross-Origin-Opener-Policy: same-origin for threaded Wasm rendering. Verify these headers and application/wasm on the deployed main.dart.wasm response. Do not disable deployment protection to test previews.
+
+Static hosting needs no backend or secret environment variables. Automatic Git-triggered Vercel compilation is not configured. Keep .env*, .vercel/, .dart_tool/ and build/ out of source commits. The existing React app/GitHub Pages deployment at the repository root is separate.
+
+Official references: https://docs.flutter.dev/deployment/web and https://docs.flutter.dev/platform-integration/web/wasm; Vercel Build Output configuration: https://vercel.com/docs/build-output-api/configuration.
+
+## Stacked scrolling
+
+`lib/widgets/stacked_section.dart` contains a native RenderSliver implementation and its focus-aware ScrollController. It uses CustomScrollView with SliverPaintOrder.lastIsTop, so incoming panels paint and hit-test above previous panels. There is one page scroll container and no CSS/HTML integration, wheel interception, artificial scroll speed, autoplay section transition, or extra dependency.
+
+On viewports at least 1000px wide and 640px high with ordinary text scaling, each main panel is at least one available viewport tall. A tall panel first scrolls through all its content; its final viewport then pins while the next panel slides over it. Scroll progress drives a restrained 2.2% scale reduction and a light dimming behind the incoming panel. Reversing scroll reverses the same calculation. Covered panels stop painting/hit-testing. Contact covers Services, then scrolls naturally into the footer.
+
+Navigation uses each sliver's layout scrollStart instead of transformed screen positions. Keyboard/focus reveals clamp to the readable portion of pinned sections. Mobile/tablet, short windows, enlarged text, and reduced-motion preferences use normal scrolling; this avoids unreadable pinned content and scroll traps. Resizing recalculates viewport extents. There are no new controllers/tickers for the effect, and owned scroll/layer resources are disposed.
+
+Tests cover panel ordering, partial coverage, reverse scrolling, tall trailing content, focus reveal after overlap, desktop navigation in both directions, responsive fallback, reduced motion, Contact and the footer. Release browser QA must still verify real wheel/touch/keyboard behavior; automated tests are not an FPS benchmark.
