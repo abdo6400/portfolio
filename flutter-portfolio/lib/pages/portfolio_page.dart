@@ -336,7 +336,8 @@ class _PortfolioPageState extends State<PortfolioPage> {
         ),
         child: ContentWidth(
           vertical: Brand.sectionSpace,
-          mobileVertical: i == 0 ? 24 : Brand.mobileSectionSpace,
+          mobileVertical: i == 0 ? 28 : Brand.mobileSectionSpace,
+          alignment: stacked ? const Alignment(0, -.2) : Alignment.topCenter,
           child: stacked
               ? child
               : SectionReveal(visible: revealed[i], stagger: i, child: child),

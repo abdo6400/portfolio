@@ -10,13 +10,15 @@ class ContentWidth extends StatelessWidget {
     required this.child,
     this.vertical = 0,
     this.mobileVertical,
+    this.alignment = Alignment.topCenter,
   });
   final Widget child;
   final double vertical;
   final double? mobileVertical;
+  final AlignmentGeometry alignment;
   @override
   Widget build(BuildContext context) => Align(
-    alignment: Alignment.topCenter,
+    alignment: alignment,
     heightFactor: 1,
     child: ConstrainedBox(
       constraints: const BoxConstraints(

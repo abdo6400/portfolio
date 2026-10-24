@@ -66,8 +66,37 @@ void main() {
       }
     },
   );
+  testWidgets('balanced panel alignment is opt-in and preserves content size', (
+    tester,
+  ) async {
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: Scaffold(
+          body: SizedBox(
+            height: 600,
+            child: ContentWidth(
+              vertical: 24,
+              alignment: Alignment(0, -.2),
+              child: SizedBox(
+                key: ValueKey('balanced'),
+                height: 80,
+                width: double.infinity,
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+    expect(
+      tester.getTopLeft(find.byKey(const ValueKey('balanced'))).dy,
+      closeTo(212.8, .1),
+    );
+    expect(tester.getSize(find.byKey(const ValueKey('balanced'))).height, 80);
+    expect(tester.takeException(), isNull);
+  });
   testWidgets(
-    'compact navigation uses natural flow and desktop intro starts near header',
+    'desktop panels fill the viewport while compact layouts stay natural',
     (tester) async {
       tester.view.devicePixelRatio = 1;
       addTearDown(tester.view.resetDevicePixelRatio);
@@ -80,9 +109,23 @@ void main() {
           find.byType(StackedSectionSliver, skipOffstage: false).first,
         );
         expect(panel.enabled, width >= Brand.stackMinWidth);
-        expect(panel.panelExtent, lessThan(1100));
+        if (panel.enabled) {
+          expect(
+            panel.panelExtent,
+            greaterThanOrEqualTo(panel.constraints.viewportMainAxisExtent),
+          );
+        } else {
+          expect(
+            panel.panelExtent,
+            lessThan(panel.constraints.viewportMainAxisExtent),
+          );
+        }
         final headingTop = tester.getTopLeft(find.byType(GradientHeading)).dy;
-        expect(headingTop, lessThan(220));
+        expect(headingTop, lessThan(width >= Brand.stackMinWidth ? 450 : 220));
+        expect(
+          headingTop + tester.getSize(find.byType(GradientHeading)).height,
+          lessThan(800),
+        );
         expect(tester.takeException(), isNull);
       }
     },

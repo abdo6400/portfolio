@@ -17,8 +17,8 @@ abstract final class Brand {
   static const navDesktop = 1020.0;
   static const stackMinWidth = navDesktop + space * 2;
   static const stackMinHeight = 640.0;
-  static const mobileSectionSpace = 32.0;
-  static const sectionSpace = 40.0;
+  static const mobileSectionSpace = 40.0;
+  static const sectionSpace = 56.0;
   static const mobileGutter = 20.0;
   static const mobileHeaderSpace = 10.0;
   static const mobileIntroGap = 18.0;
