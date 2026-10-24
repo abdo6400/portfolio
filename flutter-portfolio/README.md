@@ -105,3 +105,7 @@ Tests cover panel ordering, partial coverage, reverse scrolling, tall trailing c
 ## Layout refinement
 
 Desktop stacked panels fill at least one available viewport, with content balanced slightly above the vertical center (Alignment(0, -.2)). Tall content grows naturally and remains fully scrollable. This alignment is opt-in for main stacked sections: the header, archive, footer and compact/reduced-motion layouts keep normal top alignment. Desktop section padding is 56px; compact sections use 40px (28px for the hero) with 20px gutters. Graphite surfaces and blue/teal accents remain, as do project selection, galleries and contact behavior. Stacking starts at 1068px where full desktop navigation fits.
+
+## Section color system
+
+`lib/design/section_style.dart` supplies seven coordinated opaque gradients and cached local themes: Hero blue, About lavender, Skills mint, Projects indigo, Experience amber, Services violet, Contact rose. Dark mode uses deep tinted surfaces; light mode uses pastels. `SectionSurface` applies the local palette to text, controls and cards, and page sections are built inside that theme. Static gradients add no animation controller, image background, blur or scroll listener. Full-height stacking, spacing, navigation, archive and contact behavior are retained.

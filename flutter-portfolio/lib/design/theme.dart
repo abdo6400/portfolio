@@ -12,6 +12,7 @@ abstract final class Brand {
   static const mist = Color(0xFF141B2D);
   static const space = 24.0;
   static const radius = 16.0;
+  static const panelRadius = 36.0;
   static const contentWidth = 1240.0;
   static const desktop = 850.0;
   static const navDesktop = 1020.0;

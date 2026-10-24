@@ -10,6 +10,7 @@ import '../widgets/featured_projects.dart';
 import '../widgets/hero_showcase.dart';
 import '../widgets/project_details.dart';
 import '../widgets/section_reveal.dart';
+import '../widgets/section_surface.dart';
 import '../widgets/stacked_section.dart';
 
 import 'portfolio_sections.dart';
@@ -307,44 +308,32 @@ class _PortfolioPageState extends State<PortfolioPage> {
       ],
     ),
   );
-  Widget section(
-    int i,
-    Widget child, {
-    required bool stacked,
-    bool tinted = false,
-  }) => StackedSectionSliver(
-    key: anchors[i],
-    enabled: stacked,
-    // Contact still covers Services, then scrolls normally into the footer.
-    pin: i < 6,
-    child: RepaintBoundary(
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          color: tinted
-              ? Palette.of(context).panel
-              : Palette.of(context).background,
-          borderRadius: stacked && i > 0
-              ? const BorderRadius.vertical(top: Radius.circular(Brand.radius))
-              : null,
-          border: stacked && i > 0
-              ? Border.all(color: Palette.of(context).border)
-              : Border(
-                  top: BorderSide(
-                    color: Palette.of(context).border.withValues(alpha: .55),
-                  ),
-                ),
+  Widget section(int i, WidgetBuilder builder, {required bool stacked}) =>
+      StackedSectionSliver(
+        key: anchors[i],
+        enabled: stacked,
+        pin: i < 6,
+        child: RepaintBoundary(
+          child: SectionSurface(
+            index: i,
+            stacked: stacked,
+            builder: (context) => ContentWidth(
+              vertical: Brand.sectionSpace,
+              mobileVertical: i == 0 ? 28 : Brand.mobileSectionSpace,
+              alignment: stacked
+                  ? const Alignment(0, -.2)
+                  : Alignment.topCenter,
+              child: stacked
+                  ? builder(context)
+                  : SectionReveal(
+                      visible: revealed[i],
+                      stagger: i,
+                      child: builder(context),
+                    ),
+            ),
+          ),
         ),
-        child: ContentWidth(
-          vertical: Brand.sectionSpace,
-          mobileVertical: i == 0 ? 28 : Brand.mobileSectionSpace,
-          alignment: stacked ? const Alignment(0, -.2) : Alignment.topCenter,
-          child: stacked
-              ? child
-              : SectionReveal(visible: revealed[i], stagger: i, child: child),
-        ),
-      ),
-    ),
-  );
+      );
   @override
   Widget build(BuildContext context) {
     final parts = PortfolioSections(
@@ -393,31 +382,45 @@ class _PortfolioPageState extends State<PortfolioPage> {
                       controller: scroll,
                       paintOrder: SliverPaintOrder.lastIsTop,
                       slivers: [
-                        section(0, parts.hero(context), stacked: stacked),
-                        section(1, parts.about(context), stacked: stacked),
+                        section(
+                          0,
+                          (sectionContext) => parts.hero(sectionContext),
+                          stacked: stacked,
+                        ),
+                        section(
+                          1,
+                          (sectionContext) => parts.about(sectionContext),
+                          stacked: stacked,
+                        ),
                         section(
                           2,
-                          parts.skills(context),
+                          (sectionContext) => parts.skills(sectionContext),
                           stacked: stacked,
-                          tinted: true,
                         ),
                         section(
                           3,
-                          FeaturedProjects(
+                          (_) => FeaturedProjects(
                             arabic: widget.arabic,
                             onProject: showProject,
                             onArchive: archive,
                           ),
                           stacked: stacked,
                         ),
-                        section(4, parts.journey(context), stacked: stacked),
+                        section(
+                          4,
+                          (sectionContext) => parts.journey(sectionContext),
+                          stacked: stacked,
+                        ),
                         section(
                           5,
-                          parts.services(context),
+                          (sectionContext) => parts.services(sectionContext),
                           stacked: stacked,
-                          tinted: true,
                         ),
-                        section(6, parts.contact(context), stacked: stacked),
+                        section(
+                          6,
+                          (sectionContext) => parts.contact(sectionContext),
+                          stacked: stacked,
+                        ),
                         SliverToBoxAdapter(
                           key: anchors[7],
                           child: ColoredBox(
