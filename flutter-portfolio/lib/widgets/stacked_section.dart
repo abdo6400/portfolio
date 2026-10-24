@@ -66,16 +66,16 @@ class RenderStackedSection extends RenderSliverSingleBoxAdapter {
       return;
     }
     final viewport = constraints.viewportMainAxisExtent;
-    child!.layout(
-      constraints.asBoxConstraints(minExtent: enabled ? viewport : 0),
-      parentUsesSize: true,
-    );
+    child!.layout(constraints.asBoxConstraints(), parentUsesSize: true);
     _extent = child!.size.height;
     final offset = constraints.scrollOffset;
     final pinStart = math.max(0.0, _extent - viewport);
     final pinned = enabled && pin;
     _position = -(pinned ? math.min(offset, pinStart) : offset);
-    _cover = pinned ? ((offset - pinStart) / viewport).clamp(0.0, 1.0) : 0;
+    _cover = pinned
+        ? ((offset - pinStart) / math.max(1.0, math.min(viewport, _extent)))
+              .clamp(0.0, 1.0)
+        : 0;
     final covered = pinned && offset >= _extent;
     final paintExtent = covered
         ? 0.0

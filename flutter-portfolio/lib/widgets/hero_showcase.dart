@@ -131,14 +131,15 @@ class _HeroShowcaseState extends State<HeroShowcase>
         child: Focus(
           onFocusChange: (value) => focused = value,
           child: Container(
-            padding: const EdgeInsets.all(24),
+            padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
               color: Palette.of(context).panel,
               border: Border.all(color: Palette.of(context).border),
-              boxShadow: [
+              boxShadow: const [
                 BoxShadow(
-                  color: Palette.of(context).accent.withValues(alpha: .08),
-                  blurRadius: 42,
+                  color: Color(0x14000000),
+                  blurRadius: 20,
+                  offset: Offset(0, 8),
                 ),
               ],
               borderRadius: BorderRadius.circular(Brand.radius),
@@ -156,7 +157,7 @@ class _HeroShowcaseState extends State<HeroShowcase>
                     ),
                     if (!reducedMotion)
                       IconButton(
-                        color: Brand.lime,
+                        color: Palette.of(context).accent,
                         tooltip: (paused ? Copy.resume : Copy.pauseSlides)
                             .inLanguage(widget.arabic),
                         onPressed: () => setState(() => paused = !paused),
@@ -177,7 +178,7 @@ class _HeroShowcaseState extends State<HeroShowcase>
                             projectCovers[project.id] ?? project.images.first,
                         label: project.name,
                         arabic: widget.arabic,
-                        height: widget.wide ? 240 : 190,
+                        height: widget.wide ? 220 : 180,
                       ),
                     ),
                   ),

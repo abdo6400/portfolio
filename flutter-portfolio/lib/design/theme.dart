@@ -4,23 +4,25 @@ abstract final class Brand {
   static const ink = Color(0xFF101D35);
   static const paper = Color(0xFFF6F8FC);
   static const white = Color(0xFFFFFFFF);
-  static const accent = Color(0xFF7C9CFF);
-  static const violet = Color(0xFFA794FF);
-  static const muted = Color(0xFFA6B0C6);
+  static const accent = Color(0xFF67B8F7);
+  static const violet = Color(0xFF72D9C7);
+  static const muted = Color(0xFFA9B6C4);
   static const line = Color(0xFF273148);
-  static const lime = Color(0xFFC2B5FF);
+  static const lime = Color(0xFF72D9C7);
   static const mist = Color(0xFF141B2D);
   static const space = 24.0;
-  static const radius = 22.0;
-  static const contentWidth = 1160.0;
+  static const radius = 16.0;
+  static const contentWidth = 1240.0;
   static const desktop = 850.0;
   static const navDesktop = 1020.0;
-  static const stackMinWidth = 1000.0;
+  static const stackMinWidth = navDesktop + space * 2;
   static const stackMinHeight = 640.0;
-  static const mobileSectionSpace = 40.0;
+  static const mobileSectionSpace = 32.0;
+  static const sectionSpace = 40.0;
+  static const mobileGutter = 20.0;
   static const mobileHeaderSpace = 10.0;
   static const mobileIntroGap = 18.0;
-  static const motion = Duration(milliseconds: 280);
+  static const motion = Duration(milliseconds: 220);
   static const entrance = Duration(milliseconds: 440);
 }
 
@@ -38,24 +40,24 @@ class Palette extends ThemeExtension<Palette> {
   });
   final Color background, panel, raised, text, muted, border, accent, violet;
   static const dark = Palette(
-    background: Color(0xFF090C14),
-    panel: Color(0xFF111725),
-    raised: Color(0xFF182136),
-    text: Color(0xFFF1F3FC),
-    muted: Color(0xFFA6B0C6),
-    border: Color(0xFF2B3550),
-    accent: Color(0xFF93ACFF),
-    violet: Color(0xFFBAA9FF),
+    background: Color(0xFF0C1015),
+    panel: Color(0xFF141A22),
+    raised: Color(0xFF1B2530),
+    text: Color(0xFFF1F5F9),
+    muted: Color(0xFFA9B6C4),
+    border: Color(0xFF2A3642),
+    accent: Color(0xFF78C2FA),
+    violet: Color(0xFF78DCC8),
   );
   static const light = Palette(
-    background: Color(0xFFF7F8FD),
+    background: Color(0xFFF5F7FA),
     panel: Colors.white,
-    raised: Color(0xFFEDF0FA),
-    text: Color(0xFF141D34),
-    muted: Color(0xFF53617A),
-    border: Color(0xFFD4DBEC),
-    accent: Color(0xFF3458D3),
-    violet: Color(0xFF7353CF),
+    raised: Color(0xFFEAF0F5),
+    text: Color(0xFF172536),
+    muted: Color(0xFF526375),
+    border: Color(0xFFD4DFE7),
+    accent: Color(0xFF186FA7),
+    violet: Color(0xFF126F64),
   );
   static Palette of(BuildContext context) =>
       Theme.of(context).extension<Palette>() ??
@@ -119,7 +121,7 @@ abstract final class BrandTheme {
         color: p.text,
       ),
       displaySmall: TextStyle(
-        fontSize: 38,
+        fontSize: 34,
         height: 1.16,
         fontWeight: FontWeight.w700,
         letterSpacing: -1.2,
@@ -137,7 +139,7 @@ abstract final class BrandTheme {
         fontWeight: FontWeight.w600,
         color: p.text,
       ),
-      bodyLarge: TextStyle(fontSize: 18, height: 1.65, color: p.muted),
+      bodyLarge: TextStyle(fontSize: 17, height: 1.6, color: p.muted),
       bodyMedium: TextStyle(fontSize: 15, height: 1.6, color: p.muted),
       labelLarge: TextStyle(
         fontSize: 14,

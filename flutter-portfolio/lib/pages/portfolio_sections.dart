@@ -33,13 +33,13 @@ class PortfolioSections {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(flex: firstFlex, child: first),
-              const SizedBox(width: 56),
+              const SizedBox(width: 36),
               Expanded(flex: secondFlex, child: second),
             ],
           )
         : Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [first, const SizedBox(height: 28), second],
+            children: [first, const SizedBox(height: 24), second],
           ),
   );
   Widget hero(BuildContext context) => LayoutBuilder(
@@ -84,7 +84,9 @@ class PortfolioSections {
                         ? Theme.of(context).textTheme.displayLarge
                         : Theme.of(context).textTheme.displaySmall)!
                     .copyWith(
-                      fontSize: wide ? 62 : (c.maxWidth < 340 ? 37 : 44),
+                      fontSize: wide ? 54 : (c.maxWidth < 340 ? 32 : 38),
+                      letterSpacing: arabic ? 0 : -1.5,
+                      height: arabic ? 1.22 : 1.1,
                     ),
           ),
           const SizedBox(height: 22),
@@ -108,7 +110,7 @@ class PortfolioSections {
               ),
             ],
           ),
-          const SizedBox(height: 28),
+          const SizedBox(height: 24),
           Wrap(
             spacing: 12,
             runSpacing: 8,
@@ -157,16 +159,16 @@ class PortfolioSections {
         children: [
           if (wide)
             Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Expanded(flex: 6, child: intro),
-                const SizedBox(width: 64),
+                const SizedBox(width: 40),
                 Expanded(flex: 5, child: composition),
               ],
             )
           else ...[
             intro,
-            const SizedBox(height: 28),
+            const SizedBox(height: 24),
             composition,
           ],
           const SizedBox(height: 24),
@@ -275,7 +277,7 @@ class PortfolioSections {
         title: t(StudioCopy.skillsTitle),
         description: t(StudioCopy.skillsBody),
       ),
-      const SizedBox(height: 32),
+      const SizedBox(height: 24),
       LayoutBuilder(
         builder: (_, c) {
           final columns = c.maxWidth >= 1000

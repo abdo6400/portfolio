@@ -5,6 +5,52 @@ import 'package:personal_portfolio/widgets/stacked_section.dart';
 
 void main() {
   testWidgets(
+    'short panels keep their natural height and reverse their overlap',
+    (tester) async {
+      final scroll = StackedScrollController();
+      addTearDown(scroll.dispose);
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: CustomScrollView(
+              controller: scroll,
+              paintOrder: SliverPaintOrder.lastIsTop,
+              slivers: const [
+                StackedSectionSliver(
+                  enabled: true,
+                  child: SizedBox(key: ValueKey('short'), height: 200),
+                ),
+                StackedSectionSliver(
+                  enabled: true,
+                  pin: false,
+                  child: SizedBox(key: ValueKey('next'), height: 800),
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+      final first = tester.renderObject<RenderStackedSection>(
+        find.byType(StackedSectionSliver).first,
+      );
+      expect(first.panelExtent, 200);
+      scroll.jumpTo(100);
+      await tester.pumpAndSettle();
+      expect(
+        tester.getTopLeft(find.byKey(const ValueKey('short'))).dy,
+        closeTo(3.3, .01),
+      );
+      expect(tester.getTopLeft(find.byKey(const ValueKey('next'))).dy, 100);
+      expect(first.coverProgress, .5);
+      scroll.jumpTo(0);
+      await tester.pumpAndSettle();
+      expect(first.coverProgress, 0);
+      expect(tester.getTopLeft(find.byKey(const ValueKey('next'))).dy, 200);
+      expect(tester.takeException(), isNull);
+    },
+  );
+  testWidgets(
     'panels pin, overlap in order, reverse, and expose tall content',
     (tester) async {
       tester.view.physicalSize = const Size(1000, 600);

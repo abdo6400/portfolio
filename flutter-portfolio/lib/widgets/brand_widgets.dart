@@ -15,7 +15,9 @@ class ContentWidth extends StatelessWidget {
   final double vertical;
   final double? mobileVertical;
   @override
-  Widget build(BuildContext context) => Center(
+  Widget build(BuildContext context) => Align(
+    alignment: Alignment.topCenter,
+    heightFactor: 1,
     child: ConstrainedBox(
       constraints: const BoxConstraints(
         maxWidth: Brand.contentWidth + Brand.space * 2,
@@ -23,7 +25,9 @@ class ContentWidth extends StatelessWidget {
       child: LayoutBuilder(
         builder: (_, c) => Padding(
           padding: EdgeInsets.symmetric(
-            horizontal: Brand.space,
+            horizontal: c.maxWidth < Brand.desktop
+                ? Brand.mobileGutter
+                : Brand.space,
             vertical: c.maxWidth - Brand.space * 2 < Brand.desktop
                 ? mobileVertical ?? vertical
                 : vertical,
