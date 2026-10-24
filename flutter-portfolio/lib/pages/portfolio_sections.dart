@@ -132,27 +132,10 @@ class PortfolioSections {
           ),
         ],
       );
-      final composition = Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(bottom: 14),
-            child: Row(
-              children: [
-                Icon(Icons.code, size: 18, color: p.violet),
-                const SizedBox(width: 8),
-                Expanded(
-                  child: Text(
-                    t(Copy.role),
-                    style: TextStyle(color: p.muted, fontSize: 12),
-                  ),
-                ),
-                Text('01—04', style: TextStyle(color: p.muted, fontSize: 11)),
-              ],
-            ),
-          ),
-          HeroShowcase(arabic: arabic, wide: wide, onProject: onProject),
-        ],
+      final composition = HeroShowcase(
+        arabic: arabic,
+        wide: wide,
+        onProject: onProject,
       );
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,

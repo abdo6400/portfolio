@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:personal_portfolio/content/all_projects.dart';
 import 'package:personal_portfolio/content/featured_projects.dart';
@@ -113,6 +114,65 @@ void main() {
       'ALBASHEQ',
     );
   });
+
+  testWidgets(
+    'minimal showcase supports swipe, keyboard and opening its title',
+    (tester) async {
+      String? opened;
+      await tester.pumpWidget(
+        MaterialApp(
+          theme: BrandTheme.light,
+          home: Scaffold(
+            body: SizedBox(
+              width: 500,
+              child: HeroShowcase(
+                arabic: false,
+                wide: true,
+                onProject: (project) => opened = project.id,
+              ),
+            ),
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+      expect(find.text('Selected work'), findsNothing);
+      expect(find.byIcon(Icons.radio_button_checked), findsNothing);
+      final gesture = await tester.startGesture(
+        tester.getCenter(find.byKey(const ValueKey('showcase-image'))),
+      );
+      await gesture.moveBy(const Offset(-160, 0));
+      await tester.pump(const Duration(seconds: 6));
+      expect(
+        tester
+            .widget<Text>(find.byKey(const ValueKey('showcase-project-name')))
+            .data,
+        'ADDUSTOUR',
+      );
+      await gesture.up();
+      await tester.pumpAndSettle();
+      expect(
+        tester
+            .widget<Text>(find.byKey(const ValueKey('showcase-project-name')))
+            .data,
+        'ALBASHEQ',
+      );
+      await tester.tap(find.byKey(const ValueKey('showcase-project-name')));
+      expect(opened, 'albasheq');
+      Focus.of(
+        tester.element(find.byKey(const ValueKey('showcase-project-name'))),
+      ).requestFocus();
+      await tester.pump();
+      await tester.sendKeyEvent(LogicalKeyboardKey.arrowRight);
+      await tester.pumpAndSettle();
+      expect(
+        tester
+            .widget<Text>(find.byKey(const ValueKey('showcase-project-name')))
+            .data,
+        'SADAD',
+      );
+      expect(tester.takeException(), isNull);
+    },
+  );
 
   testWidgets('videos wait for user playback', (tester) async {
     await tester.pumpWidget(

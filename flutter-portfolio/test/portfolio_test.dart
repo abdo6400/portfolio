@@ -16,13 +16,13 @@ void main() {
     expect(tester.takeException(), isNull);
     expect(
       find.text('Senior Flutter Developer at digitalH', skipOffstage: false),
-      findsNWidgets(2),
+      findsOneWidget,
     );
     await tester.tap(find.byKey(const ValueKey('language-toggle')));
     await tester.pumpAndSettle();
     expect(
       find.text('مطور Flutter أول لدى digitalH', skipOffstage: false),
-      findsNWidgets(2),
+      findsOneWidget,
     );
     expect(
       Directionality.of(

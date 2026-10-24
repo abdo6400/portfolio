@@ -109,3 +109,7 @@ Desktop stacked panels fill at least one available viewport, with content balanc
 ## Section color system
 
 `lib/design/section_style.dart` supplies seven coordinated opaque gradients and cached local themes: Hero blue, About lavender, Skills mint, Projects indigo, Experience amber, Services violet, Contact rose. Dark mode uses deep tinted surfaces; light mode uses pastels. `SectionSurface` applies the local palette to text, controls and cards, and page sections are built inside that theme. Static gradients add no animation controller, image background, blur or scroll listener. Full-height stacking, spacing, navigation, archive and contact behavior are retained.
+
+## Minimal project showcase
+
+The hero showcase displays a full-width project image and clickable title, without an enclosing card, role line, category, section heading or dot row. Horizontal swipes, left/right keys and screen-reader custom actions browse projects; both the image and title open details. A compact pause/resume control overlays the image. Existing hover/focus/background pauses and reduced-motion behavior are preserved.

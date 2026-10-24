@@ -1,6 +1,15 @@
 import 'portfolio_content.dart';
 
 abstract final class StudioCopy {
+  static const showcaseHint = Bilingual(
+    'Swipe or use arrow keys to browse projects.',
+    'اسحب أو استخدم مفاتيح الأسهم لتصفح المشاريع.',
+  );
+  static const nextProject = Bilingual('Next project', 'المشروع التالي');
+  static const previousProject = Bilingual(
+    'Previous project',
+    'المشروع السابق',
+  );
   static const home = Bilingual('Home', 'الرئيسية');
   static const skills = Bilingual('Skills', 'المهارات');
   static const projects = Bilingual('Projects', 'المشاريع');

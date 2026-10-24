@@ -1,12 +1,15 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter/gestures.dart';
+import 'package:flutter/semantics.dart';
 
 import '../content/portfolio_content.dart';
 import '../content/featured_projects.dart';
 import '../content/project_covers.dart';
+import '../content/studio_content.dart';
 import '../design/theme.dart';
-import 'brand_widgets.dart';
 
 class BrandIdentity extends StatelessWidget {
   const BrandIdentity({super.key, required this.arabic});
@@ -88,6 +91,7 @@ class _HeroShowcaseState extends State<HeroShowcase>
   bool hovered = false;
   bool focused = false;
   bool foreground = true;
+  bool dragging = false;
   bool reducedMotion = false;
   @override
   void initState() {
@@ -102,7 +106,12 @@ class _HeroShowcaseState extends State<HeroShowcase>
     timer?.cancel();
     if (!reducedMotion) {
       timer = Timer.periodic(const Duration(seconds: 5), (_) {
-        if (mounted && !paused && !hovered && !focused && foreground) {
+        if (mounted &&
+            !paused &&
+            !hovered &&
+            !focused &&
+            !dragging &&
+            foreground) {
           setState(() => index = (index + 1) % featuredProjects.length);
         }
       });
@@ -121,109 +130,150 @@ class _HeroShowcaseState extends State<HeroShowcase>
     super.dispose();
   }
 
+  double dragDistance = 0;
+  void shift(int direction) => setState(() {
+    index = (index + direction) % featuredProjects.length;
+  });
+
   @override
   Widget build(BuildContext context) {
     final project = featuredProjects[index];
+    final p = Palette.of(context);
     return RepaintBoundary(
       child: MouseRegion(
         onEnter: (_) => hovered = true,
         onExit: (_) => hovered = false,
         child: Focus(
           onFocusChange: (value) => focused = value,
-          child: Container(
-            padding: const EdgeInsets.all(20),
-            decoration: BoxDecoration(
-              color: Palette.of(context).panel,
-              border: Border.all(color: Palette.of(context).border),
-              boxShadow: const [
-                BoxShadow(
-                  color: Color(0x14000000),
-                  blurRadius: 20,
-                  offset: Offset(0, 8),
-                ),
-              ],
-              borderRadius: BorderRadius.circular(Brand.radius),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Expanded(
-                      child: Eyebrow(
-                        Copy.work.inLanguage(widget.arabic),
-                        light: false,
-                      ),
-                    ),
-                    if (!reducedMotion)
-                      IconButton(
-                        color: Palette.of(context).accent,
-                        tooltip: (paused ? Copy.resume : Copy.pauseSlides)
-                            .inLanguage(widget.arabic),
-                        onPressed: () => setState(() => paused = !paused),
-                        icon: Icon(paused ? Icons.play_arrow : Icons.pause),
-                      ),
-                  ],
-                ),
-                const SizedBox(height: 18),
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(12),
-                  child: AnimatedSwitcher(
-                    duration: Duration(milliseconds: reducedMotion ? 0 : 250),
-                    child: InkWell(
-                      key: ValueKey(project.id),
-                      onTap: () => widget.onProject(project),
-                      child: ProjectImage(
-                        asset:
-                            projectCovers[project.id] ?? project.images.first,
-                        label: project.name,
-                        arabic: widget.arabic,
-                        height: widget.wide ? 220 : 180,
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 20),
-                Text(
-                  project.name,
-                  key: const ValueKey('showcase-project-name'),
-                  style: Theme.of(context).textTheme.titleLarge!
-                      .copyWith(color: Palette.of(context).text),
-                ),
-                const SizedBox(height: 6),
-                Text(
-                  project.category.inLanguage(widget.arabic),
-                  style: Theme.of(context).textTheme.bodyMedium!
-                      .copyWith(color: Palette.of(context).muted),
-                ),
-                const SizedBox(height: 14),
-                Wrap(
-                  spacing: 8,
-                  children: featuredProjects
-                      .asMap()
-                      .entries
-                      .map(
-                        (e) => Semantics(
-                          selected: index == e.key,
-                          child: IconButton(
-                            tooltip: e.value.name,
-                            onPressed: () => setState(() => index = e.key),
-                            icon: Icon(
-                              index == e.key
-                                  ? Icons.radio_button_checked
-                                  : Icons.radio_button_unchecked,
-                              size: 17,
-                              color: index == e.key
-                                  ? Palette.of(context).violet
-                                  : Palette.of(context).muted,
+          onKeyEvent: (_, event) {
+            if (event is! KeyDownEvent) return KeyEventResult.ignored;
+            final key = event.logicalKey;
+            if (key != LogicalKeyboardKey.arrowLeft &&
+                key != LogicalKeyboardKey.arrowRight) {
+              return KeyEventResult.ignored;
+            }
+            final right = key == LogicalKeyboardKey.arrowRight;
+            shift((right != widget.arabic) ? 1 : -1);
+            return KeyEventResult.handled;
+          },
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Semantics(
+                hint: StudioCopy.showcaseHint.inLanguage(widget.arabic),
+                customSemanticsActions: {
+                  CustomSemanticsAction(
+                    label: StudioCopy.nextProject.inLanguage(widget.arabic),
+                  ): () =>
+                      shift(1),
+                  CustomSemanticsAction(
+                    label: StudioCopy.previousProject.inLanguage(widget.arabic),
+                  ): () =>
+                      shift(-1),
+                },
+                child: GestureDetector(
+                  dragStartBehavior: DragStartBehavior.down,
+                  onHorizontalDragStart: (_) {
+                    dragging = true;
+                    dragDistance = 0;
+                  },
+                  onHorizontalDragCancel: () {
+                    dragging = false;
+                    dragDistance = 0;
+                  },
+                  onHorizontalDragUpdate: (details) =>
+                      dragDistance += details.delta.dx,
+                  onHorizontalDragEnd: (_) {
+                    if (dragDistance.abs() > 32) {
+                      shift((dragDistance < 0) != widget.arabic ? 1 : -1);
+                    }
+                    dragDistance = 0;
+                    dragging = false;
+                  },
+                  child: Stack(
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(Brand.radius),
+                        child: AspectRatio(
+                          key: const ValueKey('showcase-image'),
+                          aspectRatio: Brand.showcaseImageRatio,
+                          child: AnimatedSwitcher(
+                            duration: Duration(
+                              milliseconds: reducedMotion ? 0 : 250,
+                            ),
+                            child: Material(
+                              key: ValueKey(project.id),
+                              color: p.raised,
+                              child: InkWell(
+                                onTap: () => widget.onProject(project),
+                                child: Image.asset(
+                                  projectCovers[project.id] ??
+                                      project.images.first,
+                                  width: double.infinity,
+                                  height: double.infinity,
+                                  fit: BoxFit.cover,
+                                  semanticLabel: project.name,
+                                  errorBuilder: (_, _, _) => Center(
+                                    child: Text(
+                                      Copy.imageFailed.inLanguage(
+                                        widget.arabic,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
                             ),
                           ),
                         ),
-                      )
-                      .toList(),
+                      ),
+                      if (!reducedMotion)
+                        PositionedDirectional(
+                          top: 8,
+                          end: 8,
+                          child: Material(
+                            color: p.panel,
+                            shape: const CircleBorder(),
+                            child: IconButton(
+                              color: p.text,
+                              tooltip: (paused ? Copy.resume : Copy.pauseSlides)
+                                  .inLanguage(widget.arabic),
+                              onPressed: () => setState(() => paused = !paused),
+                              iconSize: 18,
+                              icon: Icon(
+                                paused ? Icons.play_arrow : Icons.pause,
+                              ),
+                            ),
+                          ),
+                        ),
+                    ],
+                  ),
                 ),
-              ],
-            ),
+              ),
+              const SizedBox(height: 8),
+              Material(
+                color: Colors.transparent,
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(12),
+                  onTap: () => widget.onProject(project),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 12),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            project.name,
+                            key: const ValueKey('showcase-project-name'),
+                            style: Theme.of(context).textTheme.titleLarge!
+                                .copyWith(color: p.text),
+                          ),
+                        ),
+                        Icon(Icons.arrow_outward, size: 22, color: p.accent),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       ),
