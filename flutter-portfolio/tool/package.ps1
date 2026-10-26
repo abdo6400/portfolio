@@ -4,9 +4,7 @@ $outputRoot = [System.IO.Path]::GetFullPath((Join-Path $projectRoot '.vercel/out
 $expectedRoot = Join-Path (Join-Path $projectRoot '.vercel') 'output'
 if ($outputRoot -ne $expectedRoot) { throw 'Unexpected output directory.' }
 $buildRoot = Join-Path $projectRoot 'build/web'
-if (-not (Test-Path -LiteralPath (Join-Path $buildRoot 'main.dart.wasm'))) {
-    throw 'A successful Flutter --wasm build is required before packaging.'
-}
+& (Join-Path $PSScriptRoot 'check_wasm_fresh.ps1') -SourceRoot (Join-Path $projectRoot 'lib') -WasmFile (Join-Path $buildRoot 'main.dart.wasm')
 # Only this project-owned generated output directory is replaced.
 if (Test-Path -LiteralPath $outputRoot) {
     $outputItem = Get-Item -LiteralPath $outputRoot -Force

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
 import '../content/portfolio_content.dart';
+import '../content/project_covers.dart';
 import '../design/theme.dart';
 import 'brand_widgets.dart';
 
@@ -33,6 +34,14 @@ class _ProjectGalleryState extends State<ProjectGallery> {
         : const Duration(milliseconds: 240),
     curve: Curves.easeOut,
   );
+
+  String previewAsset(int i) {
+    final asset = widget.project.images[i];
+    if (i == 0 && !asset.endsWith('.mp4')) {
+      return projectCovers[widget.project.id] ?? asset;
+    }
+    return asset;
+  }
 
   void enlarge(String asset) => showDialog<void>(
     context: context,
@@ -92,7 +101,8 @@ class _ProjectGalleryState extends State<ProjectGallery> {
                       child: Tooltip(
                         message: Copy.enlarge.inLanguage(widget.arabic),
                         child: ProjectImage(
-                          asset: media[i],
+                          asset: previewAsset(i),
+                          fallbackAsset: media[i],
                           label: '${widget.project.name} ${i + 1}',
                           arabic: widget.arabic,
                           height: 370,
@@ -151,12 +161,22 @@ class _ProjectGalleryState extends State<ProjectGallery> {
                       child: media[i].endsWith('.mp4')
                           ? const Icon(Icons.play_circle_outline)
                           : Image.asset(
-                              media[i],
+                              previewAsset(i),
                               fit: BoxFit.contain,
                               cacheWidth: 160,
-                              errorBuilder: (_, _, _) => const Icon(
-                                Icons.image_not_supported_outlined,
-                              ),
+                              errorBuilder: (_, _, _) =>
+                                  previewAsset(i) != media[i]
+                                  ? Image.asset(
+                                      media[i],
+                                      fit: BoxFit.contain,
+                                      cacheWidth: 160,
+                                      errorBuilder: (_, _, _) => const Icon(
+                                        Icons.image_not_supported_outlined,
+                                      ),
+                                    )
+                                  : const Icon(
+                                      Icons.image_not_supported_outlined,
+                                    ),
                             ),
                     ),
                   ),

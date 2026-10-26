@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/semantics.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:personal_portfolio/content/all_projects.dart';
 import 'package:personal_portfolio/content/featured_projects.dart';
+import 'package:personal_portfolio/content/project_covers.dart';
 import 'package:personal_portfolio/design/theme.dart';
 import 'package:personal_portfolio/main.dart';
 import 'package:personal_portfolio/pages/project_archive.dart';
@@ -41,6 +43,32 @@ void main() {
       await tester.tap(find.byType(ProjectCard, skipOffstage: false).first);
       await tester.pumpAndSettle();
       expect(find.text('1 / 9'), findsOneWidget);
+      final preview = tester.widget<ProjectImage>(
+        find
+            .descendant(
+              of: find.byType(ProjectGallery),
+              matching: find.byType(ProjectImage),
+            )
+            .first,
+      );
+      expect(preview.asset, projectCovers['addustour']);
+      expect(preview.fallbackAsset, allProjects.first.images.first);
+      await tester.tap(find.byTooltip('Open larger image').hitTestable().first);
+      await tester.pumpAndSettle();
+      final zoomed = tester.widget<Image>(
+        find
+            .descendant(
+              of: find.byType(InteractiveViewer),
+              matching: find.byType(Image),
+            )
+            .first,
+      );
+      expect(
+        (zoomed.image as AssetImage).assetName,
+        allProjects.first.images.first,
+      );
+      await tester.tap(find.byTooltip('Close project').hitTestable().first);
+      await tester.pumpAndSettle();
       await tester.tap(find.byTooltip('Next image'));
       await tester.pumpAndSettle();
       expect(find.text('2 / 9'), findsOneWidget);
@@ -50,6 +78,58 @@ void main() {
       await tester.tap(find.byTooltip('Close project').hitTestable().first);
       await tester.pumpAndSettle();
       expect(find.text('2 / 9'), findsOneWidget);
+    },
+  );
+
+  testWidgets(
+    'project preview falls back when its optimized image is missing',
+    (tester) async {
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: Scaffold(
+            body: SizedBox(
+              width: 200,
+              child: ProjectImage(
+                asset: 'assets/covers/missing.webp',
+                fallbackAsset: 'assets/covers/addustour.webp',
+                label: 'preview',
+                arabic: false,
+              ),
+            ),
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+      expect(
+        find.byWidgetPredicate(
+          (widget) =>
+              widget is Image &&
+              widget.image is AssetImage &&
+              (widget.image as AssetImage).assetName ==
+                  'assets/covers/addustour.webp',
+        ),
+        findsOneWidget,
+      );
+      expect(find.text('Project image unavailable'), findsNothing);
+      expect(tester.takeException(), isNull);
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: Scaffold(
+            body: SizedBox(
+              width: 200,
+              child: ProjectImage(
+                asset: 'assets/covers/missing.webp',
+                fallbackAsset: 'assets/projects/missing.png',
+                label: 'preview',
+                arabic: false,
+              ),
+            ),
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+      expect(find.text('Project image unavailable'), findsOneWidget);
+      expect(tester.takeException(), isNull);
     },
   );
 
@@ -137,6 +217,26 @@ void main() {
       await tester.pumpAndSettle();
       expect(find.text('Selected work'), findsNothing);
       expect(find.byIcon(Icons.radio_button_checked), findsNothing);
+      final semantics = tester.ensureSemantics();
+      final imageAction = tester.getSemantics(
+        find.byKey(const ValueKey('showcase-open-image')),
+      );
+      expect(imageAction.flagsCollection.isButton, isTrue);
+      expect(
+        imageAction.getSemanticsData().hasAction(SemanticsAction.tap),
+        isTrue,
+      );
+      expect(imageAction.label, contains('ADDUSTOUR'));
+      semantics.dispose();
+      final image = tester.widget<Image>(
+        find
+            .descendant(
+              of: find.byKey(const ValueKey('showcase-image')),
+              matching: find.byType(Image),
+            )
+            .first,
+      );
+      expect(image.fit, BoxFit.contain);
       final gesture = await tester.startGesture(
         tester.getCenter(find.byKey(const ValueKey('showcase-image'))),
       );

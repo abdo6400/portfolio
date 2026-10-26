@@ -28,7 +28,7 @@ The preview binds to 127.0.0.1 and sets COOP/COEP headers. The release build emi
 ./tool/verify.ps1
 ```
 
-This checks formatting, runs Flutter analysis and all tests, and builds the release with --wasm. Tests cover Arabic/RTL, 320px enlarged text, details/gallery enlargement, link failures, project migration/search, slideshow pause and reduced motion, mobile anchors and theme switching, real-project filters, and contact validation/loading/failures/disposal. Release browser QA must also cover desktop, tablet, mobile, keyboard focus, anchor offsets, theme contrast, and console errors.
+This checks formatting, runs Flutter analysis and all tests, tests the Wasm freshness guard, and builds the release with --wasm. The verifier and packager reject a Wasm file older than the Dart source; if an interrupted incremental build leaves stale output, rebuild in a clean checkout. Tests cover Arabic/RTL, 320px enlarged text, details/gallery enlargement, link failures, project migration/search, slideshow pause and reduced motion, mobile anchors and theme switching, real-project filters, and contact validation/loading/failures/disposal. Release browser QA must also cover desktop, tablet, mobile, keyboard focus, anchor offsets, theme contrast, and console errors.
 
 There is no supplied automated architecture checker. Manually review content independence, page composition, service ownership of external I/O, shared design tokens, and controller/listener cleanup.
 
@@ -112,4 +112,6 @@ Desktop stacked panels fill at least one available viewport, with content balanc
 
 ## Minimal project showcase
 
-The hero showcase displays a full-width project image and clickable title, without an enclosing card, role line, category, section heading or dot row. Horizontal swipes, left/right keys and screen-reader custom actions browse projects; both the image and title open details. A compact pause/resume control overlays the image. Existing hover/focus/background pauses and reduced-motion behavior are preserved.
+The hero showcase displays a full project image and clickable title, without an enclosing card, role line, category, section heading or dot row. A consistent frame preserves the complete artwork without cropping. Horizontal swipes, left/right keys and screen-reader custom actions browse projects; both the image and title open details. A hover hint explains navigation and the image has an explicit accessible button action. A compact pause/resume control overlays the image. Existing hover/focus/background pauses and reduced-motion behavior are preserved.
+
+Project galleries reuse an existing optimized cover for the first image and its thumbnail when available. If that cover fails to load, the original image is used; opening the zoom view always loads the original. Subsequent gallery images and videos keep their existing behavior. For example, the AMA e-commerce cover is 22,012 bytes versus 3,238,786 bytes for its original first image; this compares those files, not total page transfer.

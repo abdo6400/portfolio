@@ -63,10 +63,12 @@ class ProjectImage extends StatelessWidget {
     required this.label,
     required this.arabic,
     this.height = 280,
+    this.fallbackAsset,
   });
   final String asset, label;
   final bool arabic;
   final double height;
+  final String? fallbackAsset;
   @override
   Widget build(BuildContext context) => Semantics(
     label: label,
@@ -88,7 +90,16 @@ class ProjectImage extends StatelessWidget {
               fit: BoxFit.contain,
               excludeFromSemantics: true,
               errorBuilder: (_, _, _) =>
-                  Center(child: Text(Copy.imageFailed.inLanguage(arabic))),
+                  fallbackAsset != null && fallbackAsset != asset
+                  ? Image.asset(
+                      fallbackAsset!,
+                      fit: BoxFit.contain,
+                      excludeFromSemantics: true,
+                      errorBuilder: (_, _, _) => Center(
+                        child: Text(Copy.imageFailed.inLanguage(arabic)),
+                      ),
+                    )
+                  : Center(child: Text(Copy.imageFailed.inLanguage(arabic))),
             ),
     ),
   );

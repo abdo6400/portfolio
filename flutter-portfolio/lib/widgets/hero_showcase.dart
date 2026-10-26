@@ -10,6 +10,7 @@ import '../content/featured_projects.dart';
 import '../content/project_covers.dart';
 import '../content/studio_content.dart';
 import '../design/theme.dart';
+import 'brand_widgets.dart';
 
 class BrandIdentity extends StatelessWidget {
   const BrandIdentity({super.key, required this.arabic});
@@ -204,19 +205,28 @@ class _HeroShowcaseState extends State<HeroShowcase>
                             child: Material(
                               key: ValueKey(project.id),
                               color: p.raised,
-                              child: InkWell(
+                              child: Semantics(
+                                key: const ValueKey('showcase-open-image'),
+                                button: true,
+                                label:
+                                    '${project.name}. ${Copy.readProject.inLanguage(widget.arabic)}',
                                 onTap: () => widget.onProject(project),
-                                child: Image.asset(
-                                  projectCovers[project.id] ??
-                                      project.images.first,
-                                  width: double.infinity,
-                                  height: double.infinity,
-                                  fit: BoxFit.cover,
-                                  semanticLabel: project.name,
-                                  errorBuilder: (_, _, _) => Center(
-                                    child: Text(
-                                      Copy.imageFailed.inLanguage(
-                                        widget.arabic,
+                                child: ExcludeSemantics(
+                                  child: Tooltip(
+                                    message: StudioCopy.showcaseHint.inLanguage(
+                                      widget.arabic,
+                                    ),
+                                    excludeFromSemantics: true,
+                                    child: InkWell(
+                                      onTap: () => widget.onProject(project),
+                                      child: ProjectImage(
+                                        asset:
+                                            projectCovers[project.id] ??
+                                            project.images.first,
+                                        fallbackAsset: project.images.first,
+                                        label: project.name,
+                                        arabic: widget.arabic,
+                                        height: double.infinity,
                                       ),
                                     ),
                                   ),
