@@ -4,7 +4,7 @@ import 'package:personal_portfolio/main.dart';
 import 'package:personal_portfolio/widgets/brand_widgets.dart';
 
 void main() {
-  testWidgets('compact English and Arabic layouts support project details', (
+  testWidgets('compact English layout supports project details', (
     tester,
   ) async {
     tester.view.physicalSize = const Size(375, 900);
@@ -18,17 +18,12 @@ void main() {
       find.text('Senior Flutter Developer at digitalH', skipOffstage: false),
       findsOneWidget,
     );
-    await tester.tap(find.byKey(const ValueKey('language-toggle')));
-    await tester.pumpAndSettle();
-    expect(
-      find.text('مطور Flutter أول لدى digitalH', skipOffstage: false),
-      findsOneWidget,
-    );
+    expect(find.byKey(const ValueKey('language-toggle')), findsNothing);
     expect(
       Directionality.of(
         tester.element(find.byType(ProjectCard, skipOffstage: false).first),
       ),
-      TextDirection.rtl,
+      TextDirection.ltr,
     );
     await tester.ensureVisible(
       find.byType(ProjectCard, skipOffstage: false).first,
@@ -37,9 +32,9 @@ void main() {
     await tester.pumpAndSettle();
     await tester.tap(find.byType(ProjectCard, skipOffstage: false).first);
     await tester.pumpAndSettle();
-    expect(find.text('مساهمتي'), findsOneWidget);
+    expect(find.text('My contribution'), findsOneWidget);
     expect(tester.takeException(), isNull);
-    await tester.tap(find.byTooltip('إغلاق المشروع'));
+    await tester.tap(find.byTooltip('Close project'));
     await tester.pumpAndSettle();
     expect(find.byType(Dialog), findsNothing);
   });
@@ -106,8 +101,19 @@ void main() {
     addTearDown(tester.platformDispatcher.clearTextScaleFactorTestValue);
     await tester.pumpWidget(PortfolioApp(openLink: (_) async => true));
     await tester.pumpAndSettle();
-    await tester.tap(find.byKey(const ValueKey('language-toggle')));
-    await tester.pumpAndSettle();
     expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('Arabic device locale still displays English', (tester) async {
+    tester.platformDispatcher.localeTestValue = const Locale('ar');
+    addTearDown(tester.platformDispatcher.clearLocaleTestValue);
+    await tester.pumpWidget(PortfolioApp(openLink: (_) async => true));
+    await tester.pumpAndSettle();
+    expect(find.text('Contact me'), findsWidgets);
+    expect(find.byKey(const ValueKey('language-toggle')), findsNothing);
+    expect(
+      Directionality.of(tester.element(find.text('Contact me').first)),
+      TextDirection.ltr,
+    );
   });
 }

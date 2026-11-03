@@ -22,7 +22,6 @@ class PortfolioApp extends StatefulWidget {
 
 class _PortfolioAppState extends State<PortfolioApp> {
   bool dark = true;
-  late bool arabic = Uri.base.queryParameters['lang'] == 'ar';
   @override
   Widget build(BuildContext context) => MaterialApp(
     title: 'Abdelrahman Amr | Flutter Developer',
@@ -30,14 +29,13 @@ class _PortfolioAppState extends State<PortfolioApp> {
     theme: BrandTheme.light,
     darkTheme: BrandTheme.dark,
     themeMode: dark ? ThemeMode.dark : ThemeMode.light,
-    locale: Locale(arabic ? 'ar' : 'en'),
-    supportedLocales: const [Locale('en'), Locale('ar')],
+    locale: const Locale('en'),
+    supportedLocales: const [Locale('en')],
     localizationsDelegates: GlobalMaterialLocalizations.delegates,
     home: PortfolioPage(
-      arabic: arabic,
+      arabic: false,
       dark: dark,
       onThemeChange: () => setState(() => dark = !dark),
-      onLanguageChange: () => setState(() => arabic = !arabic),
       openLink: widget.openLink,
       initialProject: Uri.base.queryParameters['project'],
     ),

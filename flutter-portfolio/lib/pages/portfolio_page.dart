@@ -20,14 +20,12 @@ class PortfolioPage extends StatefulWidget {
   const PortfolioPage({
     super.key,
     required this.arabic,
-    required this.onLanguageChange,
     required this.openLink,
     this.initialProject,
     this.dark = true,
     this.onThemeChange,
   });
   final bool arabic, dark;
-  final VoidCallback onLanguageChange;
   final VoidCallback? onThemeChange;
   final Future<bool> Function(Uri) openLink;
   final String? initialProject;
@@ -227,18 +225,6 @@ class _PortfolioPageState extends State<PortfolioPage> {
                                 ? Icons.light_mode_outlined
                                 : Icons.dark_mode_outlined,
                             size: 20,
-                          ),
-                        ),
-                        TextButton(
-                          key: const ValueKey('language-toggle'),
-                          onPressed: widget.onLanguageChange,
-                          style: TextButton.styleFrom(
-                            minimumSize: const Size(48, 44),
-                            padding: const EdgeInsets.symmetric(horizontal: 8),
-                          ),
-                          child: Text(
-                            widget.arabic ? 'EN' : (wide ? 'العربية' : 'AR'),
-                            style: const TextStyle(fontSize: 12),
                           ),
                         ),
                         if (wide) ...[

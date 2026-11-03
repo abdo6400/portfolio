@@ -58,7 +58,7 @@ There is no supplied automated architecture checker. Manually review content ind
 
 ## Content, links and contact behavior
 
-The site uses the supplied CV, existing portfolio assets, and the owner's LinkedIn role verified on 21 October 2026: Senior Flutter Developer at digitalH, August 2026-present. Existing employers, education, project names and dates are preserved. No client counts, results, testimonials or unverified credentials are invented. Statistics are the actual 19 archived projects and two portfolio languages.
+The site uses the supplied CV, existing portfolio assets, and the owner's LinkedIn role verified on 21 October 2026: Senior Flutter Developer at digitalH, August 2026-present. Existing employers, education, project names and dates are preserved. No client counts, results, testimonials or unverified credentials are invented. The archive contains 19 projects.
 
 The supplied CV is unchanged and predates digitalH. Historical CV/LinkedIn month differences are represented with years for LEAPTECH and ProsysJo. The public email remains unconfirmed; no email address is guessed.
 
@@ -70,7 +70,7 @@ Edit ContactLinks in lib/content/studio_content.dart for social destinations. To
 flutter build web --release --wasm --dart-define=PORTFOLIO_EMAIL=your-confirmed-address@example.com
 ```
 
-The email link opens the visitor's email application; it does not send automatically. EN/AR and theme choices apply to the current session. Query links: ?lang=ar and ?project=addustour (any archive project ID is supported).
+The email link opens the visitor's email application; it does not send automatically. The site is English-only; legacy language query parameters are ignored. Theme choice applies to the current session. Project links such as ?project=addustour remain supported for any archive project ID.
 
 ## Performance and motion
 

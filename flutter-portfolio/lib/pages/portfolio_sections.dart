@@ -186,10 +186,7 @@ class PortfolioSections {
           Wrap(
             spacing: 32,
             runSpacing: 20,
-            children: [
-              _stat(context, '19', t(StudioCopy.publicWork)),
-              _stat(context, 'EN / AR', t(StudioCopy.languages)),
-            ],
+            children: [_stat(context, '19', t(StudioCopy.publicWork))],
           ),
           const SizedBox(height: 24),
           OutlinedButton.icon(
