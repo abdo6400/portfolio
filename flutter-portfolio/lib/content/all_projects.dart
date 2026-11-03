@@ -358,7 +358,7 @@ final allProjects = <Project>[
       ),
       Bilingual(
         "CUDA-enabled LSTM deep learning architecture",
-        "واجهة موبايل وويب",
+        "واجهة للهواتف والويب",
       ),
     ],
     images: projectMedia["speech-emotion-recognition"]!,

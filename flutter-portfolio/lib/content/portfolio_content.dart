@@ -12,7 +12,7 @@ const tagTranslations = {
   'Notifications': Bilingual('Notifications', 'إشعارات'),
   'Marketplace': Bilingual('Marketplace', 'سوق إلكتروني'),
   'Payments': Bilingual('Payments', 'مدفوعات'),
-  'Mobile': Bilingual('Mobile', 'موبايل'),
+  'Mobile': Bilingual('Mobile', 'تطبيقات الهواتف'),
   'Real estate': Bilingual('Real estate', 'عقارات'),
 };
 
@@ -28,11 +28,11 @@ abstract final class Copy {
   );
   static const hero = Bilingual(
     'Mobile products.\nThoughtful engineering.',
-    'تطبيقات موبايل.\nوهندسة تهتم بالتفاصيل.',
+    'تطبيقات للهواتف.\nوهندسة تهتم بالتفاصيل.',
   );
   static const intro = Bilingual(
     'I’m Abdelrahman, a software engineer in Cairo. I build and maintain Flutter applications for financial services, e-commerce, news, and service platforms.',
-    'أنا عبدالرحمن، مهندس برمجيات مقيم في القاهرة. أطور وأصون تطبيقات Flutter في مجالات الخدمات المالية والتجارة الإلكترونية والأخبار ومنصات الخدمات.',
+    'أنا عبدالرحمن، مهندس برمجيات مقيم في القاهرة. أطوّر تطبيقات Flutter وأصونها في مجالات الخدمات المالية والتجارة الإلكترونية والأخبار والخدمات.',
   );
   static const viewWork = Bilingual('Explore my work', 'استعرض أعمالي');
   static const cv = Bilingual('View CV', 'السيرة الذاتية');
@@ -54,7 +54,7 @@ abstract final class Copy {
   );
   static const approachBody = Bilingual(
     'My work connects mobile interfaces with backend services. I focus on understandable state management, clear architecture, and collaboration with backend and QA teams through delivery and maintenance.',
-    'يربط عملي واجهات الموبايل بالخدمات الخلفية. أهتم بإدارة واضحة لحالة التطبيق، وبنية منظمة، والتعاون مع فرق الباك إند واختبار الجودة خلال التطوير والصيانة.',
+    'أربط واجهات التطبيقات بالخدمات الخلفية، وأهتم بتنظيم بنية التطبيق وإدارة حالته بوضوح. أتعاون مع فرق الخدمات الخلفية وضمان الجودة خلال التطوير والصيانة.',
   );
   static const education = Bilingual(
     'BSc Computer Science · Ain Shams University',
@@ -62,7 +62,7 @@ abstract final class Copy {
   );
   static const contactTitle = Bilingual(
     'Have a mobile product\nin mind?',
-    'لديك فكرة\nلتطبيق موبايل؟',
+    'لديك فكرة\nلتطبيق للهواتف؟',
   );
   static const contactBody = Bilingual(
     'Let’s connect about a product, a Flutter project, or a professional opportunity. Based in Cairo. Open to conversations worldwide.',
@@ -81,7 +81,7 @@ abstract final class Copy {
   );
   static const footer = Bilingual(
     'Built with Flutter. Made with care.',
-    'بُني باستخدام Flutter، بعناية بالتفاصيل.',
+    'صُمّم بعناية وطُوّر باستخدام Flutter.',
   );
   static const projectNote = Bilingual(
     'Product features describe the application; my contribution is part of a wider team effort.',
@@ -93,7 +93,7 @@ abstract final class Copy {
   static const allWork = Bilingual('All projects', 'جميع المشاريع');
   static const browseAll = Bilingual(
     'Browse all 19 projects',
-    'تصفح جميع المشاريع الـ ١٩',
+    'تصفّح المشاريع التسعة عشر',
   );
   static const search = Bilingual(
     'Search projects or technologies',
@@ -267,7 +267,7 @@ const experiences = [
     Bilingual('AUG 2026 — PRESENT', 'أغسطس ٢٠٢٦ — الآن'),
     Bilingual(
       'Mobile product development. Full-time, remote from Cairo.',
-      'تطوير منتجات الموبايل، بدوام كامل وعن بُعد من القاهرة.',
+      'تطوير تطبيقات الهواتف بدوام كامل وعن بُعد من القاهرة.',
     ),
   ),
   ExperienceEntry(
@@ -285,7 +285,7 @@ const experiences = [
     Bilingual('2023 — 2024', '٢٠٢٣ — ٢٠٢٤'),
     Bilingual(
       'Pack and Go, Car Washing App, and Najam Al Kora. REST APIs, BLoC, and collaboration with backend and QA teams.',
-      'تطبيقات Pack and Go وغسيل السيارات ونجم الكرة، مع REST APIs وBLoC والتعاون مع الباك إند واختبار الجودة.',
+      'تطوير تطبيقات Pack and Go وغسيل السيارات ونجم الكرة، باستخدام REST APIs وBLoC وبالتعاون مع فرق الخدمات الخلفية وضمان الجودة.',
     ),
   ),
   ExperienceEntry(
@@ -294,7 +294,7 @@ const experiences = [
     Bilingual('2022 — 2024', '٢٠٢٢ — ٢٠٢٤'),
     Bilingual(
       'ADDUSTOUR, ALBASHEQ, Golden Mark, and SADAD. Mobile application development and maintenance.',
-      'تطبيقات ADDUSTOUR وALBASHEQ وGolden Mark وSADAD، وتطوير تطبيقات الموبايل وصيانتها.',
+      'تطوير وصيانة تطبيقات ADDUSTOUR وALBASHEQ وGolden Mark وSADAD للهواتف.',
     ),
   ),
 ];
