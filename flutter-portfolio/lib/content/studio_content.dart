@@ -2,7 +2,7 @@ import 'portfolio_content.dart';
 
 abstract final class StudioCopy {
   static const showcaseHint = Bilingual(
-    'Swipe or use arrow keys to browse projects.',
+    'Swipe or use arrow keys to browse projects. Press space to pause or resume.',
     'اسحب أو استخدم مفاتيح الأسهم لتصفح المشاريع.',
   );
   static const nextProject = Bilingual('Next project', 'المشروع التالي');

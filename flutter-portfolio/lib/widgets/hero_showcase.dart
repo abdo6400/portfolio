@@ -149,6 +149,10 @@ class _HeroShowcaseState extends State<HeroShowcase>
           onKeyEvent: (_, event) {
             if (event is! KeyDownEvent) return KeyEventResult.ignored;
             final key = event.logicalKey;
+            if (key == LogicalKeyboardKey.space && !reducedMotion) {
+              setState(() => paused = !paused);
+              return KeyEventResult.handled;
+            }
             if (key != LogicalKeyboardKey.arrowLeft &&
                 key != LogicalKeyboardKey.arrowRight) {
               return KeyEventResult.ignored;
@@ -171,6 +175,12 @@ class _HeroShowcaseState extends State<HeroShowcase>
                     label: StudioCopy.previousProject.inLanguage(widget.arabic),
                   ): () =>
                       shift(-1),
+                  if (!reducedMotion)
+                    CustomSemanticsAction(
+                      label: (paused ? Copy.resume : Copy.pauseSlides)
+                          .inLanguage(widget.arabic),
+                    ): () =>
+                        setState(() => paused = !paused),
                 },
                 child: GestureDetector(
                   dragStartBehavior: DragStartBehavior.down,
@@ -236,25 +246,6 @@ class _HeroShowcaseState extends State<HeroShowcase>
                           ),
                         ),
                       ),
-                      if (!reducedMotion)
-                        PositionedDirectional(
-                          top: 8,
-                          end: 8,
-                          child: Material(
-                            color: p.panel,
-                            shape: const CircleBorder(),
-                            child: IconButton(
-                              color: p.text,
-                              tooltip: (paused ? Copy.resume : Copy.pauseSlides)
-                                  .inLanguage(widget.arabic),
-                              onPressed: () => setState(() => paused = !paused),
-                              iconSize: 18,
-                              icon: Icon(
-                                paused ? Icons.play_arrow : Icons.pause,
-                              ),
-                            ),
-                          ),
-                        ),
                     ],
                   ),
                 ),

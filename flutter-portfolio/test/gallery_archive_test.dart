@@ -155,7 +155,7 @@ void main() {
     );
   });
 
-  testWidgets('showcase rotates and pause prevents subsequent changes', (
+  testWidgets('showcase rotates without an overlay pause button', (
     tester,
   ) async {
     await tester.pumpWidget(
@@ -184,15 +184,8 @@ void main() {
           .data,
       'ALBASHEQ',
     );
-    await tester.tap(find.byTooltip('Pause slideshow'));
-    await tester.pump(const Duration(seconds: 10));
-    await tester.pumpAndSettle();
-    expect(
-      tester
-          .widget<Text>(find.byKey(const ValueKey('showcase-project-name')))
-          .data,
-      'ALBASHEQ',
-    );
+    expect(find.byTooltip('Pause slideshow'), findsNothing);
+    expect(find.byIcon(Icons.pause), findsNothing);
   });
 
   testWidgets(
